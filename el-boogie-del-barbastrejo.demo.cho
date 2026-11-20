@@ -1,4 +1,4 @@
-# Versione disco.
+# Versione demo (registrata in casa da Devis).
 # Fonti:
 # - forma, tempo, testo, arrangiamento: progetto Reaper recording/ElBoogieDelBarbastrejo
 #   (marker, traccia "lyrics", item e automazioni di volume delle tracce)
@@ -17,7 +17,7 @@
 {duration: 3:45}
 {meta: tuning GDG}
 {meta: slide yes}
-{meta: version disco}
+{meta: version demo}
 {x_form: Intro V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad B1 B2 C x4 Outro}
 
 {start_of_verse: Intro}

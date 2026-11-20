@@ -4,15 +4,16 @@ Specifica per scrivere la struttura dei brani in testo semplice.
 
 ## Versioni
 
-Ogni brano può avere due versioni, in due file distinti:
+Ogni brano può avere tre versioni, in file distinti, che seguono la vita del brano:
 
 | Versione | File | Fonte |
 |---|---|---|
-| **disco** | `<brano>.disco.cho` | il progetto Reaper: forma, tempo, testo e arrangiamento registrato |
-| **live** | `<brano>.live.cho` | parte dalla versione disco e la adatta a come il trio suona il brano dal vivo |
+| **demo** | `<brano>.demo.cho` | la demo registrata in casa da Devis (progetto Reaper): forma, tempo, testo e arrangiamento registrato |
+| **live** | `<brano>.live.cho` | parte dalla demo e la adatta a come il trio ha sviluppato il brano in sala prove e lo suona dal vivo |
+| **disco** | `<brano>.disco.cho` | la registrazione in studio (futura). Serve ai musicisti in studio: contiene le parti degli strumenti |
 
-Si scrive prima la versione disco, che è oggettiva. La versione live si deriva da quella.
-La versione si dichiara anche nell'intestazione con `{meta: version disco}` o `{meta: version live}`.
+Si scrive prima la demo, che è oggettiva. La live si deriva dalla demo, la disco dalla live.
+La versione si dichiara anche nell'intestazione con `{meta: version demo}`, `{meta: version live}` o `{meta: version disco}`.
 
 È **ChordPro standard** ([chordpro.org](https://www.chordpro.org)) con alcune **estensioni `x_`**.
 Le direttive `x_` sono il meccanismo di estensione previsto da ChordPro: i programmi che non le conoscono le ignorano, quindi ogni file resta un ChordPro valido e si può stampare con `chordpro <file>.cho`.
@@ -22,7 +23,7 @@ Le direttive `x_` sono il meccanismo di estensione previsto da ChordPro: i progr
 ## 1. File
 
 - Un brano per file, estensione `.cho`, codifica UTF-8.
-- Nome del file in kebab-case, senza accenti, con la versione prima dell'estensione: `el-boogie-del-barbastrejo.disco.cho`, `l-anguana.live.cho`.
+- Nome del file in kebab-case, senza accenti, con la versione prima dell'estensione: `el-boogie-del-barbastrejo.demo.cho`, `l-anguana.live.cho`.
 
 ## 2. Intestazione
 
@@ -37,7 +38,7 @@ In testa al file vanno le direttive che valgono per tutto il brano.
 | `{duration: ...}` | no | durata indicativa (m:ss) | `{duration: 3:45}` |
 | `{meta: tuning ...}` | sì | accordatura della cigar box, dalla corda più grave alla più acuta | `{meta: tuning GDG}` |
 | `{meta: slide ...}` | no | uso dello slide: `yes`, `no`, `mixed` | `{meta: slide yes}` |
-| `{meta: version ...}` | sì | `disco` o `live` | `{meta: version disco}` |
+| `{meta: version ...}` | sì | `demo`, `live` o `disco` | `{meta: version demo}` |
 | `{x_form: ...}` | sì | forma sintetica del brano (vedi §4) | `{x_form: Intro V1 C V2 C Jam C Outro}` |
 
 ## 3. Sezioni
@@ -99,7 +100,7 @@ Messe dentro una sezione, valgono per quella sezione. Il testo è libero, salvo 
 | `{x_dyn: ...}` | dinamica: `pp p mp mf f ff`, `→` per crescendo/diminuendo | `{x_dyn: p → ff}` |
 | `{x_vox: ...}` | voce principale: tipo e trattamento (cantato, parlato, doppiata…) | `{x_vox: parlato + backing}` |
 | `{x_cbg: ...}` | parte della cigar box | `{x_cbg: riff x2, poi slide libero}` |
-| `{x_gtr: ...}` | altre chitarre (12 corde, resonator…), di solito solo nella versione disco | `{x_gtr: 12 corde + resonator}` |
+| `{x_gtr: ...}` | altre chitarre (12 corde, resonator…), di solito solo nelle versioni demo e disco | `{x_gtr: 12 corde + resonator}` |
 | `{x_drums: ...}` | parte della batteria | `{x_drums: solo tom, niente piatti}` |
 | `{x_bass: ...}` | parte del basso | `{x_bass: pedale su G}` |
 | `{x_synth: ...}` | parte del synth | `{x_synth: drone, filtro che si apre}` |

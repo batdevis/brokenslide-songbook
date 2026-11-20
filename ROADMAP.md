@@ -4,15 +4,15 @@ Ultimo aggiornamento: 2026-11-14.
 
 ## Stato dei brani
 
-| Brano | Disco | Live | Note |
-|---|---|---|---|
-| El Boogie Del Barbastrejo | ✅ | – | vedi domande aperte |
-| E Allora | – | – | progetto Reaper `recording/EAllora`. In `chords/` c'è `PiangiSulTuoLetto.txt`: verificare se è lo stesso brano |
-| Gipsy G | – | – | `recording/GipsyG` |
-| L'Anguana | – | – | `recording/l'Anguana`. Synth dal vivo |
-| Sequeri (Miracoi) | – | – | `recording/Sequeri`, tab in `chords/`. Synth dal vivo |
-| Spezzato | – | – | `recording/Spezzato`, accordi in `chords/` |
-| Watchin | – | – | `recording/Watchin`, accordi in `chords/` |
+| Brano | Demo | Live | Disco | Note |
+|---|---|---|---|---|
+| El Boogie Del Barbastrejo | ✅ | – | – | vedi domande aperte |
+| E Allora | – | – | – | progetto Reaper `recording/EAllora`. In `chords/` c'è `PiangiSulTuoLetto.txt`: verificare se è lo stesso brano |
+| Gipsy G | – | – | – | `recording/GipsyG` |
+| L'Anguana | – | – | – | `recording/l'Anguana`. Synth dal vivo |
+| Sequeri (Miracoi) | – | – | – | `recording/Sequeri`, tab in `chords/`. Synth dal vivo |
+| Spezzato | – | – | – | `recording/Spezzato`, accordi in `chords/` |
+| Watchin | – | – | – | `recording/Watchin`, accordi in `chords/` |
 
 Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e la scaletta. Chiedere a Devis se vanno nel songbook.
 
@@ -21,12 +21,12 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ### El Boogie Del Barbastrejo
 - Riff e accordi delle sezioni diverse dal pre-chorus: il progetto Reaper non li contiene.
 - Pre-chorus: va scritto `G#` (come nel progetto) o `Ab`? Per ora `G#`.
-- Il doc Drive `_Tab` ha un `[pau]` (pausa?) prima del RIT 03, che non è nel disco: probabilmente riguarda la versione live.
+- Il doc Drive `_Tab` ha un `[pau]` (pausa?) prima del RIT 03, che non è nella demo: probabilmente riguarda la versione live.
 - Testo: "barbastrejio" in B1 e "barbastrejo" altrove, lasciato com'è.
 
 ## Prossimi passi
-1. Versione disco degli altri brani (procedura in `CLAUDE.md`).
-2. Versioni live, partendo dalle disco. Fonti: Devis, la scaletta su Drive.
+1. Versione demo degli altri brani (procedura in `CLAUDE.md`).
+2. Versioni live, partendo dalle demo. Fonti: Devis, la scaletta su Drive.
 3. Creare `_template.cho` quando il formato si sarà stabilizzato su 2-3 brani.
 
 ## Idee rimandate

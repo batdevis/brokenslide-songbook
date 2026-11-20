@@ -14,24 +14,25 @@ Sito: https://brokenslideband.web.app/
 I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: forma sintetica, battute, cue, parti dei singoli strumenti.
 La specifica completa è in [FORMAT.md](FORMAT.md).
 
-Ogni brano può avere due versioni:
+Ogni brano può avere tre versioni:
 
 | File | Contenuto |
 |---|---|
-| `<brano>.disco.cho` | il brano come registrato, ricavato dal progetto Reaper |
-| `<brano>.live.cho` | il brano come lo suona il trio dal vivo, ricavato dalla versione disco |
+| `<brano>.demo.cho` | la demo registrata in casa da Devis, ricavata dal progetto Reaper |
+| `<brano>.live.cho` | il brano come lo suona il trio dal vivo, sviluppato in sala prove partendo dalla demo |
+| `<brano>.disco.cho` | il brano registrato in studio (futuro), con le parti degli strumenti |
 
 ## Brani
 
-| Brano | Disco | Live |
-|---|---|---|
-| El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.disco.cho) | – |
+| Brano | Demo | Live | Disco |
+|---|---|---|---|
+| El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.demo.cho) | – | – |
 
 ## Stampare un brano in PDF
 
 ```sh
-python3 tools/render.py el-boogie-del-barbastrejo.disco.cho
-# → pdf/el-boogie-del-barbastrejo.disco.pdf  (oppure: -o <file.pdf>)
+python3 tools/render.py el-boogie-del-barbastrejo.demo.cho
+# → pdf/el-boogie-del-barbastrejo.demo.pdf  (oppure: -o <file.pdf>)
 ```
 
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così nel PDF compaiono:

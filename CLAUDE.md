@@ -9,8 +9,9 @@ Lo stato del lavoro e i prossimi passi sono in [ROADMAP.md](ROADMAP.md): leggerl
 FORMAT.md                  # specifica del formato: riferimento principale, aggiornarlo se il formato cambia
 README.md                  # per chi legge il repo: brani, stampa, strumenti, test
 ROADMAP.md                 # stato dei brani, domande aperte, prossimi passi
-<brano>.disco.cho          # versione disco
+<brano>.demo.cho           # versione demo (registrata in casa da Devis)
 <brano>.live.cho           # versione live (nessuna ancora)
+<brano>.disco.cho          # versione disco, registrata in studio (futura)
 tools/rpp_arrangement.py   # .RPP → tempo, sezioni (marker) e tracce attive per sezione
 tools/render.py            # .cho → pdf/<brano>.pdf via chordpro, con le x_ rese visibili
 tests/                     # python3 -m unittest discover tests
@@ -19,14 +20,15 @@ pdf/                       # PDF generati, versionati
 
 ## Decisioni prese
 - **Formato**: ChordPro standard più direttive `x_` (ignorate dagli altri programmi ChordPro). Righe `#` per fonti, TODO e nome del marker Reaper (`# Reaper: str 01`).
-- **Due versioni per brano**: prima la **disco** (oggettiva, ricavata dal progetto Reaper), poi la **live** ricavata dalla disco. Dal vivo la forma a volte cambia.
-- **Versione disco = solo fatti**: niente interpretazioni (ad esempio sulla dinamica) che non si leggano nel progetto o che Devis non abbia confermato.
+- **Tre versioni per brano**, che seguono la vita del brano: **demo** (Devis la registra da solo in casa; oggettiva, ricavata dal progetto Reaper), **live** (il trio sviluppa il brano in sala prove partendo dalla demo; la forma può cambiare), **disco** (registrazione in studio, futura).
+- **Parti degli strumenti** (`x_cbg`, `x_gtr`, `x_bass`, `x_drums`…): servono nella demo e nella disco. Nella live non si mettono, salvo che non servano a chi suona.
+- **Versione demo = solo fatti**: niente interpretazioni (ad esempio sulla dinamica) che non si leggano nel progetto o che Devis non abbia confermato.
 - **Etichette delle sezioni**: Intro, V1…, PC, C, B1…, Solo, Inst, Brk, Pad, Jam, Tag, Outro. Il ritornello si scrive una volta, come frase, e si ripete in `x_form` con `C x2` / `C x4`.
 - **Testo**: in dialetto veneto, va riportato **così com'è**. Non correggere l'ortografia senza chiedere.
 - **Accordi fuori tonalità**: possono essere voluti (ad esempio il pre-chorus di El Boogie). Segnalarli con un commento, non correggerli.
 - **PDF**: diagrammi degli accordi disattivati (quelli di ChordPro sono per chitarra a 6 corde). Le parti degli strumenti stanno in una riga compatta per sezione, i cue in un riquadro.
 
-## Procedura: versione disco di un brano
+## Procedura: versione demo di un brano
 1. **Sezioni e arrangiamento**: `python3 -I tools/rpp_arrangement.py ../recording/<Brano>/<Brano>.RPP`. Battute per sezione e tracce attive con la percentuale di copertura. Ignorare le coperture minime (code di item), indicare quelle parziali ("hi-hat (3 battute)").
 2. **Testo dal progetto**, se c'è la traccia `lyrics`:
    ```sh
@@ -38,8 +40,8 @@ pdf/                       # PDF generati, versionati
 3. **Verifica del testo** sul doc Drive `<Brano>_Tab` (via `gws`, sola lettura). Nella traccia `lyrics` possono mancare dei versi.
 4. **Accordi e tab**: `../recording/<Brano>/chords/*.txt`, se esistono.
 5. **Domande a Devis** per quello che il progetto non dice: tonalità, accordatura e slide, chi fa il solo, significato dei nomi delle tracce non ovvi.
-6. **Scrittura**: `<brano>.disco.cho`, seguendo `FORMAT.md` e usando `el-boogie-del-barbastrejo.disco.cho` come esempio.
-7. **Chiusura**: `python3 tools/render.py <brano>.disco.cho`, controllo del PDF (con `pdftoppm -r 70 -png` si può guardare la pagina), tabella dei brani in `README.md`, aggiornamento di `ROADMAP.md`.
+6. **Scrittura**: `<brano>.demo.cho`, seguendo `FORMAT.md` e usando `el-boogie-del-barbastrejo.demo.cho` come esempio.
+7. **Chiusura**: `python3 tools/render.py <brano>.demo.cho`, controllo del PDF (con `pdftoppm -r 70 -png` si può guardare la pagina), tabella dei brani in `README.md`, aggiornamento di `ROADMAP.md`.
 
 ## Git
 - Remote `git@github.com:batdevis/brokenslide-songbook.git`, branch `main`.
