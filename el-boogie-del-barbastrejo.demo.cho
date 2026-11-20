@@ -4,11 +4,12 @@
 #   (marker, traccia "lyrics", item e automazioni di volume delle tracce)
 # - testo verificato su Drive band: Broken Slide - work/songs/"El Boogie del Barbastrejo_Tab" (2026-10-03)
 # I commenti "Reaper:" riportano il nome del marker corrispondente.
-# Tracce Reaper → nomi usati qui:
-#   CBG = cigar box pulita, CBG dist = cigar box distorta, 12 str = 12 corde, rezo = resonator (12 corde e resonator suonati da Devis),
-#   voice str = voce strofe, voice can + voice rit = voci ritornello, voice spoken = parlato,
-#   voice backing = doppia voce, voice clap = battimani,
-#   kick - stem / hi-hat / crash = batteria
+# Termini come in GLOSSARY.md. Tracce Reaper → termini usati qui:
+#   CBG = cigar box guitar, CBG dist = distorted CBG, 12 str = 12-string guitar, rezo = resonator
+#   (12-string e resonator suonati da Devis),
+#   voice str = lead vocal, voice can = lead vocal con tin can mic, voice rit = lead vocal del chorus,
+#   voice spoken = spoken, voice backing = backing vocals, voice clap = claps,
+#   kick - stem / hi-hat / crash = drums
 
 {title: El Boogie Del Barbastrejo}
 {key: G}
@@ -18,23 +19,23 @@
 {meta: tuning GDG}
 {meta: slide yes}
 {meta: version demo}
-{x_form: Intro V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad B1 B2 C x4 Outro}
+{x_form: Intro V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad B C x4 Outro}
 
 {start_of_verse: Intro}
 # Reaper: intro
 {x_bars: 4}
 {x_cbg: CBG}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 {end_of_verse}
 
 {start_of_verse: V1}
 # Reaper: str 01
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
+{x_vox: lead vocal + backing vocals}
 {x_cbg: CBG}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 No riesso a stare fora
 no so bon de far festa
 ea sera presto intriga
@@ -44,10 +45,10 @@ no vedo gnanca ‘na figa
 {start_of_verse: V2}
 # Reaper: str 02
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
+{x_vox: lead vocal + backing vocals}
 {x_cbg: CBG}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 No riesso a stare quieto
 in meso a massa xente
 no vago pi’ nissiogo
@@ -59,19 +60,19 @@ no me ne frega gnente
 {x_bars: 4}
 {comment: strofa strumentale, senza voce}
 {x_cbg: CBG}
-{x_gtr: entra la 12 corde}
-{x_bass: basso}
-{x_drums: cassa + hi-hat (3 battute)}
+{x_gtr: entra la 12-string}
+{x_bass: bass}
+{x_drums: kick + hi-hat (3 battute)}
 {end_of_verse}
 
 {start_of_verse: V3}
 # Reaper: str 03
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
+{x_vox: lead vocal + backing vocals}
 {x_cbg: CBG}
-{x_gtr: 12 corde + entra il resonator}
-{x_bass: basso}
-{x_drums: cassa}
+{x_gtr: 12-string + entra il resonator}
+{x_bass: bass}
+{x_drums: kick}
 bon gnanca a dormire
 gol cuore coe visighe
 fasso pensieri bruti
@@ -81,21 +82,21 @@ i brassi trema tuti
 {start_of_verse: Brk}
 # Reaper: stacco
 {x_bars: 4}
-{x_vox: doppia voce (1 battuta)}
+{x_vox: backing vocals (1 battuta)}
 {x_cbg: CBG}
-{x_gtr: resonator (esce la 12 corde)}
-{x_bass: basso}
-{x_drums: cassa + hi-hat, qualche battimano}
+{x_gtr: resonator (esce la 12-string)}
+{x_bass: bass}
+{x_drums: kick + hi-hat, claps sparsi}
 {end_of_verse}
 
 {start_of_verse: V4}
 # Reaper: str 04
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
+{x_vox: lead vocal + backing vocals}
 {x_cbg: CBG}
 {x_gtr: resonator}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 Me sento al fresco in orto
 me dondoeo soa carega
 accordo ea me chitara
@@ -105,22 +106,22 @@ co l’ampli a bataria
 {start_of_verse: Solo}
 # Reaper: solo
 {x_bars: 8}
-{x_vox: doppia voce (2 battute)}
+{x_vox: backing vocals (2 battute)}
 {x_cbg: solo (CBG)}
 {x_gtr: resonator}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 {end_of_verse}
 
 {start_of_verse: PC}
 # Reaper: pre chorus
 # Accordi fuori tonalità (G) di proposito.
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
-{x_cbg: solo CBG dist (la CBG pulita tace)}
-{x_gtr: 12 corde (3 battute)}
-{x_bass: basso}
-{x_drums: cassa + hi-hat (2 battute)}
+{x_vox: lead vocal + backing vocals}
+{x_cbg: solo CBG dist (la CBG tace)}
+{x_gtr: 12-string (3 battute)}
+{x_bass: bass}
+{x_drums: kick + hi-hat (2 battute)}
 [Fm]Ma quando sora ea testa
 [G#]me passa un barbastrejo
 [Bb]ch’el me baea su l’orto
@@ -130,11 +131,11 @@ co l’ampli a bataria
 {start_of_chorus: C}
 # Reaper: rit 01 (C x2), rit 02 (C x4), rit 03 (C x4)
 {x_bars: 4}
-{x_vox: voci ritornello (can + rit) + doppia voce}
+{x_vox: lead vocal su due tracce (una con tin can mic) + backing vocals}
 {x_cbg: CBG + CBG dist}
-{x_gtr: 12 corde + resonator}
-{x_bass: basso}
-{x_drums: cassa, crash, hi-hat}
+{x_gtr: 12-string + resonator}
+{x_bass: bass}
+{x_drums: kick, crash, hi-hat}
 Aaaah
 ahhhh
 el boogie del barbastrejo
@@ -143,11 +144,11 @@ el boogie del barbastrejo
 {start_of_verse: V5}
 # Reaper: str 05
 {x_bars: 4}
-{x_vox: voce strofe + doppia voce}
+{x_vox: lead vocal + backing vocals}
 {x_cbg: CBG (+ CBG dist per 1 battuta)}
 {x_gtr: resonator}
-{x_bass: basso}
-{x_drums: cassa}
+{x_bass: bass}
+{x_drums: kick}
 Voria anca tocarlo
 un fià el me fa impression
 no go gnanca capio se
@@ -159,33 +160,23 @@ te si cativo o te si bon
 {x_bars: 6}
 {comment: senza voce}
 {x_cbg: CBG}
-{x_gtr: 12 corde}
-{x_bass: basso}
-{x_drums: cassa, qualche battimano}
+{x_gtr: 12-string}
+{x_bass: bass}
+{x_drums: kick, claps sparsi}
 {end_of_verse}
 
-{start_of_bridge: B1}
-# Reaper: closing 01
-{x_bars: 4}
-{x_vox: parlato + doppia voce}
-{x_cbg: CBG}
-{x_gtr: 12 corde + resonator}
-{x_bass: basso}
-{x_drums: cassa solo per 1 battuta, hi-hat (2 battute)}
+{start_of_bridge: B}
+# Reaper: closing 01 (battute 1-4), closing 02 (battute 5-8)
+{x_bars: 8}
+{x_vox: spoken + backing vocals}
+{x_cbg: CBG, tace nell'ultima battuta}
+{x_gtr: 12-string (battute 1-4) + resonator}
+{x_bass: bass}
+{x_drums: kick solo per 1 battuta in ogni metà, hi-hat (2 battute, nella prima metà)}
 Te ringrassio barbastrejio
 che te me ghè insegna’ a baeare
 in mexo al scuro che go dentro
 ma no vojo uncora moeare
-{end_of_bridge}
-
-{start_of_bridge: B2}
-# Reaper: closing 02
-{x_bars: 4}
-{x_vox: parlato + doppia voce}
-{x_cbg: CBG, tace nell'ultima battuta}
-{x_gtr: resonator}
-{x_bass: basso}
-{x_drums: cassa solo per 1 battuta}
 E grassie barbastrejo
 fame sempre compagnia
 te go in mente anca pal ciaro seto
@@ -195,9 +186,9 @@ dall’orto no sta ndare via
 {start_of_verse: Outro}
 # Reaper: final
 {x_bars: 4}
-{x_vox: doppia voce}
+{x_vox: backing vocals}
 {x_cbg: CBG + CBG dist}
-{x_gtr: 12 corde + resonator}
-{x_bass: basso}
-{x_drums: cassa}
+{x_gtr: 12-string + resonator}
+{x_bass: bass}
+{x_drums: kick}
 {end_of_verse}

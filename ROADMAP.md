@@ -22,7 +22,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 - Riff e accordi delle sezioni diverse dal pre-chorus: il progetto Reaper non li contiene.
 - Pre-chorus: va scritto `G#` (come nel progetto) o `Ab`? Per ora `G#`.
 - Il doc Drive `_Tab` ha un `[pau]` (pausa?) prima del RIT 03, che non è nella demo: probabilmente riguarda la versione live.
-- Testo: "barbastrejio" in B1 e "barbastrejo" altrove, lasciato com'è.
+- Testo: "barbastrejio" nella prima metà del bridge (B) e "barbastrejo" altrove, lasciato com'è.
 
 ## Prossimi passi
 1. Versione demo degli altri brani (procedura in `CLAUDE.md`).

@@ -21,7 +21,7 @@ SONG = """\
 # Reaper: intro
 {x_bars: 4}
 {x_cbg: riff}
-{x_drums: cassa}
+{x_drums: kick}
 {x_cue: Devis: stop}
 {end_of_verse}
 
@@ -63,7 +63,7 @@ class ConvertTest(ExternalCallGuard):
         parts = [l for l in self.lines if l.startswith("{comment_italic:")]
         self.assertEqual(len(parts), 2)
         self.assertIn("riff", parts[0])
-        self.assertIn("cassa", parts[0])
+        self.assertIn("kick", parts[0])
 
     def test_cue_is_boxed(self):
         self.assertTrue(any(l.startswith("{comment_box: Cue:") for l in self.lines))

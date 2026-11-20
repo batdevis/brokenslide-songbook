@@ -7,6 +7,7 @@ Lo stato del lavoro e i prossimi passi sono in [ROADMAP.md](ROADMAP.md): leggerl
 ## File
 ```
 FORMAT.md                  # specifica del formato: riferimento principale, aggiornarlo se il formato cambia
+GLOSSARY.md                # termini da usare (in inglese) e sinonimi trovati nelle fonti
 README.md                  # per chi legge il repo: brani, stampa, strumenti, test
 ROADMAP.md                 # stato dei brani, domande aperte, prossimi passi
 <brano>.demo.cho           # versione demo (registrata in casa da Devis)
@@ -23,7 +24,8 @@ pdf/                       # PDF generati, versionati
 - **Tre versioni per brano**, che seguono la vita del brano: **demo** (Devis la registra da solo in casa; oggettiva, ricavata dal progetto Reaper), **live** (il trio sviluppa il brano in sala prove partendo dalla demo; la forma può cambiare), **disco** (registrazione in studio, futura).
 - **Parti degli strumenti** (`x_cbg`, `x_gtr`, `x_bass`, `x_drums`…): servono nella demo e nella disco. Nella live non si mettono, salvo che non servano a chi suona.
 - **Versione demo = solo fatti**: niente interpretazioni (ad esempio sulla dinamica) che non si leggano nel progetto o che Devis non abbia confermato.
-- **Etichette delle sezioni**: Intro, V1…, PC, C, B1…, Solo, Inst, Brk, Pad, Jam, Tag, Outro. Il ritornello si scrive una volta, come frase, e si ripete in `x_form` con `C x2` / `C x4`.
+- **Etichette delle sezioni**: Intro, V1…, PC, C, B (B1…), Solo, Inst, Brk, Pad, Jam, Tag, Outro. Il ritornello si scrive una volta, come frase, e si ripete in `x_form` con `C x2` / `C x4`.
+- **Termini**: strumenti, voci e sezioni si scrivono con i termini inglesi di `GLOSSARY.md`, il resto in italiano. Un nome nuovo trovato nelle fonti va aggiunto al glossario.
 - **Testo**: in dialetto veneto, va riportato **così com'è**. Non correggere l'ortografia senza chiedere.
 - **Accordi fuori tonalità**: possono essere voluti (ad esempio il pre-chorus di El Boogie). Segnalarli con un commento, non correggerli.
 - **PDF**: diagrammi degli accordi disattivati (quelli di ChordPro sono per chitarra a 6 corde). Le parti degli strumenti stanno in una riga compatta per sezione, i cue in un riquadro.

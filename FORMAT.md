@@ -1,6 +1,7 @@
 # Formato dei brani BrokenSlide
 
 Specifica per scrivere la struttura dei brani in testo semplice.
+I nomi di strumenti, voci e sezioni sono quelli del [glossario](GLOSSARY.md).
 
 ## Versioni
 
@@ -98,13 +99,13 @@ Messe dentro una sezione, valgono per quella sezione. Il testo è libero, salvo 
 | `{x_riff: <nome>}` | riff da suonare, definito in un blocco `tab` | `{x_riff: Riff A}` |
 | `{x_cue: ...}` | segnale tra i musicisti. Forma consigliata: `chi: segnale → cosa succede` | `{x_cue: Devis: alza la cigar box → stop sul 4, poi C}` |
 | `{x_dyn: ...}` | dinamica: `pp p mp mf f ff`, `→` per crescendo/diminuendo | `{x_dyn: p → ff}` |
-| `{x_vox: ...}` | voce principale: tipo e trattamento (cantato, parlato, doppiata…) | `{x_vox: parlato + backing}` |
+| `{x_vox: ...}` | voce principale: tipo e trattamento (cantato, parlato, doppiata…) | `{x_vox: spoken + double}` |
 | `{x_cbg: ...}` | parte della cigar box | `{x_cbg: riff x2, poi slide libero}` |
 | `{x_gtr: ...}` | altre chitarre (12 corde, resonator…), di solito solo nelle versioni demo e disco | `{x_gtr: 12 corde + resonator}` |
-| `{x_drums: ...}` | parte della batteria | `{x_drums: solo tom, niente piatti}` |
+| `{x_drums: ...}` | parte della batteria | `{x_drums: solo toms, niente crash e ride}` |
 | `{x_bass: ...}` | parte del basso | `{x_bass: pedale su G}` |
 | `{x_synth: ...}` | parte del synth | `{x_synth: drone, filtro che si apre}` |
-| `{x_bv: ...}` | cori | `{x_bv: Daniele sulle ultime due parole}` |
+| `{x_bv: ...}` | backing vocals | `{x_bv: Daniele sulle ultime due parole}` |
 
 Per le note che non rientrano in nessuna direttiva si usa lo standard `{comment: ...}`, che viene anche stampato.
 
@@ -159,7 +160,7 @@ G|-----------------|
 {x_bars: 8}
 {x_riff: Riff A}
 {x_cbg: da sola per 4 battute}
-{x_drums: entra alla battuta 5, cassa e charleston}
+{x_drums: entra alla battuta 5, kick e hi-hat}
 {end_of_verse}
 
 {start_of_verse: V1}
@@ -170,7 +171,7 @@ G|-----------------|
 
 {start_of_chorus: C}
 {x_bars: 8}
-{x_bv: cori sulle ultime due parole}
+{x_bv: backing vocals sulle ultime due parole}
 [C]Testo del rit[G]ornello
 {end_of_chorus}
 

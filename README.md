@@ -12,7 +12,7 @@ Sito: https://brokenslideband.web.app/
 ## Formato
 
 I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: forma sintetica, battute, cue, parti dei singoli strumenti.
-La specifica completa è in [FORMAT.md](FORMAT.md).
+La specifica completa è in [FORMAT.md](FORMAT.md), i termini da usare in [GLOSSARY.md](GLOSSARY.md).
 
 Ogni brano può avere tre versioni:
 

@@ -19,15 +19,15 @@ REPO_ROOT = Path(__file__).resolve().parent.parent
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 
 PART_LABELS = {
-    "x_vox": "Voce",
+    "x_vox": "Vocals",
     "x_cbg": "CBG",
-    "x_gtr": "Chitarre",
-    "x_bass": "Basso",
+    "x_gtr": "Guitars",
+    "x_bass": "Bass",
     "x_synth": "Synth",
-    "x_drums": "Batteria",
-    "x_bv": "Cori",
+    "x_drums": "Drums",
+    "x_bv": "Backing vocals",
     "x_riff": "Riff",
-    "x_dyn": "Dinamica",
+    "x_dyn": "Dynamics",
 }
 
 
@@ -35,7 +35,7 @@ SLIDE_TEXT = {"yes": "con slide", "no": "senza slide", "mixed": "slide in parte"
 
 
 def bars_text(value):
-    return "durata aperta" if value == "open" else f"{value} battute"
+    return "open" if value == "open" else f"{value} bars"
 
 
 def header_lines(info):
