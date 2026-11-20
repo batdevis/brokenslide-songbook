@@ -120,20 +120,23 @@
 
 {start_of_verse: PC}
 # Reaper: pre chorus
+# Accordi fuori tonalità (G) di proposito. Confermati da Devis (2026-11-21): F G# Bb C7.
+# Nella traccia lyrics di Reaper il primo è scritto "F-".
 {x_bars: 4}
 {x_vox: lead vocal + backing vocals}
 {x_cbg: solo CBG dist (la CBG tace)}
 {x_gtr: 12-string (3 battute)}
 {x_bass: bass}
 {x_drums: kick + hi-hat (2 battute)}
-[F-]Ma quando sora ea testa
+[F]Ma quando sora ea testa
 [G#]me passa un barbastrejo
 [Bb]ch’el me baea su l’orto
 [C7]come ch’el fosse ‘na foresta
 {end_of_verse}
 
 {start_of_chorus: C}
-# Reaper: rit 01 (C x2), rit 02 (C x4), rit 03 (C x4)
+# Reaper: rit 01 (C x2), rit 02 (C x4), rit 03 (C x4). Frase di 4 battute ripetuta.
+# Bb fuori tonalità (G) di proposito.
 {x_bars: 4}
 {x_vox: lead vocal su due tracce (una con tin can mic) + backing vocals}
 {x_cbg: CBG + CBG dist}
@@ -143,10 +146,10 @@
 [C]Aaaah
 [Bb]ahhhh
 [G]el boogie del barbastrejo
-{start_of_grid: label="C" shape="4x4"}
+{end_of_chorus}
+{start_of_grid: shape="4x4"}
 | C . . . | Bb . . . | G . . . | G . . . |
 {end_of_grid}
-{end_of_chorus}
 
 {start_of_verse: V5}
 # Reaper: str 05
@@ -162,16 +165,19 @@
 [G]te si cativo o te si bon
 {end_of_verse}
 
+{chorus: C x4}
+# Reaper: rit 02
+
 {start_of_grid: label="Pad" shape="4x4"}
 # Reaper: boogie pad
-{x_bars: 8}
+{x_bars: 6}
 {comment: senza voce}
 {x_cbg: CBG}
 {x_gtr: 12-string}
 {x_bass: bass}
 {x_drums: kick, claps sparsi}
 | G . . . | G . . . | G . . . | G . . . |
-| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . |
 {end_of_grid}
 
 {start_of_bridge: B}
@@ -192,14 +198,16 @@
 [G]dall’orto no sta ndare via
 {end_of_bridge}
 
+{chorus: C x4}
+# Reaper: rit 03
+
 {start_of_grid: label="Outro" shape="4x4"}
 # Reaper: final
-{x_bars: 8}
+{x_bars: 4}
 {x_vox: backing vocals}
 {x_cbg: CBG + CBG dist}
 {x_gtr: 12-string + resonator}
 {x_bass: bass}
 {x_drums: kick}
-| G . . . | G . . . | G . . . | G . . . |
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
