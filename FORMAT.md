@@ -55,6 +55,16 @@ Ogni sezione si apre con `{start_of_<tipo>: <etichetta>}` e si chiude con `{end_
 | `tab` | riff scritto in tablatura (vedi §6) |
 | `grid` | griglia di accordi per battute (standard ChordPro) |
 
+Le sezioni senza testo con accordi (intro, parti strumentali, outro) si scrivono come `grid`: una cella per battuta, un simbolo per tempo, `.` dove l'accordo continua.
+Etichetta e forma della griglia vanno come attributi: `shape="4x4"` vuol dire 4 battute da 4 tempi per riga.
+
+```
+{start_of_grid: label="Intro" shape="4x4"}
+{x_bars: 4}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+```
+
 ### Etichette
 
 L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.

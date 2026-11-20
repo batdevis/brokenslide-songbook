@@ -21,13 +21,14 @@
 {meta: version demo}
 {x_form: Intro V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad B C x4 Outro}
 
-{start_of_verse: Intro}
+{start_of_grid: label="Intro" shape="4x4"}
 # Reaper: intro
 {x_bars: 4}
 {x_cbg: CBG}
 {x_bass: bass}
 {x_drums: kick}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V1}
 # Reaper: str 01
@@ -36,10 +37,10 @@
 {x_cbg: CBG}
 {x_bass: bass}
 {x_drums: kick}
-No riesso a stare fora
-no so bon de far festa
-ea sera presto intriga
-no vedo gnanca ‘na figa
+[G]No riesso a stare fora
+[G]no so bon de far festa
+[G]ea sera presto intriga
+[G]no vedo gnanca ‘na figa
 {end_of_verse}
 
 {start_of_verse: V2}
@@ -49,13 +50,13 @@ no vedo gnanca ‘na figa
 {x_cbg: CBG}
 {x_bass: bass}
 {x_drums: kick}
-No riesso a stare quieto
-in meso a massa xente
-no vago pi’ nissiogo
-no me ne frega gnente
+[G]No riesso a stare quieto
+[G]in meso a massa xente
+[G]no vago pi’ nissiogo
+[G]no me ne frega gnente
 {end_of_verse}
 
-{start_of_verse: Inst}
+{start_of_grid: label="Inst" shape="4x4"}
 # Reaper: str no voce
 {x_bars: 4}
 {comment: strofa strumentale, senza voce}
@@ -63,7 +64,8 @@ no me ne frega gnente
 {x_gtr: entra la 12-string}
 {x_bass: bass}
 {x_drums: kick + hi-hat (3 battute)}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V3}
 # Reaper: str 03
@@ -73,13 +75,13 @@ no me ne frega gnente
 {x_gtr: 12-string + entra il resonator}
 {x_bass: bass}
 {x_drums: kick}
-bon gnanca a dormire
-gol cuore coe visighe
-fasso pensieri bruti
-i brassi trema tuti
+[G]bon gnanca a dormire
+[G]gol cuore coe visighe
+[G]fasso pensieri bruti
+[G]i brassi trema tuti
 {end_of_verse}
 
-{start_of_verse: Brk}
+{start_of_grid: label="Brk" shape="4x4"}
 # Reaper: stacco
 {x_bars: 4}
 {x_vox: backing vocals (1 battuta)}
@@ -87,7 +89,8 @@ i brassi trema tuti
 {x_gtr: resonator (esce la 12-string)}
 {x_bass: bass}
 {x_drums: kick + hi-hat, claps sparsi}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V4}
 # Reaper: str 04
@@ -97,13 +100,13 @@ i brassi trema tuti
 {x_gtr: resonator}
 {x_bass: bass}
 {x_drums: kick}
-Me sento al fresco in orto
-me dondoeo soa carega
-accordo ea me chitara
-co l’ampli a bataria
+[G]Me sento al fresco in orto
+[G]me dondoeo soa carega
+[G]accordo ea me chitara
+[G]co l’ampli a bataria
 {end_of_verse}
 
-{start_of_verse: Solo}
+{start_of_grid: label="Solo" shape="4x4"}
 # Reaper: solo
 {x_bars: 8}
 {x_vox: backing vocals (2 battute)}
@@ -111,22 +114,22 @@ co l’ampli a bataria
 {x_gtr: resonator}
 {x_bass: bass}
 {x_drums: kick}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: PC}
 # Reaper: pre chorus
-# Accordi fuori tonalità (G) di proposito.
-# Accordi confermati da Devis (2026-11-20). Nella traccia lyrics di Reaper sono scritti "F-" e "C7".
 {x_bars: 4}
 {x_vox: lead vocal + backing vocals}
 {x_cbg: solo CBG dist (la CBG tace)}
 {x_gtr: 12-string (3 battute)}
 {x_bass: bass}
 {x_drums: kick + hi-hat (2 battute)}
-[F]Ma quando sora ea testa
+[F-]Ma quando sora ea testa
 [G#]me passa un barbastrejo
 [Bb]ch’el me baea su l’orto
-[C]come ch’el fosse ‘na foresta
+[C7]come ch’el fosse ‘na foresta
 {end_of_verse}
 
 {start_of_chorus: C}
@@ -137,9 +140,12 @@ co l’ampli a bataria
 {x_gtr: 12-string + resonator}
 {x_bass: bass}
 {x_drums: kick, crash, hi-hat}
-Aaaah
-ahhhh
-el boogie del barbastrejo
+[C]Aaaah
+[Bb]ahhhh
+[G]el boogie del barbastrejo
+{start_of_grid: label="C" shape="4x4"}
+| C . . . | Bb . . . | G . . . | G . . . |
+{end_of_grid}
 {end_of_chorus}
 
 {start_of_verse: V5}
@@ -150,21 +156,23 @@ el boogie del barbastrejo
 {x_gtr: resonator}
 {x_bass: bass}
 {x_drums: kick}
-Voria anca tocarlo
-un fià el me fa impression
-no go gnanca capio se
-te si cativo o te si bon
+[G]Voria anca tocarlo
+[G]un fià el me fa impression
+[G]no go gnanca capio se
+[G]te si cativo o te si bon
 {end_of_verse}
 
-{start_of_verse: Pad}
+{start_of_grid: label="Pad" shape="4x4"}
 # Reaper: boogie pad
-{x_bars: 6}
+{x_bars: 8}
 {comment: senza voce}
 {x_cbg: CBG}
 {x_gtr: 12-string}
 {x_bass: bass}
 {x_drums: kick, claps sparsi}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_bridge: B}
 # Reaper: closing 01 (battute 1-4), closing 02 (battute 5-8)
@@ -174,22 +182,24 @@ te si cativo o te si bon
 {x_gtr: 12-string (battute 1-4) + resonator}
 {x_bass: bass}
 {x_drums: kick solo per 1 battuta in ogni metà, hi-hat (2 battute, nella prima metà)}
-Te ringrassio barbastrejio
-che te me ghè insegna’ a baeare
-in mexo al scuro che go dentro
-ma no vojo uncora moeare
-E grassie barbastrejo
-fame sempre compagnia
-te go in mente anca pal ciaro seto
-dall’orto no sta ndare via
+[G]Te ringrassio barbastrejio
+[G]che te me ghè insegna’ a baeare
+[G]in mexo al scuro che go dentro
+[G]ma no vojo uncora moeare
+[G]E grassie barbastrejo
+[G]fame sempre compagnia
+[G]te go in mente anca pal ciaro seto
+[G]dall’orto no sta ndare via
 {end_of_bridge}
 
-{start_of_verse: Outro}
+{start_of_grid: label="Outro" shape="4x4"}
 # Reaper: final
-{x_bars: 4}
+{x_bars: 8}
 {x_vox: backing vocals}
 {x_cbg: CBG + CBG dist}
 {x_gtr: 12-string + resonator}
 {x_bass: bass}
 {x_drums: kick}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
