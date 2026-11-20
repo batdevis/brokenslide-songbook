@@ -1,0 +1,135 @@
+# Versione live.
+# Fonti:
+# - forma: Devis, ascoltando la registrazione del concerto all'Officina19 (2026-11-14),
+#   progetto Reaper recording/live/20261114 - Officina19/20261114 - Officina19/20261114 - Officina19.RPP
+#   (regioni 01 e 09: il progetto non ha marker per le sezioni)
+# - tempo e durata: Devis, tap tempo e forma d'onda della registrazione (2026-11-21)
+# - testo e accordi: dalla versione demo; testo verificato su Drive band:
+#   Broken Slide - work/songs/"El Boogie del Barbastrejo_Tab" (2026-10-03)
+# Termini come in GLOSSARY.md.
+
+{title: El Boogie Del Barbastrejo}
+{key: G}
+{tempo: 128}
+{time: 4/4}
+{duration: 3:58}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version live}
+{x_form: Intro x2 V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad x3 B C x4 Pad x4}
+
+{start_of_grid: label="Intro x2" shape="4x4"}
+# Main riff di 4 battute: x2 nell'intro, x1 nell'Inst.
+# TODO: tablatura del Main riff in un blocco tab (FORMAT.md §6).
+{x_bars: 4}
+{x_riff: Main riff}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V1}
+{x_bars: 4}
+[G]No riesso a stare fora
+[G]no so bon de far festa
+[G]ea sera presto intriga
+[G]no vedo gnanca ‘na figa
+{end_of_verse}
+
+{start_of_verse: V2}
+{x_bars: 4}
+[G]No riesso a stare quieto
+[G]in meso a massa xente
+[G]no vago pi’ nissiogo
+[G]no me ne frega gnente
+{end_of_verse}
+
+{start_of_grid: label="Inst" shape="4x4"}
+# Come l'Intro, una volta. Riscritto perché le griglie non si possono richiamare.
+{x_bars: 4}
+{x_riff: Main riff}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V3}
+{x_bars: 4}
+[G]bon gnanca a dormire
+[G]gol cuore coe visighe
+[G]fasso pensieri bruti
+[G]i brassi trema tuti
+{end_of_verse}
+
+{start_of_grid: label="Brk" shape="4x4"}
+{x_bars: 4}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V4}
+{x_bars: 4}
+[G]Me sento al fresco in orto
+[G]me dondoeo soa carega
+[G]accordo ea me chitara
+[G]co l’ampli a bataria
+{end_of_verse}
+
+{start_of_grid: label="Solo" shape="4x4"}
+{x_bars: 8}
+{x_cbg: solo}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: PC}
+# Accordi fuori tonalità (G) di proposito.
+{x_bars: 4}
+[F]Ma quando sora ea testa
+[G#]me passa un barbastrejo
+[Bb]ch’el me baea su l’orto
+[C7]come ch’el fosse ‘na foresta
+{end_of_verse}
+
+{start_of_chorus: C x2}
+# Bb fuori tonalità (G) di proposito.
+{x_bars: 4}
+[C]Aaaah
+[Bb]ahhhh
+[G]el boogie del barbastrejo
+{end_of_chorus}
+{start_of_grid: shape="4x4"}
+| C . . . | Bb . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V5}
+{x_bars: 4}
+[G]Voria anca tocarlo
+[G]un fià el me fa impression
+[G]no go gnanca capio se
+[G]te si cativo o te si bon
+{end_of_verse}
+
+{chorus: C x4}
+
+{start_of_grid: label="Pad x3" shape="4x4"}
+# Frase di 4 battute ripetuta: x3 prima del bridge, x4 alla fine del brano.
+{x_bars: 4}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_bridge: B}
+{x_bars: 8}
+[G]Te ringrassio barbastrejio
+[G]che te me ghè insegna’ a baeare
+[G]in mexo al scuro che go dentro
+[G]ma no vojo uncora moeare
+[G]E grassie barbastrejo
+[G]fame sempre compagnia
+[G]te go in mente anca pal ciaro seto
+[G]dall’orto no sta ndare via
+{end_of_bridge}
+
+{chorus: C x4}
+
+{start_of_grid: label="Pad x4" shape="4x4"}
+# Come il Pad prima del bridge. Riscritto perché le griglie non si possono richiamare.
+{x_bars: 4}
+{x_cue: stop secco sul 4 dell'ultima battuta: fine del brano}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}

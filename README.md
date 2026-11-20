@@ -26,7 +26,7 @@ Ogni brano può avere tre versioni:
 
 | Brano | Demo | Live | Disco |
 |---|---|---|---|
-| El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.demo.cho) | – | – |
+| El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.demo.cho) | [sì](el-boogie-del-barbastrejo.live.cho) | – |
 
 ## Stampare un brano in PDF
 

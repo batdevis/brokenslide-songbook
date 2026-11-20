@@ -73,5 +73,6 @@ L'etichetta è quella usata nei file (vedi [FORMAT.md](FORMAT.md)).
 | cue | segnale, attacco | segnale tra i musicisti, vedi `x_cue` in [FORMAT.md](FORMAT.md) |
 | stop | stacco secco, fermata | |
 | riff | giro (quando è un riff) | |
+| main riff | riff principale | il riff che caratterizza il brano; nei file si richiama con `{x_riff: Main riff}` |
 | tuning | accordatura | es. GDG |
 | key | tonalità | |
