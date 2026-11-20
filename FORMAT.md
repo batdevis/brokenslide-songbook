@@ -101,6 +101,7 @@ L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
 | `Tag` | ripetizione finale di una frase |
 
 Altre etichette sono ammesse se sono brevi e senza spazi.
+Unica eccezione: il suffisso di ripetizione `xN`, come in `x_form`. Ad esempio il ritornello alla prima comparsa si apre con `{start_of_chorus: C x2}` se lì si suona due volte.
 
 Se una sezione torna identica, non riscriverla. Il ritornello si scrive una volta, alla sua prima comparsa, e nei punti in cui torna si richiama con `{chorus: <etichetta>}`.
 L'etichetta del richiamo è libera e si usa per le ripetizioni, così il file e il PDF seguono l'ordine del brano:
