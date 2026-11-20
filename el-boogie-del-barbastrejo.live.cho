@@ -16,7 +16,7 @@
 {meta: tuning GDG}
 {meta: slide yes}
 {meta: version live}
-{x_form: Intro x2 V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad x3 B C x4 Pad x4}
+{x_form: Intro x2 V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad x3 B Pau C x4 Pad x4}
 
 {start_of_grid: label="Intro x2" shape="4x4"}
 # Main riff di 4 battute: x2 nell'intro, x1 nell'Inst.
@@ -89,6 +89,7 @@
 {start_of_chorus: C x2}
 # Bb fuori tonalità (G) di proposito.
 {x_bars: 4}
+{x_bv: Daniele, in tutti i chorus}
 [C]Aaaah
 [Bb]ahhhh
 [G]el boogie del barbastrejo
@@ -124,6 +125,12 @@
 [G]te go in mente anca pal ciaro seto
 [G]dall’orto no sta ndare via
 {end_of_bridge}
+
+{start_of_grid: label="Pau" shape="1x1"}
+# Un quarto in più di silenzio: l'ultimo chorus entra un quarto dopo.
+{x_cue: tutti: 1 tempo di silenzio → C x4}
+| N.C. |
+{end_of_grid}
 
 {chorus: C x4}
 

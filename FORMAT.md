@@ -82,6 +82,16 @@ I blocchi non si possono annidare: una griglia dentro `start_of_chorus` … `end
 {end_of_grid}
 ```
 
+**Pausa.** Un silenzio di tutti che aggiunge tempo alla forma è una sezione `Pau`: una griglia di una battuta da un tempo con `N.C.` (nessun accordo), più un `x_cue`. Va nel punto esatto della pausa, quindi anche in `x_form`.
+Per una pausa di 2 tempi: `shape="1x2"` e `| N.C. . |`.
+
+```
+{start_of_grid: label="Pau" shape="1x1"}
+{x_cue: tutti: 1 tempo di silenzio → C x4}
+| N.C. |
+{end_of_grid}
+```
+
 ### Etichette
 
 L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
@@ -99,6 +109,7 @@ L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
 | `Inst` | strofa o parte strumentale, senza voce |
 | `Pad` | tappeto / groove senza voce, di solito prima di una ripresa |
 | `Tag` | ripetizione finale di una frase |
+| `Pau` | pausa: silenzio di tutti che aggiunge tempo alla forma |
 
 Altre etichette sono ammesse se sono brevi e senza spazi.
 Unica eccezione: il suffisso di ripetizione `xN`, come in `x_form`. Ad esempio il ritornello alla prima comparsa si apre con `{start_of_chorus: C x2}` se lì si suona due volte.

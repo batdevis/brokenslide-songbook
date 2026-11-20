@@ -62,7 +62,7 @@ L'etichetta è quella usata nei file (vedi [FORMAT.md](FORMAT.md)).
 | jam | Jam | |
 | tag | Tag | |
 | outro | Outro | final, finale, coda |
-| pause | – | pau, [pau], pausa |
+| pause | Pau | pau, [pau], pausa |
 
 ## Esecuzione e forma
 

@@ -21,8 +21,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ### El Boogie Del Barbastrejo
 - Accordi scritti da Devis (2026-11-20) e verificati su Reaper (2026-11-21).
 - Main riff (Intro e Inst, demo e live): manca la tablatura in un blocco `tab`.
-- Live: il doc Drive `_Tab` ha un `[pau]` (pausa?) prima del RIT 03. C'è dal vivo?
-- Live: dove canta Daniele (backing vocals, `x_bv`)?
+- Live: il `[pau]` del doc Drive è una pausa di 1 tempo in più tra il bridge e l'ultimo chorus (sezione `Pau`).
 - Live: forma ricavata a orecchio dalla registrazione dell'Officina19 (2026-11-14), tempo 128 con tap tempo. Il finale è uno stop secco senza segnali.
 - Testo: "barbastrejio" nella prima metà del bridge (B) e "barbastrejo" altrove, lasciato com'è.
 
