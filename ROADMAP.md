@@ -19,7 +19,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ## Domande aperte
 
 ### El Boogie Del Barbastrejo
-- Riff e accordi delle sezioni diverse dal pre-chorus: il progetto Reaper non li contiene.
+- Riff e accordi delle sezioni diverse dal pre-chorus: il progetto Reaper non li contiene. Li scrive Devis, poi Claude li rivede.
 - Pre-chorus: va scritto `G#` (come nel progetto) o `Ab`? Per ora `G#`.
 - Il doc Drive `_Tab` ha un `[pau]` (pausa?) prima del RIT 03, che non è nella demo: probabilmente riguarda la versione live.
 - Testo: "barbastrejio" nella prima metà del bridge (B) e "barbastrejo" altrove, lasciato com'è.

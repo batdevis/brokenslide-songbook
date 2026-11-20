@@ -116,16 +116,17 @@ co l’ampli a bataria
 {start_of_verse: PC}
 # Reaper: pre chorus
 # Accordi fuori tonalità (G) di proposito.
+# Accordi confermati da Devis (2026-11-20). Nella traccia lyrics di Reaper sono scritti "F-" e "C7".
 {x_bars: 4}
 {x_vox: lead vocal + backing vocals}
 {x_cbg: solo CBG dist (la CBG tace)}
 {x_gtr: 12-string (3 battute)}
 {x_bass: bass}
 {x_drums: kick + hi-hat (2 battute)}
-[Fm]Ma quando sora ea testa
+[F]Ma quando sora ea testa
 [G#]me passa un barbastrejo
 [Bb]ch’el me baea su l’orto
-[C7]come ch’el fosse ‘na foresta
+[C]come ch’el fosse ‘na foresta
 {end_of_verse}
 
 {start_of_chorus: C}
