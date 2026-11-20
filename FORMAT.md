@@ -65,6 +65,23 @@ Etichetta e forma della griglia vanno come attributi: `shape="4x4"` vuol dire 4 
 {end_of_grid}
 ```
 
+Una riga può avere meno battute di quelle indicate in `shape`: 6 battute si scrivono come una riga da 4 più una da 2.
+
+**Sezione con testo e griglia.** Se una sezione con testo ha bisogno anche della griglia (ad esempio per mostrare come gli accordi si distribuiscono sulle battute), la griglia va **dopo** la chiusura della sezione, senza `label`.
+I blocchi non si possono annidare: una griglia dentro `start_of_chorus` … `end_of_chorus` dà errore in ChordPro e si stampa come testo.
+
+```
+{start_of_chorus: C}
+{x_bars: 4}
+[C]Aaaah
+[Bb]ahhhh
+[G]el boogie del barbastrejo
+{end_of_chorus}
+{start_of_grid: shape="4x4"}
+| C . . . | Bb . . . | G . . . | G . . . |
+{end_of_grid}
+```
+
 ### Etichette
 
 L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
@@ -85,7 +102,15 @@ L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
 
 Altre etichette sono ammesse se sono brevi e senza spazi.
 
-Se una sezione torna identica, non riscriverla: richiamala con `{chorus}` (per il ritornello) o lasciala solo in `x_form`.
+Se una sezione torna identica, non riscriverla. Il ritornello si scrive una volta, alla sua prima comparsa, e nei punti in cui torna si richiama con `{chorus: <etichetta>}`.
+L'etichetta del richiamo è libera e si usa per le ripetizioni, così il file e il PDF seguono l'ordine del brano:
+
+```
+{chorus: C x4}
+# Reaper: rit 02
+```
+
+Le altre sezioni che tornano identiche restano solo in `x_form`.
 
 ## 4. `x_form`: la forma del brano
 
@@ -104,7 +129,7 @@ Messe dentro una sezione, valgono per quella sezione. Il testo è libero, salvo 
 
 | Direttiva | Significato | Esempio |
 |---|---|---|
-| `{x_bars: N}` | durata in battute (totale, ripetizioni comprese) | `{x_bars: 16}` |
+| `{x_bars: N}` | durata in battute di un passaggio della sezione. Le ripetizioni (`C x4`) stanno in `x_form` e nei richiami | `{x_bars: 16}` |
 | `{x_bars: open}` | durata aperta, si chiude con un cue | `{x_bars: open}` |
 | `{x_riff: <nome>}` | riff da suonare, definito in un blocco `tab` | `{x_riff: Riff A}` |
 | `{x_cue: ...}` | segnale tra i musicisti. Forma consigliata: `chi: segnale → cosa succede` | `{x_cue: Devis: alza la cigar box → stop sul 4, poi C}` |
