@@ -45,6 +45,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 3. Creare `songs/_template.cho` quando il formato si sarà stabilizzato su 2-3 brani.
 
 ## Idee rimandate
+- **Pagine pubblicate**: un link "torna all'indice" in ogni pagina dei brani (oggi si torna indietro col browser).
 - **Pagina**: in Inst e Pad il `{comment: ...}` divide in due la riga degli strumenti.
 - **Diagrammi degli accordi** per cigar box GDG invece di disattivarli (ChordPro li fa per uno strumento a 3 corde, ma il PDF ora viene dall'HTML: da capire come).
 - **HTML**: vista su misura, ad esempio una timeline della struttura, con le sezioni a colori e una riga per strumento. Dal 2026-11-21 pagina e PDF vengono dal backend HTML di ChordPro con CSS nostri (scuro e monospace per lo schermo, chiaro per la stampa); il PDF lo stampa Chromium headless. Griglie, nome dei riff in tablatura, richiami `{chorus}` e Struttura, che il backend scarta, li recupera `render.py`. Scartato per ora ChordSheetJS 18.0.0: va in errore con alcuni commenti dentro le griglie (bug non segnalato), mostra le griglie come testo grezzo e riscrive `G#` in `Ab`.

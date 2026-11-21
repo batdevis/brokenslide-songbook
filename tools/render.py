@@ -14,12 +14,17 @@ fallback), so it follows tools/html/chordpro_print.css.
 The song form is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
 
+After rendering, <dir>/index.html lists every page in <dir>/html/ with its
+PDF: it is the home page of the songbook published on GitHub Pages.
+
 Usage: python3 tools/render.py <song.cho|folder>... [--format pdf|html] [--out-dir <dir>]
 A folder means every .cho file inside it, subfolders included (e.g. songs/);
 files starting with "_" (templates) are skipped.
-Output: <dir>/html/<song>.html, plus <dir>/pdf/<song>.pdf unless --format html.
+Output: <dir>/html/<song>.html, plus <dir>/pdf/<song>.pdf unless --format html,
+and <dir>/index.html.
 Default <dir>: out/ in the repository, the same for every song.
 """
+import html
 import argparse
 import re
 import shutil
@@ -57,6 +62,9 @@ PART_LABELS = {
 
 
 SLIDE_TEXT = {"yes": "slide", "no": "no slide", "mixed": "partial slide"}
+INDEX_TITLE = "BrokenSlide Songbook"
+VERSIONS = ("demo", "live", "disco")  # order of the versions in the index
+PAGE_TITLE = re.compile(r'<div class="title">(.*?)</div>')
 
 
 def parse_directive(line):
@@ -365,6 +373,64 @@ def copy_styles(folder):
         shutil.copy(css, folder / css.name)
 
 
+def song_versions(out_dir):
+    """{title: [(version, page, pdf or None)]} for every page in <out_dir>/html/.
+
+    Pages are named <song>.<version>.html; the title is the one in the page.
+    """
+    songs = {}
+    for page in sorted((out_dir / "html").glob("*.html")):
+        song, _, version = page.stem.rpartition(".")
+        if not song:
+            song, version = page.stem, ""
+        found = PAGE_TITLE.search(page.read_text(encoding="utf-8"))
+        title = found.group(1) if found else html.escape(song)
+        pdf = out_dir / "pdf" / f"{page.stem}.pdf"
+        songs.setdefault(title, []).append((version, page, pdf if pdf.exists() else None))
+    for versions in songs.values():
+        versions.sort(key=lambda v: (VERSIONS.index(v[0]) if v[0] in VERSIONS else len(VERSIONS), v[0]))
+    return dict(sorted(songs.items(), key=lambda item: item[0].lower()))
+
+
+def index_html(songs, out_dir):
+    """Home page: one row per song, a link per version and its PDF."""
+    rows = []
+    for title, versions in songs.items():
+        links = []
+        for version, page, pdf in versions:
+            link = f'<a href="{page.relative_to(out_dir).as_posix()}">{version or "page"}</a>'
+            if pdf:
+                link += f' <a class="pdf" href="{pdf.relative_to(out_dir).as_posix()}">PDF</a>'
+            links.append(f'<span class="version">{link}</span>')
+        rows.append(f'<li><div class="song-title">{title}</div>{" ".join(links)}</li>')
+    body = "\n".join(rows)
+    return f"""{DOCTYPE}
+<html lang="it">
+<head>
+{CHARSET}
+{VIEWPORT}
+<title>{INDEX_TITLE}</title>
+<link rel="stylesheet" href="html/chordpro.css">
+</head>
+<body>
+<div class="song">
+<div class="title">{INDEX_TITLE}</div>
+<ul class="index">
+{body}
+</ul>
+</div>
+</body>
+</html>
+"""
+
+
+def write_index(out_dir=OUT_DIR):
+    """Write <out_dir>/index.html from the pages already rendered."""
+    index = out_dir / "index.html"
+    index.write_text(index_html(song_versions(out_dir), out_dir), encoding="utf-8")
+    return index
+
+
 def song_files(paths):
     """The .cho files named in `paths`: files as they are, folders searched."""
     songs = []
@@ -387,6 +453,7 @@ def main(argv=None):
     args = parser.parse_args(argv)
     for song in song_files(args.songs):
         print(render(song, args.out_dir, args.format))
+    print(write_index(args.out_dir))
 
 
 if __name__ == "__main__":

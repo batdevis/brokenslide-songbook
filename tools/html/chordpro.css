@@ -172,3 +172,28 @@ div.riff tr.lyrics {
 div.image {
     object-fit: cover;
 }
+
+/* Indice (out/index.html): un brano per riga, un link per versione e il suo PDF */
+ul.index {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.4rem;
+}
+ul.index > li {
+    padding: 0.8rem 0;
+    border-top: 1px solid var(--rule);
+}
+ul.index div.song-title {
+    font-weight: bold;
+    margin-bottom: 0.3rem;
+}
+ul.index span.version {
+    margin-right: 1.2rem;
+}
+ul.index a {
+    color: var(--chord);
+}
+ul.index a.pdf {
+    color: var(--muted);
+    font-size: 0.8rem;
+}

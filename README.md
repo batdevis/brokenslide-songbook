@@ -9,6 +9,8 @@ Formazione attuale:
 
 Sito: https://brokenslideband.web.app/
 
+Songbook online (pagine e PDF): https://batdevis.github.io/brokenslide-songbook/
+
 ## Formato
 
 I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: struttura sintetica, battute, cue, parti dei singoli strumenti.
@@ -39,6 +41,13 @@ python3 tools/render.py songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrej
 python3 tools/render.py songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.demo.cho --format html   # solo la pagina
 python3 tools/render.py songs/   # tutti i brani (i file che iniziano con _ , come i template, si saltano)
 ```
+
+Dopo ogni render, `render.py` riscrive anche `out/index.html`: l'elenco dei brani con un link a pagina e PDF di ogni versione.
+
+## Pubblicazione
+
+La cartella `out/` (indice, pagine HTML e PDF) è pubblicata su GitHub Pages: https://batdevis.github.io/brokenslide-songbook/
+Il workflow `.github/workflows/pages.yml` parte a ogni push su `main` che cambia `out/` e carica la cartella così com'è: pagine e PDF si generano in locale con `render.py` e si versionano.
 
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così compaiono:
 - una riga compatta per sezione con battute e parti degli strumenti

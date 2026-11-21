@@ -290,9 +290,11 @@ class RenderTest(ExternalCallGuard):
 
     def test_main_defaults(self):
         with mock.patch.object(render, "render") as fake_render, \
+                mock.patch.object(render, "write_index") as fake_index, \
                 contextlib.redirect_stdout(io.StringIO()):
             render.main([str(self.song)])
         self.assertEqual(fake_render.call_args.args, (self.song, render.OUT_DIR, "pdf"))
+        fake_index.assert_called_once_with(render.OUT_DIR)
 
     def test_folder_renders_every_song_but_templates(self):
         songs = self.tmp / "songs"
@@ -300,6 +302,7 @@ class RenderTest(ExternalCallGuard):
             (songs / name).parent.mkdir(parents=True, exist_ok=True)
             (songs / name).write_text(SONG, encoding="utf-8")
         with mock.patch.object(render, "render") as fake_render, \
+                mock.patch.object(render, "write_index"), \
                 contextlib.redirect_stdout(io.StringIO()):
             render.main([str(songs), "--format", "html"])
         rendered = [c.args[0] for c in fake_render.call_args_list]
@@ -310,6 +313,42 @@ class RenderTest(ExternalCallGuard):
         empty.mkdir()
         with self.assertRaises(SystemExit):
             render.song_files([empty])
+
+
+class IndexTest(ExternalCallGuard):
+    def setUp(self):
+        super().setUp()
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.out = Path(tmp.name)
+        (self.out / "html").mkdir()
+        (self.out / "pdf").mkdir()
+
+    def add_page(self, stem, title, pdf=True):
+        (self.out / "html" / f"{stem}.html").write_text(
+            f'<div class="song">\n<div class="title">{title}</div>\n</div>', encoding="utf-8")
+        if pdf:
+            (self.out / "pdf" / f"{stem}.pdf").write_bytes(b"%PDF")
+
+    def test_versions_grouped_by_title_in_order(self):
+        self.add_page("b.live", "Zeta")
+        self.add_page("b.demo", "Zeta", pdf=False)
+        self.add_page("a.disco", "alfa")
+        songs = render.song_versions(self.out)
+        self.assertEqual(list(songs), ["alfa", "Zeta"])
+        self.assertEqual([(v, p.name, pdf and pdf.name) for v, p, pdf in songs["Zeta"]],
+                         [("demo", "b.demo.html", None), ("live", "b.live.html", "b.live.pdf")])
+
+    def test_index_links_pages_and_pdfs(self):
+        self.add_page("song.demo", "Song")
+        index = render.write_index(self.out)
+        self.assertEqual(index, self.out / "index.html")
+        html = index.read_text(encoding="utf-8")
+        self.assertTrue(html.startswith(render.DOCTYPE))
+        self.assertIn(render.VIEWPORT, html)
+        self.assertIn('href="html/chordpro.css"', html)
+        self.assertIn('href="html/song.demo.html"', html)
+        self.assertIn('href="pdf/song.demo.pdf"', html)
 
 
 if __name__ == "__main__":

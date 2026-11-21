@@ -20,6 +20,8 @@ tools/html/*.css           # stile della pagina (chordpro.css) e della stampa/PD
 tests/                     # python3 -m unittest discover tests
 out/pdf/                   # PDF generati, versionati
 out/html/                  # HTML generati, con i CSS copiati, versionati
+out/index.html             # indice dei brani, riscritto da render.py a ogni render
+.github/workflows/pages.yml # pubblica out/ su GitHub Pages a ogni push su main che cambia out/
 ```
 
 ## Decisioni prese
@@ -33,6 +35,7 @@ out/html/                  # HTML generati, con i CSS copiati, versionati
 - **Testo**: in dialetto veneto, va riportato **così com'è**. Non correggere l'ortografia senza chiedere.
 - **Accordi fuori tonalità**: possono essere voluti (ad esempio il pre-chorus di El Boogie). Segnalarli con un commento, non correggerli.
 - **HTML e PDF**: la pagina HTML la scrive ChordPro, il PDF è quella pagina stampata da Chromium headless (Chrome come ripiego). Lo stile sta solo nei CSS di `tools/html/`: scuro per lo schermo (palco, telefono e tablet), chiaro per la stampa. Diagrammi degli accordi disattivati (quelli di ChordPro sono per chitarra a 6 corde). Le parti degli strumenti stanno in una riga compatta per sezione, i cue in un riquadro.
+- **Pubblicazione**: `out/` (indice, HTML, PDF) è su GitHub Pages, https://batdevis.github.io/brokenslide-songbook/ (repo pubblico). Niente build sul server: si pubblica quello che è versionato.
 - **Deploy futuro**: il progetto potrebbe finire su un server, magari con un editor. Scegliere strumenti che girano anche headless su Linux (ad esempio il pacchetto Debian `chromium`).
 
 ## Procedura: versione demo di un brano
