@@ -1,14 +1,15 @@
-"""Render a BrokenSlide .cho file to PDF, keeping the x_ extensions visible.
+"""Render a BrokenSlide .cho file to PDF or HTML, keeping the x_ extensions visible.
 
 ChordPro ignores x_ directives when printing, so the song is first converted
 into plain ChordPro (x_ directives become comments), then passed to the
 `chordpro` command line tool. Fonts and spacing come from tools/chordpro.json.
+The HTML page loads its style sheets from tools/html/, copied next to it.
 
 The song form (Struttura) is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
 
-Usage: python3 tools/render.py <song.cho> [-o <out.pdf>]
-Default output: pdf/<song>.pdf in the repository.
+Usage: python3 tools/render.py <song.cho> [--format pdf|html] [-o <out>]
+Default output: out/pdf/<song>.pdf or out/html/<song>.html in the repository.
 """
 import argparse
 import re
@@ -20,6 +21,8 @@ from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONFIG = REPO_ROOT / "tools" / "chordpro.json"  # font e spazi del PDF
+FORMATS = {"pdf": "PDF", "html": "HTML"}  # --format → ChordPro backend
+HTML_STYLES = REPO_ROOT / "tools" / "html"  # CSS caricati dalla pagina HTML
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 LABEL_ATTR = re.compile(r'label="([^"]*)"')
 
@@ -190,32 +193,41 @@ def convert(text):
     return "\n".join(out) + "\n"
 
 
-def render(song, pdf):
-    """Convert `song` and print it to `pdf` with the chordpro CLI."""
+def render(song, out, fmt="pdf"):
+    """Convert `song` and write it to `out` in `fmt` with the chordpro CLI."""
     if shutil.which("chordpro") is None:
         sys.exit("chordpro non trovato nel PATH")
-    pdf.parent.mkdir(parents=True, exist_ok=True)
+    out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         plain = Path(tmp) / song.name
         plain.write_text(convert(song.read_text(encoding="utf-8")), encoding="utf-8")
         # No chord diagrams: the defaults are for 6-string guitar, not cigar box.
         subprocess.run(
-            ["chordpro", "--config", str(CONFIG), "--no-chord-grids", str(plain),
-             "-o", str(pdf)],
+            ["chordpro", "--config", str(CONFIG), "--no-chord-grids",
+             f"--generate={FORMATS[fmt]}", str(plain), "-o", str(out)],
             check=True,
         )
-    if not pdf.exists():
-        sys.exit(f"chordpro non ha generato {pdf}")
-    return pdf
+    if not out.exists():
+        sys.exit(f"chordpro non ha generato {out}")
+    if fmt == "html":
+        copy_styles(out.parent)
+    return out
+
+
+def copy_styles(folder):
+    """The HTML page links its CSS files by name, from its own folder."""
+    for css in sorted(HTML_STYLES.glob("*.css")):
+        shutil.copy(css, folder / css.name)
 
 
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("song", type=Path)
+    parser.add_argument("-f", "--format", choices=FORMATS, default="pdf")
     parser.add_argument("-o", "--output", type=Path)
     args = parser.parse_args(argv)
-    pdf = args.output or REPO_ROOT / "pdf" / f"{args.song.stem}.pdf"
-    print(render(args.song, pdf))
+    out = args.output or REPO_ROOT / "out" / args.format / f"{args.song.stem}.{args.format}"
+    print(render(args.song, out, args.format))
 
 
 if __name__ == "__main__":

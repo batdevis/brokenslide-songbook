@@ -11,13 +11,15 @@ GLOSSARY.md                # termini da usare (in inglese) e sinonimi trovati ne
 README.md                  # per chi legge il repo: brani, stampa, strumenti, test
 ROADMAP.md                 # stato dei brani, domande aperte, prossimi passi
 <brano>.demo.cho           # versione demo (registrata in casa da Devis)
-<brano>.live.cho           # versione live (nessuna ancora)
+<brano>.live.cho           # versione live (come il trio lo suona dal vivo)
 <brano>.disco.cho          # versione disco, registrata in studio (futura)
 tools/rpp_arrangement.py   # .RPP → tempo, sezioni (marker) e tracce attive per sezione
-tools/render.py            # .cho → pdf/<brano>.pdf via chordpro, con le x_ rese visibili
+tools/render.py            # .cho → out/pdf/<brano>.pdf via chordpro, con le x_ rese visibili (--format html: out/html/<brano>.html)
+tools/html/*.css           # stile della pagina HTML, copiato da render.py accanto alla pagina
 tools/chordpro.json        # config di ChordPro per il PDF: font, margini, interlinea
 tests/                     # python3 -m unittest discover tests
-pdf/                       # PDF generati, versionati
+out/pdf/                   # PDF generati, versionati
+out/html/                  # HTML generati (in prova), con i CSS copiati, versionati
 ```
 
 ## Decisioni prese
@@ -51,7 +53,7 @@ pdf/                       # PDF generati, versionati
 - Remote `git@github.com:batdevis/brokenslide-songbook.git`, branch `main`.
 - `user.email batdevis@gmail.com` impostato **in locale** nel repo (l'email globale è quella di lavoro).
 - Commit e push **solo su richiesta esplicita** di Devis. Va bene proporre quando è il momento.
-- Prima di un commit che tocca un brano: rigenerare il suo PDF e lanciare i test.
+- Prima di un commit che tocca un brano: rigenerare il suo PDF e il suo HTML e lanciare i test.
 
 ## Codice
 - Python 3 senza dipendenze esterne. Test con `unittest`. Nei test i programmi esterni (`chordpro`) vanno simulati: c'è una guardia che fa fallire qualunque `subprocess.Popen` non simulato.

@@ -32,7 +32,7 @@ Ogni brano può avere tre versioni:
 
 ```sh
 python3 tools/render.py el-boogie-del-barbastrejo.demo.cho
-# → pdf/el-boogie-del-barbastrejo.demo.pdf  (oppure: -o <file.pdf>)
+# → out/pdf/el-boogie-del-barbastrejo.demo.pdf  (oppure: -o <file.pdf>)
 ```
 
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così nel PDF compaiono:
@@ -42,7 +42,17 @@ ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima i
 
 Font, margini e interlinea si cambiano in `tools/chordpro.json`, la config di ChordPro usata da `render.py` ([documentazione](https://chordpro.org/chordpro/chordpro-configuration-pdf/)). I valori di partenza sono quelli di default di ChordPro.
 
-I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. I PDF generati sono nel repository, in `pdf/`: dopo aver modificato un brano, rigenera il suo PDF prima del commit.
+I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. I PDF generati sono nel repository, in `out/pdf/`: dopo aver modificato un brano, rigenera il suo PDF prima del commit.
+
+### HTML (in prova)
+
+```sh
+python3 tools/render.py el-boogie-del-barbastrejo.demo.cho --format html
+# → out/html/el-boogie-del-barbastrejo.demo.html
+```
+
+Usa il backend HTML di ChordPro. Lo stile della pagina è in `tools/html/chordpro.css` (schermo) e `tools/html/chordpro_print.css` (stampa), che `render.py` copia accanto alla pagina. Si parte dai CSS di ChordPro: per cambiare l'aspetto si modificano questi due file. Gli HTML generati sono nel repository, in `out/html/`, come i PDF: dopo aver modificato un brano o un CSS, rigenera l'HTML prima del commit.
+Limite noto: i richiami `{chorus}` nell'HTML non compaiono.
 
 Serve il comando `chordpro` nel `PATH`. Su Linux il modo più semplice è l'AppImage ufficiale, dalle [release di ChordPro](https://github.com/ChordPro/chordpro/releases): scegli `wk4.1` sulle distro recenti (ad esempio Ubuntu 24.04) e crea un link che si chiami `chordpro`:
 

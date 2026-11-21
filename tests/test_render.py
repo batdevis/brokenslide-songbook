@@ -1,4 +1,6 @@
 """Tests for tools/render.py. Run with: python3 -m unittest discover tests"""
+import contextlib
+import io
 import subprocess
 import sys
 import tempfile
@@ -121,25 +123,57 @@ class SongFormTest(ExternalCallGuard):
 
 
 class RenderTest(ExternalCallGuard):
+    def setUp(self):
+        super().setUp()
+        tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(tmp.cleanup)
+        self.tmp = Path(tmp.name)
+
+    def run_render(self, *fmt):
+        """Render SONG with chordpro stubbed; return (output path, command)."""
+        song = self.tmp / "song.cho"
+        song.write_text(SONG, encoding="utf-8")
+        out = self.tmp / "out" / "song.out"
+
+        def fake_run(cmd, check):
+            out.write_bytes(b"output")
+            return subprocess.CompletedProcess(cmd, 0)
+
+        with mock.patch.object(render.shutil, "which", return_value="/bin/chordpro"), \
+                mock.patch.object(render.subprocess, "run", side_effect=fake_run) as run:
+            self.assertEqual(render.render(song, out, *fmt), out)
+        return out, run.call_args.args[0]
+
     def test_calls_chordpro_without_chord_grids(self):
-        with tempfile.TemporaryDirectory() as tmp:
-            song = Path(tmp) / "song.cho"
-            song.write_text(SONG, encoding="utf-8")
-            pdf = Path(tmp) / "out" / "song.pdf"
+        out, cmd = self.run_render()
+        self.assertEqual(cmd[0], "chordpro")
+        self.assertIn("--no-chord-grids", cmd)
+        self.assertIn("--generate=PDF", cmd)
+        self.assertEqual(cmd[cmd.index("--config") + 1], str(render.CONFIG))
+        self.assertEqual(cmd[-2:], ["-o", str(out)])
 
-            def fake_run(cmd, check):
-                pdf.write_bytes(b"%PDF")
-                return subprocess.CompletedProcess(cmd, 0)
+    def test_html_format(self):
+        _, cmd = self.run_render("html")
+        self.assertIn("--generate=HTML", cmd)
 
-            with mock.patch.object(render.shutil, "which", return_value="/bin/chordpro"), \
-                    mock.patch.object(render.subprocess, "run", side_effect=fake_run) as run:
-                self.assertEqual(render.render(song, pdf), pdf)
+    def test_html_styles_copied_next_to_page(self):
+        out, _ = self.run_render("html")
+        styles = sorted(p.name for p in render.HTML_STYLES.glob("*.css"))
+        self.assertEqual(styles, ["chordpro.css", "chordpro_print.css"])
+        for name in styles:
+            self.assertTrue((out.parent / name).is_file(), name)
 
-            cmd = run.call_args.args[0]
-            self.assertEqual(cmd[0], "chordpro")
-            self.assertIn("--no-chord-grids", cmd)
-            self.assertEqual(cmd[cmd.index("--config") + 1], str(render.CONFIG))
-            self.assertEqual(cmd[-2:], ["-o", str(pdf)])
+    def test_pdf_gets_no_styles(self):
+        out, _ = self.run_render()
+        self.assertFalse(list(out.parent.glob("*.css")))
+
+    def test_default_output_follows_format(self):
+        with mock.patch.object(render, "render") as fake_render, \
+                contextlib.redirect_stdout(io.StringIO()):
+            render.main(["song.cho", "--format", "html"])
+        out, fmt = fake_render.call_args.args[1:]
+        self.assertEqual(fmt, "html")
+        self.assertEqual(out, render.REPO_ROOT / "out" / "html" / "song.html")
 
 
 if __name__ == "__main__":

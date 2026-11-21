@@ -1,0 +1,30 @@
+/* Punto di partenza: chordpro_print.css di ChordPro 6.101.0 (lib/ChordPro/res/styles/,
+   licenza Artistic 2.0). Lo copia tools/render.py accanto alla pagina HTML. */
+/* CSS for printing. */
+@page {
+    size: A4 portrait;
+    @top-left {
+	/* Content specified by source style element. */
+	/* Until we have running headers and footers. */
+	/* content: element(title, first); */
+	font-size: 18pt;
+	font-weight: bold;
+    }
+    @top-center {
+	font-size: 18pt;
+	font-weight: bold;
+    }
+    @bottom-left {
+	font-size: 8pt;
+	content: "Produced by ChordProPlus";
+    }
+    @bottom-right {
+	font-size: 8pt;
+	content: "Page " counter(page) " of " counter(pages);
+    }
+}
+
+/* Until we have running headers and footers. */
+div.title {
+    display: none;
+}

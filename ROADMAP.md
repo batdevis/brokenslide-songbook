@@ -33,7 +33,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ## Idee rimandate
 - **PDF**: in Inst e Pad il `{comment: ...}` divide in due la riga degli strumenti.
 - **PDF**: diagrammi degli accordi per cigar box GDG (configurazione ChordPro con strumento a 3 corde) invece di disattivarli.
-- **HTML**: vista su misura, ad esempio una timeline della struttura, con le sezioni a colori e una riga per strumento. È stata messa da parte per ora a favore del PDF ChordPro.
+- **HTML**: vista su misura, ad esempio una timeline della struttura, con le sezioni a colori e una riga per strumento. In prova (2026-11-21) il backend HTML di ChordPro (`render.py --format html`): da qui si può arrivare a un CSS nostro. Limite: i richiami `{chorus}` non compaiono. Scartato per ora ChordSheetJS 18.0.0: va in errore con alcuni commenti dentro le griglie (bug non segnalato), mostra le griglie come testo grezzo e riscrive `G#` in `Ab`.
 - **Richiamo di sezioni diverse dal ritornello** (ad esempio una direttiva `x_`): oggi Inst e Pad della live di El Boogie sono riscritti perché ChordPro richiama solo il chorus. Da fare se i brani riscritti diventano tanti.
 - **Test** per `tools/rpp_arrangement.py` (oggi non ne ha).
 - **`tools/rpp_arrangement.py`**: potrebbe estrarre anche la traccia `lyrics` (oggi si fa con il comando indicato in `CLAUDE.md`).
