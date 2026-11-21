@@ -56,7 +56,7 @@ class ConvertTest(ExternalCallGuard):
     def test_header_inserted_before_first_section(self):
         first_section = self.lines.index("{start_of_verse: Intro}")
         header = self.lines[:first_section]
-        self.assertIn("{comment_box: Forma: Intro V1}", header)
+        self.assertIn("{comment_box: Struttura: Intro V1}", header)
         self.assertTrue(any("GDG" in l and l.startswith("{comment:") for l in header))
 
     def test_parts_merged_in_one_line(self):

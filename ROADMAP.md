@@ -22,7 +22,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 - Accordi scritti da Devis (2026-11-20) e verificati su Reaper (2026-11-21).
 - Main riff (Intro e Inst, demo e live): manca la tablatura in un blocco `tab`.
 - Live: il `[pau]` del doc Drive è una pausa di 1 tempo in più tra il bridge e l'ultimo chorus (sezione `Pau`).
-- Live: forma ricavata a orecchio dalla registrazione dell'Officina19 (2026-11-14), tempo 128 con tap tempo. Il finale è uno stop secco senza segnali.
+- Live: struttura ricavata a orecchio dalla registrazione dell'Officina19 (2026-11-14), tempo 128 con tap tempo. Il finale è uno stop secco senza segnali.
 - Testo: "barbastrejio" nella prima metà del bridge (B) e "barbastrejo" altrove, lasciato com'è.
 
 ## Prossimi passi
@@ -33,6 +33,6 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ## Idee rimandate
 - **PDF**: in Inst e Pad il `{comment: ...}` divide in due la riga degli strumenti.
 - **PDF**: diagrammi degli accordi per cigar box GDG (configurazione ChordPro con strumento a 3 corde) invece di disattivarli.
-- **HTML**: vista su misura, ad esempio una timeline della forma, con le sezioni a colori e una riga per strumento. È stata messa da parte per ora a favore del PDF ChordPro.
+- **HTML**: vista su misura, ad esempio una timeline della struttura, con le sezioni a colori e una riga per strumento. È stata messa da parte per ora a favore del PDF ChordPro.
 - **Test** per `tools/rpp_arrangement.py` (oggi non ne ha).
 - **`tools/rpp_arrangement.py`**: potrebbe estrarre anche la traccia `lyrics` (oggi si fa con il comando indicato in `CLAUDE.md`).

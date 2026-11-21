@@ -1,6 +1,6 @@
 # Formato dei brani BrokenSlide
 
-Specifica per scrivere la struttura dei brani in testo semplice.
+Specifica per scrivere i brani in testo semplice.
 I nomi di strumenti, voci e sezioni sono quelli del [glossario](GLOSSARY.md).
 
 ## Versioni
@@ -9,7 +9,7 @@ Ogni brano può avere tre versioni, in file distinti, che seguono la vita del br
 
 | Versione | File | Fonte |
 |---|---|---|
-| **demo** | `<brano>.demo.cho` | la demo registrata in casa da Devis (progetto Reaper): forma, tempo, testo e arrangiamento registrato |
+| **demo** | `<brano>.demo.cho` | la demo registrata in casa da Devis (progetto Reaper): struttura, tempo, testo e arrangiamento registrato |
 | **live** | `<brano>.live.cho` | parte dalla demo e la adatta a come il trio ha sviluppato il brano in sala prove e lo suona dal vivo |
 | **disco** | `<brano>.disco.cho` | la registrazione in studio (futura). Serve ai musicisti in studio: contiene le parti degli strumenti |
 
@@ -40,7 +40,7 @@ In testa al file vanno le direttive che valgono per tutto il brano.
 | `{meta: tuning ...}` | sì | accordatura della cigar box, dalla corda più grave alla più acuta | `{meta: tuning GDG}` |
 | `{meta: slide ...}` | no | uso dello slide: `yes`, `no`, `mixed` | `{meta: slide yes}` |
 | `{meta: version ...}` | sì | `demo`, `live` o `disco` | `{meta: version demo}` |
-| `{x_form: ...}` | sì | forma sintetica del brano (vedi §4) | `{x_form: Intro V1 C V2 C Jam C Outro}` |
+| `{x_form: ...}` | sì | struttura sintetica del brano (vedi §4) | `{x_form: Intro V1 C V2 C Jam C Outro}` |
 
 ## 3. Sezioni
 
@@ -56,7 +56,7 @@ Ogni sezione si apre con `{start_of_<tipo>: <etichetta>}` e si chiude con `{end_
 | `grid` | griglia di accordi per battute (standard ChordPro) |
 
 Le sezioni senza testo con accordi (intro, parti strumentali, outro) si scrivono come `grid`: una cella per battuta, un simbolo per tempo, `.` dove l'accordo continua.
-Etichetta e forma della griglia vanno come attributi: `shape="4x4"` vuol dire 4 battute da 4 tempi per riga.
+Etichetta e dimensioni della griglia vanno come attributi: `shape="4x4"` vuol dire 4 battute da 4 tempi per riga.
 
 ```
 {start_of_grid: label="Intro" shape="4x4"}
@@ -82,7 +82,7 @@ I blocchi non si possono annidare: una griglia dentro `start_of_chorus` … `end
 {end_of_grid}
 ```
 
-**Pausa.** Un silenzio di tutti che aggiunge tempo alla forma è una sezione `Pau`: una griglia di una battuta da un tempo con `N.C.` (nessun accordo), più un `x_cue`. Va nel punto esatto della pausa, quindi anche in `x_form`.
+**Pausa.** Un silenzio di tutti che aggiunge tempo al brano è una sezione `Pau`: una griglia di una battuta da un tempo con `N.C.` (nessun accordo), più un `x_cue`. Va nel punto esatto della pausa, quindi anche in `x_form`.
 Per una pausa di 2 tempi: `shape="1x2"` e `| N.C. . |`.
 
 ```
@@ -109,7 +109,7 @@ L'etichetta dà il nome alla sezione ed è lo stesso nome usato in `x_form`.
 | `Inst` | strofa o parte strumentale, senza voce |
 | `Pad` | tappeto / groove senza voce, di solito prima di una ripresa |
 | `Tag` | ripetizione finale di una frase |
-| `Pau` | pausa: silenzio di tutti che aggiunge tempo alla forma |
+| `Pau` | pausa: silenzio di tutti che aggiunge tempo al brano |
 
 Altre etichette sono ammesse se sono brevi e senza spazi.
 Unica eccezione: il suffisso di ripetizione `xN`, come in `x_form`. Ad esempio il ritornello alla prima comparsa si apre con `{start_of_chorus: C x2}` se lì si suona due volte.
@@ -124,9 +124,10 @@ L'etichetta del richiamo è libera e si usa per le ripetizioni, così il file e 
 
 Le altre sezioni che tornano identiche restano solo in `x_form`.
 
-## 4. `x_form`: la forma del brano
+## 4. `x_form`: la struttura del brano
 
 È una sequenza di etichette separate da spazi, in ordine di esecuzione.
+Il nome della direttiva viene dall'inglese *song form*; in italiano si dice struttura.
 Il suffisso `xN` indica che la sezione si ripete N volte di fila.
 
 ```

@@ -1,6 +1,6 @@
 # BrokenSlide Songbook: istruzioni per Claude
 
-Struttura dei brani di BrokenSlide in ChordPro esteso. Si lavora in italiano.
+I brani di BrokenSlide in ChordPro esteso. Si lavora in italiano.
 Il contesto sulla band e sulle fonti (Reaper, Google Drive con `gws`) è nel `CLAUDE.md` della cartella madre `BrokenSlide/`.
 Lo stato del lavoro e i prossimi passi sono in [ROADMAP.md](ROADMAP.md): leggerlo a inizio sessione e aggiornarlo a fine sessione.
 
@@ -21,7 +21,7 @@ pdf/                       # PDF generati, versionati
 
 ## Decisioni prese
 - **Formato**: ChordPro standard più direttive `x_` (ignorate dagli altri programmi ChordPro). Righe `#` per fonti, TODO e nome del marker Reaper (`# Reaper: str 01`).
-- **Tre versioni per brano**, che seguono la vita del brano: **demo** (Devis la registra da solo in casa; oggettiva, ricavata dal progetto Reaper), **live** (il trio sviluppa il brano in sala prove partendo dalla demo; la forma può cambiare), **disco** (registrazione in studio, futura).
+- **Tre versioni per brano**, che seguono la vita del brano: **demo** (Devis la registra da solo in casa; oggettiva, ricavata dal progetto Reaper), **live** (il trio sviluppa il brano in sala prove partendo dalla demo; la struttura può cambiare), **disco** (registrazione in studio, futura).
 - **Parti degli strumenti** (`x_cbg`, `x_gtr`, `x_bass`, `x_drums`…): servono nella demo e nella disco. Nella live non si mettono, salvo che non servano a chi suona.
 - **Versione demo = solo fatti**: niente interpretazioni (ad esempio sulla dinamica) che non si leggano nel progetto o che Devis non abbia confermato.
 - **Etichette delle sezioni**: Intro, V1…, PC, C, B (B1…), Solo, Inst, Brk, Pad, Jam, Tag, Outro. Il ritornello si scrive una volta, come frase, e si ripete in `x_form` con `C x2` / `C x4`.

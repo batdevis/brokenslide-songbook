@@ -57,7 +57,7 @@ def header_lines(info):
         if text:
             lines.append(f"{{comment: {text}}}")
     if "form" in info:
-        lines.append(f"{{comment_box: Forma: {info['form']}}}")
+        lines.append(f"{{comment_box: Struttura: {info['form']}}}")
     return lines
 
 

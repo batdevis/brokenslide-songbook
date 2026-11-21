@@ -1,6 +1,6 @@
 # BrokenSlide Songbook
 
-La struttura dei brani di **BrokenSlide**, progetto Psych Garage Blues: forma, testo, accordi, riff e arrangiamento, in testo semplice.
+I brani di **BrokenSlide**, progetto Psych Garage Blues, in testo semplice: struttura, testo, accordi, riff e arrangiamento.
 
 Formazione attuale:
 - Devis Battisti: voce e cigar box
@@ -11,7 +11,7 @@ Sito: https://brokenslideband.web.app/
 
 ## Formato
 
-I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: forma sintetica, battute, cue, parti dei singoli strumenti.
+I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: struttura sintetica, battute, cue, parti dei singoli strumenti.
 La specifica completa è in [FORMAT.md](FORMAT.md), i termini da usare in [GLOSSARY.md](GLOSSARY.md).
 
 Ogni brano può avere tre versioni:
@@ -38,7 +38,7 @@ python3 tools/render.py el-boogie-del-barbastrejo.demo.cho
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così nel PDF compaiono:
 - una riga compatta per sezione con battute e parti degli strumenti
 - i cue in un riquadro
-- in testa al brano tonalità, tempo, accordatura e forma
+- in testa al brano tonalità, tempo, accordatura e struttura
 
 I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. I PDF generati sono nel repository, in `pdf/`: dopo aver modificato un brano, rigenera il suo PDF prima del commit.
 
