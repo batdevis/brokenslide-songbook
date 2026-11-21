@@ -9,7 +9,7 @@ Ultimo aggiornamento: 2026-11-21.
 | El Boogie Del Barbastrejo | ✅ | ✅ | – | vedi domande aperte |
 | E Allora | – | – | – | progetto Reaper `recording/EAllora`. In `chords/` c'è `PiangiSulTuoLetto.txt`: verificare se è lo stesso brano |
 | Gipsy G | – | – | – | `recording/GipsyG` |
-| L'Anguana | – | – | – | `recording/l'Anguana`. Synth dal vivo |
+| L'Anguana | ✅ | – | – | vedi domande aperte. Synth dal vivo |
 | Sequeri (Miracoi) | – | – | – | `recording/Sequeri`, tab in `chords/`. Synth dal vivo |
 | Spezzato | – | – | – | `recording/Spezzato`, accordi in `chords/` |
 | Watchin | – | – | – | `recording/Watchin`, accordi in `chords/` |
@@ -24,6 +24,12 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 - Live: il `[pau]` del doc Drive è una pausa di 1 tempo in più tra il bridge e l'ultimo chorus (sezione `Pause`).
 - Live: struttura ricavata a orecchio dalla registrazione dell'Officina19 (2026-11-14), tempo 128 con tap tempo. Il finale è uno stop secco senza segnali.
 - Testo: "barbastrejio" nella prima metà del bridge (B) e "barbastrejo" altrove, lasciato com'è.
+
+### L'Anguana
+- Demo (2026-11-21): il progetto Reaper non ha marker, le sezioni vengono dalla traccia lyrics. Tracce: kick in quarti, CBG GDG con slide (traccia `gtr`), voce. Tonalità G, strofe e PC |G|G|Bb|G| (Devis).
+- Demo: accordi di Intro, Inst e PC5 scritti da Devis (2026-11-21).
+- Testo dal doc Drive `L'Anguana_Tab`; nella traccia lyrics di Reaper diverse parole sono scritte diversamente (annotate nei commenti del `.cho`).
+- Live: dal doc Drive ci sono uno `[strum x1]` dopo la prima parte di ogni strofa e un `[synth solo x16(?)]` dopo "El brodo de bojo", che nella demo non ci sono.
 
 ## Prossimi passi
 1. Versione demo degli altri brani (procedura in `CLAUDE.md`).

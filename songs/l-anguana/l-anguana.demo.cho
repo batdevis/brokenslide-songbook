@@ -1,0 +1,215 @@
+# Fonte: recording/l'Anguana/l'Anguana/l'Anguana.RPP (tracce: lyrics, kick, gtr, voice).
+# Il progetto non ha marker: le sezioni sono ricavate dalla traccia lyrics (90 BPM, 4/4).
+# Testo: doc Drive "L'Anguana_Tab"; le differenze con la traccia lyrics di Reaper sono nei commenti.
+# Tonalità e accordi di strofe e PC: Devis (2026-11-21). La traccia "gtr" è la CBG GDG con slide (Devis, 2026-11-21).
+# Tutto il brano: kick in quarti, CBG e voce. Niente basso.
+{title: L'Anguana}
+{key: G}
+{tempo: 90}
+{time: 4/4}
+{duration: 3:13}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version demo}
+
+{start_of_grid: label="Intro" shape="4x4"}
+# Battuta 1.
+{x_bars: 1}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+| G . . . |
+{end_of_grid}
+
+{start_of_verse: V1}
+# Battute 2-9. Doc Drive: [1], prima parte.
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]l’Anguana me ciama
+[G]l’Anguana me voe
+[Bb]l’Anguana me varda
+[G]l’Anguana me toe
+[G]l’Anguana me sente
+[G]l’Anguana me spia
+[Bb]l’Anguana me vede
+[G]e dopo ea va via
+{end_of_verse}
+{start_of_grid: shape="4x4"}
+| G . . . | G . . . | Bb . . . | G . . . |
+| G . . . | G . . . | Bb . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: PC1}
+# Battute 10-13, due versi per battuta. Doc Drive: [1], seconda parte.
+# Reaper: "No mea conta mai giusta", "ea me voe soeo", "pa un un toco de pan".
+{x_bars: 4}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]Ea me fa destirare
+[G]vardare [Bb]par [G]su
+[G]Noea pensa, noea vede
+[G]Noea scolta, [Bb]noea [G]crede
+[G]No a conta mai giusta
+[G]ea me fa con[Bb]fu[G]sion
+[G]eà me voe soeo
+[G]pa’ on toco [Bb]de [G]pan
+{end_of_verse}
+{start_of_grid: shape="4x4"}
+| G . . . | G . . . | Bb . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V2}
+# Battute 14-21. Doc Drive: [2], prima parte.
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]l’Anguana xe bea
+[G]l’Anguana me piaxe
+[Bb]l’Anguana fa mae
+[G]l’Anguana spaura
+[G]l’Anguana me istiga
+[G]l’Anguana xe spoja
+[Bb]l’Anguana xe nuda
+[G]l’Anguana fa voja
+{end_of_verse}
+
+{start_of_verse: PC2}
+# Battute 22-25. Doc Drive: [2], seconda parte.
+# Reaper: "ciama i cavai" (senza "ea").
+{x_bars: 4}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]Ea me fa stare al scuro
+[G]ea me sconde [Bb]dal mondo
+[G]dormo coe bestie
+[G]in mexo [Bb]ad un [G]bosco
+[G]Ea parla coe bestie
+[G]attraversa e [Bb]fo[G]reste
+[G]ea ciama i cavai
+[G]come i [Bb]cri[G]stiani
+{end_of_verse}
+
+{start_of_grid: label="Inst" shape="4x4"}
+# Battute 26-29: nessun verso nella traccia lyrics, la traccia voice è muta (battute 27-29).
+{x_bars: 4}
+{comment: senza voce}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+| G . . . | G . . . | Bb . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V3}
+# Battute 30-37. Doc Drive: [3], prima parte.
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]l’Anguana me lecca
+[G]l’Anguana me lava
+[Bb]l’Anguana me suga
+[G]ea bocca che sbava
+[G]l’Anguana noea scolta
+[G]l’Anguana noea vede
+[Bb]l’Anguana va vanti
+[G]sensa pensar
+{end_of_verse}
+
+{start_of_verse: PC3}
+# Battute 38-41. Doc Drive: [3], seconda parte.
+# Reaper: "taja in dò", "ea ga fato un patto", "l’Anguana e ea Morte", "ea se alsa dal letto".
+{x_bars: 4}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]L’Anguana g’al corpo
+[G]tajà [Bb]in [G]dò
+[G]ea ga fatto un patto
+[G]par stare [Bb]ta[G]cà
+[G]l’Anguana ea morte
+[G]camina a [Bb]bra[G]sseto
+[G]Ae tre de notte
+[G]ea xe alsa[Bb] dal [G]letto
+{end_of_verse}
+
+{start_of_verse: V4}
+# Battute 42-49. Doc Drive: [4], prima parte.
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]l’Anguana no sente
+[G]l’Anguana me mente
+[Bb]l’Anguana se veste
+[G]l’Anguana se sveste
+[G]l’Anguana cucina
+[G]l’Anguana regina
+[Bb]l’Anguana decide
+[G]l’Anguana uccide
+{end_of_verse}
+
+{start_of_verse: PC4}
+# Battute 50-53. Doc Drive: [4], seconda parte.
+# Reaper: "cuse i calseti", "paga e boete", "ea me dixe", "sta sito", "cossa chea sente".
+{x_bars: 4}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]Ea me lava e mudande
+[G]Ea me cuxe i [Bb]cal[G]setti
+[G]Ea paga e boette
+[G]Ea me mostra [Bb]e [G]tette
+[Bb]l’Anguana ea me dise
+[G]sta sitto e [Bb]va [G]vanti
+[G]ma no conta pi’ gnente
+[G]cossa ch’[Bb]ea [G]sente
+{end_of_verse}
+
+{start_of_verse: V5}
+# Battute 54-61. Doc Drive: [5]. Stesso testo di V1.
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]l’Anguana me ciama
+[G]l’Anguana me voe
+[Bb]l’Anguana me varda
+[G]l’Anguana me toe
+[G]l’Anguana me sente
+[G]l’Anguana me spia
+[Bb]l’Anguana me vede
+[G]e dopo ea va via
+{end_of_verse}
+
+{start_of_verse: PC5}
+# Battute 62-63, due versi per battuta: metà di un PC. Doc Drive: [6].
+# Reaper: "e erbe de campo".
+{x_bars: 2}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti}
+[G]El brodo de bojo
+[G]el gà un [Bb]gusto [G]strambo
+[G]come s’el ghesse
+[G]e erbe [Bb]del [G]campo
+{end_of_verse}
+
+{start_of_verse: V6}
+# Battute 64-71. Doc Drive: [7]. Stesso testo di V4.
+# Fine: l'ultimo colpo di kick è sul 2° tempo della battuta 71, poi resta la coda della CBG (circa 1 battuta).
+{x_bars: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG slide}
+{x_drums: kick in quarti, ultimo colpo sul 2 della battuta 71}
+[G]l’Anguana no sente
+[G]l’Anguana me mente
+[Bb]l’Anguana se veste
+[G]l’Anguana se sveste
+[G]l’Anguana cucina
+[G]l’Anguana regina
+[Bb]l’Anguana decide
+[G]l’Anguana uccide
+{end_of_verse}
