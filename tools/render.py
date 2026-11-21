@@ -2,7 +2,7 @@
 
 ChordPro ignores x_ directives when printing, so the song is first converted
 into plain ChordPro (x_ directives become comments), then passed to the
-`chordpro` command line tool.
+`chordpro` command line tool. Fonts and spacing come from tools/chordpro.json.
 
 Usage: python3 tools/render.py <song.cho> [-o <out.pdf>]
 Default output: pdf/<song>.pdf in the repository.
@@ -16,6 +16,7 @@ import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
+CONFIG = REPO_ROOT / "tools" / "chordpro.json"  # font e spazi del PDF
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 
 PART_LABELS = {
@@ -130,7 +131,9 @@ def render(song, pdf):
         plain.write_text(convert(song.read_text(encoding="utf-8")), encoding="utf-8")
         # No chord diagrams: the defaults are for 6-string guitar, not cigar box.
         subprocess.run(
-            ["chordpro", "--no-chord-grids", str(plain), "-o", str(pdf)], check=True
+            ["chordpro", "--config", str(CONFIG), "--no-chord-grids", str(plain),
+             "-o", str(pdf)],
+            check=True,
         )
     if not pdf.exists():
         sys.exit(f"chordpro non ha generato {pdf}")

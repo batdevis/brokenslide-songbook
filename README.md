@@ -40,6 +40,8 @@ ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima i
 - i cue in un riquadro
 - in testa al brano tonalità, tempo, accordatura e struttura
 
+Font, margini e interlinea si cambiano in `tools/chordpro.json`, la config di ChordPro usata da `render.py` ([documentazione](https://chordpro.org/chordpro/chordpro-configuration-pdf/)). I valori di partenza sono quelli di default di ChordPro.
+
 I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. I PDF generati sono nel repository, in `pdf/`: dopo aver modificato un brano, rigenera il suo PDF prima del commit.
 
 Serve il comando `chordpro` nel `PATH`. Su Linux il modo più semplice è l'AppImage ufficiale, dalle [release di ChordPro](https://github.com/ChordPro/chordpro/releases): scegli `wk4.1` sulle distro recenti (ad esempio Ubuntu 24.04) e crea un link che si chiami `chordpro`:

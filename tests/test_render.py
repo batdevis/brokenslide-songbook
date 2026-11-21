@@ -91,6 +91,7 @@ class RenderTest(ExternalCallGuard):
             cmd = run.call_args.args[0]
             self.assertEqual(cmd[0], "chordpro")
             self.assertIn("--no-chord-grids", cmd)
+            self.assertEqual(cmd[cmd.index("--config") + 1], str(render.CONFIG))
             self.assertEqual(cmd[-2:], ["-o", str(pdf)])
 
 

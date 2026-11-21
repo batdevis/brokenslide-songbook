@@ -15,6 +15,7 @@ ROADMAP.md                 # stato dei brani, domande aperte, prossimi passi
 <brano>.disco.cho          # versione disco, registrata in studio (futura)
 tools/rpp_arrangement.py   # .RPP → tempo, sezioni (marker) e tracce attive per sezione
 tools/render.py            # .cho → pdf/<brano>.pdf via chordpro, con le x_ rese visibili
+tools/chordpro.json        # config di ChordPro per il PDF: font, margini, interlinea
 tests/                     # python3 -m unittest discover tests
 pdf/                       # PDF generati, versionati
 ```
