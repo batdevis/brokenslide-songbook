@@ -13,7 +13,7 @@
         color: #555;
     }
     @bottom-right {
-        content: "Pagina " counter(page) " di " counter(pages);
+        content: "Page " counter(page) " of " counter(pages);
         font-family: ui-monospace, "DejaVu Sans Mono", "Liberation Mono", monospace;
         font-size: 8pt;
         color: #555;

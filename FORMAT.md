@@ -140,7 +140,7 @@ Le altre sezioni non si possono richiamare: se tornano, si riscrivono nel punto 
 
 ## 4. Struttura del brano e `x_times`
 
-La struttura (in inglese *song form*) è la sequenza delle sezioni in ordine di esecuzione. Non si scrive a mano: `tools/render.py` la ricava dal file e la stampa in testa alla pagina, come una riga di griglia: `| Intro x2 | V1 | C x4 |`.
+La struttura (in inglese *song form*) è la sequenza delle sezioni in ordine di esecuzione. Non si scrive a mano: `tools/render.py` la ricava dal file e la stampa in testa alla pagina con l'etichetta `Form:`, come una riga di griglia: `| Intro x2 | V1 | C x4 |`.
 
 - Entrano nella struttura, nell'ordine del file, tutte le sezioni **con etichetta** e tutti i richiami `{chorus}`. Ne restano fuori i blocchi `tab` e le griglie senza `label` che accompagnano una sezione con testo.
 - `{x_times: N}` dice quante volte di fila si suona la sezione (se manca, una volta). Si mette dentro la sezione, subito sotto `x_bars`; per un richiamo, sulla riga dopo `{chorus}`.

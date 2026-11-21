@@ -41,7 +41,7 @@ python3 tools/render.py songs/   # tutti i brani (i file che iniziano con _ , co
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così compaiono:
 - una riga compatta per sezione con battute e parti degli strumenti
 - i cue in un riquadro
-- in testa al brano tonalità, tempo, accordatura e struttura
+- in testa al brano tonalità, tempo, accordatura e struttura (Key, BPM, Tuning, Form)
 
 La pagina la scrive il backend HTML di ChordPro. Il PDF è la stessa pagina stampata da un browser headless: **Chromium** (open source; su Ubuntu `sudo snap install chromium`, su Debian il pacchetto `chromium`), oppure Google Chrome se Chromium non c'è. Il browser parte con un profilo temporaneo, senza toccare quelli personali.
 
@@ -53,7 +53,7 @@ Per provare una modifica allo stile basta cambiare il CSS copiato in `out/html/`
 
 I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. HTML e PDF generati sono nel repository, in `out/`: dopo aver modificato un brano o un CSS, rigenerali prima del commit (dopo un CSS: `python3 tools/render.py songs/`).
 
-Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (la Struttura): `render.py` li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `form`, `box`) che arrivano nella pagina come `div` con la loro classe. Ignora anche `{artist}`, che `render.py` ripete come `{subtitle}` sotto il titolo. Aggiunge anche doctype e viewport, e toglie lo stile `@page` di ChordPro (intestazione e piè di pagina vengono da `chordpro_print.css`).
+Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (il Form): `render.py` li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `form`, `box`) che arrivano nella pagina come `div` con la loro classe. Ignora anche `{artist}`, che `render.py` ripete come `{subtitle}` sotto il titolo. Aggiunge anche doctype e viewport, e toglie lo stile `@page` di ChordPro (intestazione e piè di pagina vengono da `chordpro_print.css`).
 
 Serve il comando `chordpro` nel `PATH`. Su Linux il modo più semplice è l'AppImage ufficiale, dalle [release di ChordPro](https://github.com/ChordPro/chordpro/releases): scegli `wk4.1` sulle distro recenti (ad esempio Ubuntu 24.04) e crea un link che si chiami `chordpro`:
 

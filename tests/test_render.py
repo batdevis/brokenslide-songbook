@@ -75,7 +75,7 @@ class ConvertTest(ExternalCallGuard):
     def test_header_inserted_before_first_section(self):
         first_section = self.lines.index("{start_of_tab: Riff A}")
         header = self.lines[:first_section]
-        self.assertIn("{comment_box: Struttura: | Intro x2 | V1 | C | C x4 | C |}", header)
+        self.assertIn("{comment_box: Form: | Intro x2 | V1 | C | C x4 | C |}", header)
         self.assertTrue(any("GDG" in l and l.startswith("{comment:") for l in header))
 
     def test_parts_merged_in_one_line(self):
@@ -146,8 +146,8 @@ class HtmlWorkaroundsTest(ExternalCallGuard):
     def test_form_box_becomes_form_section(self):
         nbsp = render.NBSP
         self.assertEqual(
-            self.lines("{comment_box: Struttura: | Intro x2 | V1 |}"),
-            ['{start_of_form: label="Struttura:"}',
+            self.lines("{comment_box: Form: | Intro x2 | V1 |}"),
+            ['{start_of_form: label="Form:"}',
              f"| Intro{nbsp}x2{nbsp}| V1{nbsp}|", "{end_of_form}"])
 
     def test_comment_box_wrapped_only_outside_sections(self):

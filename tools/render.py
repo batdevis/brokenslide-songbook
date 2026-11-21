@@ -11,7 +11,7 @@ meta tag so phones and tablets show it at their own width.
 The PDF is the page printed by a headless browser (Chromium, or Chrome as a
 fallback), so it follows tools/html/chordpro_print.css.
 
-The song form (Struttura) is built from the sections themselves: every labeled
+The song form is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
 
 Usage: python3 tools/render.py <song.cho|folder>... [--format pdf|html] [--out-dir <dir>]
@@ -35,7 +35,7 @@ BROWSERS = ("chromium", "chromium-browser", "google-chrome")  # in order of pref
 HTML_STYLES = REPO_ROOT / "tools" / "html"  # CSS caricati dalla pagina HTML
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 LABEL_ATTR = re.compile(r'label="([^"]*)"')
-FORM_TITLE = "Struttura:"
+FORM_TITLE = "Form:"
 NBSP = "\u00a0"
 DOCTYPE = "<!DOCTYPE html>"
 CHARSET = '<meta charset="utf-8">'
@@ -56,7 +56,7 @@ PART_LABELS = {
 }
 
 
-SLIDE_TEXT = {"yes": "con slide", "no": "senza slide", "mixed": "slide in parte"}
+SLIDE_TEXT = {"yes": "slide", "no": "no slide", "mixed": "partial slide"}
 
 
 def parse_directive(line):
@@ -134,15 +134,15 @@ def bars_text(value):
 def header_lines(info):
     """Summary printed once, before the first section."""
     first = [
-        f"Tonalità {info['key']}" if "key" in info else None,
+        f"Key {info['key']}" if "key" in info else None,
         f"{info['tempo']} BPM" if "tempo" in info else None,
         info.get("time"),
         info.get("duration"),
     ]
     second = [
-        f"Accordatura {info['tuning']}" if "tuning" in info else None,
+        f"Tuning {info['tuning']}" if "tuning" in info else None,
         SLIDE_TEXT.get(info.get("slide"), info.get("slide")),
-        f"versione {info['version']}" if "version" in info else None,
+        f"{info['version']} version" if "version" in info else None,
     ]
     lines = []
     for parts in (first, second):
@@ -222,7 +222,7 @@ def html_workarounds(text):
     Custom sections become `<div class="name">` in the page:
     - grids → `chordgrid` (label only), whose bar lines are printed as text;
     - chorus recalls → an empty `chorus_recall` with the chorus label;
-    - the Struttura box → a `form` section with the form as a text line,
+    - the Form box → a `form` section with the form as a text line,
       breakable only after a bar so a section name is never split;
     - other boxed comments outside sections → a `box` section.
     """

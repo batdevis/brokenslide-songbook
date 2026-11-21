@@ -56,7 +56,7 @@ div.song > div.comment {
     font-size: 0.8rem;
     color: var(--muted);
 }
-/* Struttura: render.py la mette in div.form, scritta come una riga di griglia */
+/* Form (struttura): render.py la mette in div.form, scritta come una riga di griglia */
 div.form {
     margin-top: 0.8rem;
 }
@@ -143,7 +143,7 @@ table.songline tr.chords {
     font-weight: bold;
     page-break-after: avoid;
 }
-/* Griglie e Struttura: righe di testo, senza accordi sopra */
+/* Griglie e Form: righe di testo, senza accordi sopra */
 div.chordgrid tr.chords, div.form tr.chords {
     display: none;
 }

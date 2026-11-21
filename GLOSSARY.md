@@ -2,6 +2,7 @@
 
 Nei progetti Reaper, nei doc su Drive e a voce la stessa cosa ha nomi diversi.
 Nei file del songbook si usa **sempre il termine della colonna "Termine"**, in inglese. Il resto del testo (commenti, note) è in italiano.
+Anche le etichette che `tools/render.py` scrive nella pagina e nel PDF sono in inglese (ad esempio Key, Tuning, Form, Cue).
 
 La colonna "Sinonimi" serve a riconoscere i nomi che si trovano nelle fonti (tracce e marker Reaper, doc Drive) e a tradurli.
 Se nelle fonti compare un nome nuovo, aggiungerlo qui come sinonimo o come termine.
