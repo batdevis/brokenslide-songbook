@@ -17,12 +17,12 @@
 {meta: tuning GDG}
 {meta: slide yes}
 {meta: version live}
-{x_form: Intro x2 V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad x3 B Pau C x4 Pad x4}
 
-{start_of_grid: label="Intro x2" shape="4x4"}
+{start_of_grid: label="Intro" shape="4x4"}
 # Main riff di 4 battute: x2 nell'intro, x1 nell'Inst.
 # TODO: tablatura del Main riff in un blocco tab (FORMAT.md §6).
 {x_bars: 4}
+{x_times: 2}
 {x_riff: Main riff}
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
@@ -87,13 +87,15 @@
 [C7]come ch’el fosse ‘na foresta
 {end_of_verse}
 
-{start_of_chorus: label="C x2"}
+{start_of_chorus: label="C"}
 # Bb fuori tonalità (G) di proposito.
 {x_bars: 4}
+{x_times: 2}
 {x_bv: Daniele, in tutti i chorus}
 [C]Aaaah
 [Bb]ahhhh
 [G]el boogie del barbastrejo
+[G]_
 {end_of_chorus}
 {start_of_grid: shape="4x4"}
 | C . . . | Bb . . . | G . . . | G . . . |
@@ -107,11 +109,13 @@
 [G]te si cativo o te si bon
 {end_of_verse}
 
-{chorus: C x4}
+{chorus: C}
+{x_times: 4}
 
-{start_of_grid: label="Pad x3" shape="4x4"}
+{start_of_grid: label="Pad" shape="4x4"}
 # Frase di 4 battute ripetuta: x3 prima del bridge, x4 alla fine del brano.
 {x_bars: 4}
+{x_times: 3}
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
@@ -127,17 +131,19 @@
 [G]dall’orto no sta ndare via
 {end_of_bridge}
 
-{start_of_grid: label="Pau" shape="1x1"}
+{start_of_grid: label="Pause" shape="1x1"}
 # Un quarto in più di silenzio: l'ultimo chorus entra un quarto dopo.
-{x_cue: tutti: 1 tempo di silenzio → C x4}
+{x_cue: tutti: 1 tempo di silenzio → chorus}
 | N.C. |
 {end_of_grid}
 
-{chorus: C x4}
+{chorus: C}
+{x_times: 4}
 
-{start_of_grid: label="Pad x4" shape="4x4"}
+{start_of_grid: label="Pad" shape="4x4"}
 # Come il Pad prima del bridge. Riscritto perché le griglie non si possono richiamare.
 {x_bars: 4}
+{x_times: 4}
 {x_cue: stop secco sul 4 dell'ultima battuta: fine del brano}
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}

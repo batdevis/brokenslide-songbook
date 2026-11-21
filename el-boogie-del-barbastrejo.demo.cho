@@ -20,7 +20,6 @@
 {meta: tuning GDG}
 {meta: slide yes}
 {meta: version demo}
-{x_form: Intro V1 V2 Inst V3 Brk V4 Solo PC C x2 V5 C x4 Pad B C x4 Outro}
 
 {start_of_grid: label="Intro" shape="4x4"}
 # Reaper: intro
@@ -139,10 +138,11 @@
 [C7]come ch’el fosse ‘na foresta
 {end_of_verse}
 
-{start_of_chorus: C x2}
+{start_of_chorus: C}
 # Reaper: rit 01 (C x2), rit 02 (C x4), rit 03 (C x4). Frase di 4 battute ripetuta.
 # Bb fuori tonalità (G) di proposito.
 {x_bars: 4}
+{x_times: 2}
 {x_vox: lead vocal su due tracce (una con tin can mic) + backing vocals}
 {x_cbg: CBG + CBG dist}
 {x_gtr: 12-string + resonator}
@@ -170,7 +170,8 @@
 [G]te si cativo o te si bon
 {end_of_verse}
 
-{chorus: C x4}
+{chorus: C}
+{x_times: 4}
 # Reaper: rit 02
 
 {start_of_grid: label="Pad" shape="4x4"}
@@ -203,7 +204,8 @@
 [G]dall’orto no sta ndare via
 {end_of_bridge}
 
-{chorus: C x4}
+{chorus: C}
+{x_times: 4}
 # Reaper: rit 03
 
 {start_of_grid: label="Outro" shape="4x4"}

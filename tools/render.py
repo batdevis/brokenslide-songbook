@@ -4,6 +4,9 @@ ChordPro ignores x_ directives when printing, so the song is first converted
 into plain ChordPro (x_ directives become comments), then passed to the
 `chordpro` command line tool. Fonts and spacing come from tools/chordpro.json.
 
+The song form (Struttura) is built from the sections themselves: every labeled
+section and every chorus recall, in order, with its x_times repetitions.
+
 Usage: python3 tools/render.py <song.cho> [-o <out.pdf>]
 Default output: pdf/<song>.pdf in the repository.
 """
@@ -18,6 +21,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent
 CONFIG = REPO_ROOT / "tools" / "chordpro.json"  # font e spazi del PDF
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
+LABEL_ATTR = re.compile(r'label="([^"]*)"')
 
 PART_LABELS = {
     "x_vox": "Vocals",
@@ -33,6 +37,69 @@ PART_LABELS = {
 
 
 SLIDE_TEXT = {"yes": "con slide", "no": "senza slide", "mixed": "slide in parte"}
+
+
+def parse_directive(line):
+    """(name, value) of a `{name: value}` line, or (None, None)."""
+    match = DIRECTIVE.match(line.strip())
+    return (match.group(1), match.group(2) or "") if match else (None, None)
+
+
+def section_label(value):
+    """Label from a section argument: `V1` or `label="V1" shape=...`."""
+    match = LABEL_ATTR.search(value)
+    if match:
+        return match.group(1)
+    return value if value and "=" not in value else None
+
+
+def parse_times(value):
+    if not value.isdigit() or int(value) < 1:
+        raise ValueError(f"x_times deve essere un intero >= 1, non {value!r}")
+    return int(value)
+
+
+def is_form_section(name):
+    """Section openers and chorus recalls; tab blocks only hold riffs."""
+    return name == "chorus" or (
+        name.startswith("start_of_") and name != "start_of_tab")
+
+
+def song_form(lines):
+    """Form of the song as {line index: entry}, in playing order.
+
+    Entries look like `Intro` or `C x2`. A section is in the form when it has
+    a label; a chorus recall without label takes the label of the last
+    chorus. `x_times` sets how many times the last section is played
+    (default 1).
+    """
+    form = {}
+    last = None
+    last_chorus = None
+    for index, line in enumerate(lines):
+        name, value = parse_directive(line)
+        if name and is_form_section(name):
+            label = section_label(value)
+            if name == "chorus":
+                label = label or last_chorus
+            elif name == "start_of_chorus" and label:
+                last_chorus = label
+            if label:
+                form[index] = [label, 1]
+                last = index
+        elif name == "x_times":
+            if last is None:
+                raise ValueError("x_times prima di qualunque sezione")
+            form[last][1] = parse_times(value)
+    return {index: label if times == 1 else f"{label} x{times}"
+            for index, (label, times) in form.items()}
+
+
+def relabel(line, name, value, label):
+    """Same section line, with `label` in place of its label."""
+    if LABEL_ATTR.search(value):
+        return LABEL_ATTR.sub(lambda _: f'label="{label}"', line, count=1)
+    return f"{{{name}: {label}}}"
 
 
 def bars_text(value):
@@ -76,7 +143,9 @@ def convert(text):
     Consecutive x_ directives inside a section are merged into one compact
     italic line; cues get their own boxed line so they stand out.
     """
-    info = {}
+    lines = text.splitlines()
+    form = song_form(lines)
+    info = {"form": " ".join(form.values())} if form else {}
     out = []
     parts = []
     header_done = False
@@ -86,18 +155,18 @@ def convert(text):
             out.append(f"{{comment_italic: {' · '.join(parts)}}}")
             parts.clear()
 
-    for line in text.splitlines():
-        match = DIRECTIVE.match(line.strip())
-        name, value = (match.group(1), match.group(2) or "") if match else (None, None)
+    for index, line in enumerate(lines):
+        name, value = parse_directive(line)
 
         if name in ("key", "tempo", "time", "duration"):
             info[name] = value
         elif name == "meta" and value:
             meta_name, _, meta_value = value.partition(" ")
             info[meta_name] = meta_value.strip()
-        elif name == "x_form":
-            info["form"] = value
-            continue
+        elif name == "x_times":
+            continue  # already in the section label
+        elif index in form:
+            line = relabel(line, name, value, form[index])
 
         if name and name.startswith("start_of_") and not header_done:
             out.extend(header_lines(info))

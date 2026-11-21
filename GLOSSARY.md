@@ -62,13 +62,13 @@ L'etichetta è quella usata nei file (vedi [FORMAT.md](FORMAT.md)).
 | jam | Jam | |
 | tag | Tag | |
 | outro | Outro | final, finale, coda |
-| pause | Pau | pau, [pau], pausa |
+| pause | Pause | pau, [pau], pausa |
 
 ## Esecuzione e struttura
 
 | Termine | Sinonimi | Note |
 |---|---|---|
-| form | struttura, forma | sequenza delle sezioni in ordine di esecuzione, vedi `x_form` in [FORMAT.md](FORMAT.md) |
+| form | struttura, forma | sequenza delle sezioni in ordine di esecuzione, ricavata dalle sezioni, vedi §4 di [FORMAT.md](FORMAT.md) |
 | bar | battuta, misura | |
 | count-in | conteggio | "un, due, tre, quattro" prima di partire |
 | cue | segnale, attacco | segnale tra i musicisti, vedi `x_cue` in [FORMAT.md](FORMAT.md) |
