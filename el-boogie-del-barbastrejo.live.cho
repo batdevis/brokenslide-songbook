@@ -9,6 +9,7 @@
 # Termini come in GLOSSARY.md.
 
 {title: El Boogie Del Barbastrejo}
+{artist: Broken Slide}
 {key: G}
 {tempo: 128}
 {time: 4/4}
@@ -26,7 +27,7 @@
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_verse: V1}
+{start_of_verse: label="V1"}
 {x_bars: 4}
 [G]No riesso a stare fora
 [G]no so bon de far festa
@@ -34,7 +35,7 @@
 [G]no vedo gnanca ‘na figa
 {end_of_verse}
 
-{start_of_verse: V2}
+{start_of_verse: label="V2"}
 {x_bars: 4}
 [G]No riesso a stare quieto
 [G]in meso a massa xente
@@ -49,7 +50,7 @@
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_verse: V3}
+{start_of_verse: label="V3"}
 {x_bars: 4}
 [G]bon gnanca a dormire
 [G]gol cuore coe visighe
@@ -62,7 +63,7 @@
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_verse: V4}
+{start_of_verse: label="V4"}
 {x_bars: 4}
 [G]Me sento al fresco in orto
 [G]me dondoeo soa carega
@@ -77,7 +78,7 @@
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_verse: PC}
+{start_of_verse: label="PC"}
 # Accordi fuori tonalità (G) di proposito.
 {x_bars: 4}
 [F]Ma quando sora ea testa
@@ -86,7 +87,7 @@
 [C7]come ch’el fosse ‘na foresta
 {end_of_verse}
 
-{start_of_chorus: C x2}
+{start_of_chorus: label="C x2"}
 # Bb fuori tonalità (G) di proposito.
 {x_bars: 4}
 {x_bv: Daniele, in tutti i chorus}
@@ -98,7 +99,7 @@
 | C . . . | Bb . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_verse: V5}
+{start_of_verse: label="V5"}
 {x_bars: 4}
 [G]Voria anca tocarlo
 [G]un fià el me fa impression
@@ -114,7 +115,7 @@
 | G . . . | G . . . | G . . . | G . . . |
 {end_of_grid}
 
-{start_of_bridge: B}
+{start_of_bridge: label="B"}
 {x_bars: 8}
 [G]Te ringrassio barbastrejio
 [G]che te me ghè insegna’ a baeare
