@@ -137,6 +137,12 @@ class HtmlWorkaroundsTest(ExternalCallGuard):
             ['{start_of_chordgrid: label="Intro"}', "| G . . . |", "{end_of_chordgrid}",
              "{start_of_chordgrid}", "{end_of_chordgrid}"])
 
+    def test_tab_becomes_labeled_riff(self):
+        self.assertEqual(
+            self.lines("{start_of_tab: Main riff}\nG|--0--|\n{end_of_tab}\n{start_of_tab}\n{end_of_tab}"),
+            ['{start_of_riff: label="Main riff"}', "G|--0--|", "{end_of_riff}",
+             "{start_of_riff}", "{end_of_riff}"])
+
     def test_chorus_recall_becomes_labeled_section(self):
         self.assertEqual(
             self.lines("{chorus: C x4}\n{chorus}"),

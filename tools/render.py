@@ -221,6 +221,7 @@ def html_workarounds(text):
     The artist, which the backend ignores, is repeated as a subtitle.
     Custom sections become `<div class="name">` in the page:
     - grids → `chordgrid` (label only), whose bar lines are printed as text;
+    - tabs → `riff`, so the riff name is printed (the backend drops it);
     - chorus recalls → an empty `chorus_recall` with the chorus label;
     - the Form box → a `form` section with the form as a text line,
       breakable only after a bar so a section name is never split;
@@ -239,6 +240,11 @@ def html_workarounds(text):
             line = f'{{start_of_chordgrid: label="{label}"}}' if label else "{start_of_chordgrid}"
         elif name == "end_of_grid":
             line = "{end_of_chordgrid}"
+        elif name == "start_of_tab":
+            label = section_label(value)
+            line = f'{{start_of_riff: label="{label}"}}' if label else "{start_of_riff}"
+        elif name == "end_of_tab":
+            line = "{end_of_riff}"
         if name == "chorus":
             label = section_label(value) or "Chorus"
             out += [f'{{start_of_chorus_recall: label="{label}"}}',

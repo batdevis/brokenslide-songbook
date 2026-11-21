@@ -43,7 +43,7 @@ div.song {
 }
 
 /* Una sezione non si spezza tra due pagine, e l'etichetta resta col suo contenuto */
-div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.tab,
+div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.riff,
 div.form, table.songline {
     break-inside: avoid;
 }

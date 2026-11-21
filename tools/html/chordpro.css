@@ -73,7 +73,7 @@ div.box > div.comment_box {
 }
 
 /* Sezioni */
-div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.tab {
+div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.riff {
     margin-top: 1.4rem;
     padding-top: 0.8rem;
     border-top: 1px solid var(--rule);
@@ -161,7 +161,11 @@ table.songline td.indent {
     padding-left: 2em;
 }
 
-div.tab {
+/* Riff in tablatura: righe di testo a spaziatura fissa, senza accordi sopra */
+div.riff tr.chords {
+    display: none;
+}
+div.riff tr.lyrics {
     white-space: pre;
     font-size: 0.8rem;
 }

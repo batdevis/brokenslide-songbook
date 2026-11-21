@@ -1,0 +1,112 @@
+# Fonte: recording/Sequeri/Sequeri.RPP (marker: onetwothreefour, str 01, rit 01, str 02, rit 02, outro).
+# Testo: traccia lyrics di Reaper, verificata sul doc Drive "Seuqeri miracoi_tab".
+# Tonalità, accordi, Main riff (tab), slide e traccia "gtr drive" = CBG dist: Devis (2026-11-21).
+# Tracce: "cbg str P48" = CBG, "gtr drive" = CBG dist, "bass P49" = bass, "str" e "rit" = lead vocal.
+# Batteria (campioni): kick, snare, hi-hat chiuso e aperto.
+# Durata dell'export (recording/Sequeri/export/Sequeri.wav): 2:30.
+{title: Sequeri}
+{key: G}
+{tempo: 90}
+{time: 4/4}
+{duration: 2:30}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version demo}
+
+{start_of_tab: Main riff}
+# Scritto da Devis (2026-11-21): 4 battute, si suona 2 volte in ogni strofa.
+# In recording/Sequeri/chords/Sequeri - tabs.txt c'è una versione precedente, con alcune note sulla corda D.
+G|5/7-5-3-0------|3-0-0-3-5----|7-5-3-0----|12-10-7-----|
+D|---------------|-------------|-----------|------------|
+G|---------------|-------------|-----------|------------|
+{end_of_tab}
+
+{start_of_grid: label="Count" shape="1x4"}
+# Reaper: onetwothreefour
+{x_bars: 1}
+{x_drums: count-in sull'hi-hat}
+| N.C. . . . |
+{end_of_grid}
+
+{start_of_verse: V1}
+# Reaper: str 01 (battute 1-8 della regione)
+{x_bars: 8}
+{x_riff: Main riff}
+{x_vox: lead vocal}
+{x_cbg: Main riff x2 (CBG) + CBG dist}
+{x_bass: bass, tace nell'ultima battuta e mezza}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[D]trove[G]rò
+[Bb]la mia [G]nebbia
+[D]colo[G]rata
+[G]di [F]ere[D]sia
+{end_of_verse}
+
+{start_of_verse: V2}
+# Reaper: str 01 (battute 9-16 della regione)
+{x_bars: 8}
+{x_riff: Main riff}
+{x_vox: lead vocal}
+{x_cbg: Main riff x2 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[D]cammine[G]rò
+[Bb]senza [G]sapere
+[D]quanto [G]costa
+[G]la [F]liber[D]tà
+{end_of_verse}
+
+{start_of_chorus: C}
+# Reaper: rit 01 (C x8), rit 02 (C x9). Frase di 1 battuta ripetuta.
+# Testo: "sequeri miracoei" come nel doc Drive (confermato da Devis, 2026-11-21). Nella traccia lyrics e nelle tab è "sequeri miracoi".
+{x_bars: 1}
+{x_times: 8}
+{x_vox: lead vocal}
+{x_cbg: CBG + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[F]se[G]queri [F]mira[G]coei
+{end_of_chorus}
+
+{start_of_verse: V3}
+# Reaper: str 02 (battute 1-8 della regione)
+{x_bars: 8}
+{x_riff: Main riff}
+{x_vox: lead vocal}
+{x_cbg: Main riff x2 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[D]soffie[G]rò
+[Bb]polvere [G]nera
+[D]dai [G]motivi
+[G]per [F]cui son [D]qui
+{end_of_verse}
+
+{start_of_verse: V4}
+# Reaper: str 02 (battute 9-16 della regione)
+{x_bars: 8}
+{x_riff: Main riff}
+{x_vox: lead vocal}
+{x_cbg: Main riff x2 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[D]trove[G]rò
+[Bb]la mia [G]rabbia
+[D]colo[G]rata
+[G]di [F]liber[D]tà
+{end_of_verse}
+
+{chorus: C}
+{x_times: 9}
+# Reaper: rit 02
+
+{start_of_grid: label="Outro" shape="4x4"}
+# Reaper: outro. La regione dura 13 battute, ma l'audio finisce prima: batteria fino alla battuta 2, gli altri fino alla 5, poi la coda.
+# Accordi: Devis (2026-11-21), uguali al rit. Nelle tab c'è F G G#.
+{x_bars: 5}
+{x_cbg: CBG + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat (2 battute)}
+| F G F G | F G F G | F G F G | F G F G |
+| F G F G |
+{end_of_grid}
