@@ -75,7 +75,7 @@ class ConvertTest(ExternalCallGuard):
     def test_header_inserted_before_first_section(self):
         first_section = self.lines.index("{start_of_tab: Riff A}")
         header = self.lines[:first_section]
-        self.assertIn("{comment_box: Struttura: Intro x2 V1 C C x4 C}", header)
+        self.assertIn("{comment_box: Struttura: | Intro x2 | V1 | C | C x4 | C |}", header)
         self.assertTrue(any("GDG" in l and l.startswith("{comment:") for l in header))
 
     def test_parts_merged_in_one_line(self):
@@ -122,6 +122,37 @@ class SongFormTest(ExternalCallGuard):
             self.form("{x_times: 2}")
 
 
+class HtmlWorkaroundsTest(ExternalCallGuard):
+    def lines(self, text):
+        return render.html_workarounds(text).splitlines()
+
+    def test_grid_becomes_chordgrid(self):
+        self.assertEqual(
+            self.lines('{start_of_grid: label="Intro" shape="4x4"}\n| G . . . |\n{end_of_grid}\n'
+                       '{start_of_grid: shape="4x4"}\n{end_of_grid}'),
+            ['{start_of_chordgrid: label="Intro"}', "| G . . . |", "{end_of_chordgrid}",
+             "{start_of_chordgrid}", "{end_of_chordgrid}"])
+
+    def test_chorus_recall_becomes_labeled_section(self):
+        self.assertEqual(
+            self.lines("{chorus: C x4}\n{chorus}"),
+            ['{start_of_chorus_recall: label="C x4"}', "{end_of_chorus_recall}",
+             '{start_of_chorus_recall: label="Chorus"}', "{end_of_chorus_recall}"])
+
+    def test_form_box_becomes_form_section(self):
+        nbsp = render.NBSP
+        self.assertEqual(
+            self.lines("{comment_box: Struttura: | Intro x2 | V1 |}"),
+            ['{start_of_form: label="Struttura:"}',
+             f"| Intro{nbsp}x2{nbsp}| V1{nbsp}|", "{end_of_form}"])
+
+    def test_comment_box_wrapped_only_outside_sections(self):
+        self.assertEqual(
+            self.lines("{comment_box: A}\n{start_of_verse}\n{comment_box: B}\n{end_of_verse}"),
+            ["{start_of_box}", "{comment_box: A}", "{end_of_box}",
+             "{start_of_verse}", "{comment_box: B}", "{end_of_verse}"])
+
+
 class RenderTest(ExternalCallGuard):
     def setUp(self):
         super().setUp()
@@ -136,7 +167,9 @@ class RenderTest(ExternalCallGuard):
         out = self.tmp / "out" / "song.out"
 
         def fake_run(cmd, check):
-            out.write_bytes(b"output")
+            self.chordpro_input = Path(cmd[-3]).read_text(encoding="utf-8")
+            out.write_text('<html>\n<head>\n<meta charset="utf-8">\n</head>\n</html>\n',
+                           encoding="utf-8")
             return subprocess.CompletedProcess(cmd, 0)
 
         with mock.patch.object(render.shutil, "which", return_value="/bin/chordpro"), \
@@ -162,6 +195,23 @@ class RenderTest(ExternalCallGuard):
         self.assertEqual(styles, ["chordpro.css", "chordpro_print.css"])
         for name in styles:
             self.assertTrue((out.parent / name).is_file(), name)
+
+    def test_html_gets_doctype_and_viewport_once(self):
+        out, _ = self.run_render("html")
+        render.finish_html(out)  # a second pass must not duplicate them
+        html = out.read_text(encoding="utf-8")
+        self.assertTrue(html.startswith(render.DOCTYPE + "\n<html>"))
+        self.assertEqual(html.count(render.DOCTYPE), 1)
+        self.assertEqual(html.count(render.VIEWPORT), 1)
+
+    def test_html_input_gets_workarounds(self):
+        self.run_render("html")
+        self.assertIn("{start_of_chorus_recall:", self.chordpro_input)
+
+    def test_pdf_input_keeps_chorus_recall(self):
+        self.run_render()
+        self.assertNotIn("chorus_recall", self.chordpro_input)
+        self.assertIn("{chorus", self.chordpro_input)
 
     def test_pdf_gets_no_styles(self):
         out, _ = self.run_render()

@@ -1,72 +1,170 @@
 /* Punto di partenza: chordpro.css di ChordPro 6.101.0 (lib/ChordPro/res/styles/,
-   licenza Artistic 2.0). Lo copia tools/render.py accanto alla pagina HTML. */
-* {
-    font-family: "sans-serif";
+   licenza Artistic 2.0). Lo copia tools/render.py accanto alla pagina HTML.
+   Stile BrokenSlide: scuro per il palco, monospace, pensato per telefono e tablet. */
+
+:root {
+    color-scheme: dark;
+    --bg: #000;
+    --text: #e4e4e4;        /* non bianco puro: abbaglia meno al buio */
+    --muted: #8c8c8c;       /* note di arrangiamento, metadati */
+    --chord: #ffb347;       /* accordi: ambra, ben distinti dal testo */
+    --accent: #4fd1c5;      /* struttura: chorus, bridge */
+    --cue: #ff6b6b;         /* cue: cose da non perdere */
+    --badge-bg: #1e1e1e;
+    --rule: #2a2a2a;
+    --mono: ui-monospace, "DejaVu Sans Mono", "Liberation Mono", Menlo, Consolas, monospace;
 }
+
+html {
+    font-size: 18px;
+}
+@media (min-width: 700px) {
+    html {
+        font-size: 22px;
+    }
+}
+
+body {
+    margin: 0;
+    padding: 16px;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    line-height: 1.3;
+}
+* {
+    font-family: inherit;
+}
+
 div.song {
+    max-width: 40rem;
     page-break-after: always;
 }
+
+/* Intestazione: titolo e metadati */
 div.title {
-    font-size: 18pt;
+    font-size: 1.5rem;
     font-weight: bold;
-    /* position: running(title); */
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
 }
 div.subtitle {
-    font-size: 16pt;
+    font-size: 1.1rem;
+    color: var(--muted);
 }
-div.chorus {
-    padding-left: 10pt;
-    border-left: 2pt solid black;
+div.song > div.comment {
+    font-size: 0.8rem;
+    color: var(--muted);
 }
-div.verse {
+/* Struttura: render.py la mette in div.form, scritta come una riga di griglia */
+div.form {
+    margin-top: 0.8rem;
 }
-div.tab {
-    font-family: "mono";
-    font-size: 10pt;
-    white-space: pre;
-    border: 1pt solid;
-    padding: 2pt;
+div.form > div.label {
+    font-size: 0.8rem;
+    color: var(--muted);
 }
-table tr td {
-    /* border: 1pt solid red; */
-    margin: 0pt;
-    padding: 0pt;
+/* Altri comment_box fuori dalle sezioni: render.py li mette in div.box */
+div.box > div.comment_box {
+    margin-top: 0.6rem;
+    border: 1px solid var(--rule);
+    font-size: 0.8rem;
+    font-weight: normal;
 }
+
+/* Sezioni */
+div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.tab {
+    margin-top: 1.4rem;
+    padding-top: 0.8rem;
+    border-top: 1px solid var(--rule);
+}
+div.label {
+    display: inline-block;
+    padding: 0.1rem 0.5rem;
+    border-radius: 0.25rem;
+    background: var(--badge-bg);
+    font-weight: bold;
+    letter-spacing: 0.05em;
+}
+div.chorus, div.bridge, div.chorus_recall {
+    padding-left: 0.8rem;
+    border-left: 3px solid var(--accent);
+}
+div.bridge {
+    border-left-style: dashed;
+}
+div.chorus > div.label, div.bridge > div.label, div.chorus_recall > div.label {
+    color: var(--accent);
+}
+/* Griglia senza etichetta: continua la sezione precedente */
+div.chordgrid:not(:has(> div.label)) {
+    margin-top: 0.5rem;
+    padding-top: 0;
+    border-top: none;
+}
+
+/* Note dentro le sezioni */
+div.comment_italic {
+    margin: 0.3rem 0 0.5rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+}
+div.comment {
+    margin: 0.3rem 0;
+}
+div.comment_box {
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
+    border: 2px solid var(--cue);
+    border-radius: 0.25rem;
+    font-weight: bold;
+}
+
+/* Righe: accordi sopra, testo sotto */
 table.songline {
     border-collapse: collapse;
 }
 table.songline + table.songline {
-    margin-top: 0pt;
-    margin-bottom: 0pt;
+    margin-top: 0.35rem;
+}
+table tr td {
+    margin: 0;
+    padding: 0;
 }
 table.songline td {
     white-space: pre;
 }
+/* Il testo troppo lungo per lo schermo va a capo invece di uscire */
+table.songline tr.lyrics td {
+    white-space: pre-wrap;
+}
 table.songline tr.chords {
-    font-size: 12pt;
-    font-style: italic;
+    color: var(--chord);
     font-weight: bold;
-    color: blue;
     page-break-after: avoid;
 }
-table.songline tr.lyrics {
-    font-size: 12pt;
+/* Griglie e Struttura: righe di testo, senza accordi sopra */
+div.chordgrid tr.chords, div.form tr.chords {
+    display: none;
+}
+div.chordgrid tr.lyrics, div.form tr.lyrics {
+    color: var(--chord);
+    font-weight: bold;
+    /* Una riga 4x4 sono 41 caratteri: su telefono il carattere si stringe
+       con lo schermo, così la riga resta intera. */
+    font-size: clamp(0.7rem, 3.5vw, 1rem);
 }
 table.songline td.annotation {
-    color: red;
+    color: var(--cue);
 }
 table.songline td.indent {
     padding-left: 2em;
 }
-div.comment span {
-    background: #e0e0e0;
-}
-div.comment_italic span {
-    font-style: italic;
+
+div.tab {
+    white-space: pre;
+    font-size: 0.8rem;
 }
 div.image {
     object-fit: cover;
-}
-div + div, table + div, div + table {
-    margin-top: 15pt;
 }

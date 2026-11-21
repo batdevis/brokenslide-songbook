@@ -3,7 +3,11 @@
 ChordPro ignores x_ directives when printing, so the song is first converted
 into plain ChordPro (x_ directives become comments), then passed to the
 `chordpro` command line tool. Fonts and spacing come from tools/chordpro.json.
-The HTML page loads its style sheets from tools/html/, copied next to it.
+The HTML page loads its style sheets from tools/html/, copied next to it,
+and gets a doctype and a viewport meta tag so phones and tablets show it at
+their own width. ChordPro's HTML backend drops chord grids, chorus recalls and
+boxed comments outside sections, so for HTML those become custom sections
+(see html_workarounds).
 
 The song form (Struttura) is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
@@ -25,6 +29,11 @@ FORMATS = {"pdf": "PDF", "html": "HTML"}  # --format → ChordPro backend
 HTML_STYLES = REPO_ROOT / "tools" / "html"  # CSS caricati dalla pagina HTML
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 LABEL_ATTR = re.compile(r'label="([^"]*)"')
+FORM_TITLE = "Struttura:"
+NBSP = "\u00a0"
+DOCTYPE = "<!DOCTYPE html>"
+CHARSET = '<meta charset="utf-8">'
+VIEWPORT = '<meta name="viewport" content="width=device-width, initial-scale=1">'
 
 PART_LABELS = {
     "x_vox": "Vocals",
@@ -98,6 +107,11 @@ def song_form(lines):
             for index, (label, times) in form.items()}
 
 
+def form_line(entries):
+    """Song form written like a grid row: `| Intro x2 | V1 | C x4 |`."""
+    return "| " + " | ".join(entries) + " |"
+
+
 def relabel(line, name, value, label):
     """Same section line, with `label` in place of its label."""
     if LABEL_ATTR.search(value):
@@ -128,7 +142,7 @@ def header_lines(info):
         if text:
             lines.append(f"{{comment: {text}}}")
     if "form" in info:
-        lines.append(f"{{comment_box: Struttura: {info['form']}}}")
+        lines.append(f"{{comment_box: {FORM_TITLE} {info['form']}}}")
     return lines
 
 
@@ -148,7 +162,7 @@ def convert(text):
     """
     lines = text.splitlines()
     form = song_form(lines)
-    info = {"form": " ".join(form.values())} if form else {}
+    info = {"form": form_line(form.values())} if form else {}
     out = []
     parts = []
     header_done = False
@@ -193,6 +207,47 @@ def convert(text):
     return "\n".join(out) + "\n"
 
 
+def html_workarounds(text):
+    """Rewrite plain ChordPro so the HTML backend keeps what it would drop.
+
+    Custom sections become `<div class="name">` in the page:
+    - grids → `chordgrid` (label only), whose bar lines are printed as text;
+    - chorus recalls → an empty `chorus_recall` with the chorus label;
+    - the Struttura box → a `form` section with the form as a text line,
+      breakable only after a bar so a section name is never split;
+    - other boxed comments outside sections → a `box` section.
+    """
+    out = []
+    depth = 0
+    for line in text.splitlines():
+        name, value = parse_directive(line)
+        if name == "start_of_grid":
+            # Custom sections take only a label: `shape` would void it.
+            label = section_label(value)
+            line = f'{{start_of_chordgrid: label="{label}"}}' if label else "{start_of_chordgrid}"
+        elif name == "end_of_grid":
+            line = "{end_of_chordgrid}"
+        if name == "chorus":
+            label = section_label(value) or "Chorus"
+            out += [f'{{start_of_chorus_recall: label="{label}"}}',
+                    "{end_of_chorus_recall}"]
+            continue
+        if name == "comment_box" and depth == 0 and value.startswith(FORM_TITLE):
+            bars = value[len(FORM_TITLE):].strip()
+            bars = bars.replace(" ", NBSP).replace(f"|{NBSP}", "| ")
+            out += [f'{{start_of_form: label="{FORM_TITLE}"}}', bars, "{end_of_form}"]
+            continue
+        if name == "comment_box" and depth == 0:
+            out += ["{start_of_box}", line, "{end_of_box}"]
+            continue
+        if name and name.startswith("start_of_"):
+            depth += 1
+        elif name and name.startswith("end_of_"):
+            depth -= 1
+        out.append(line)
+    return "\n".join(out) + "\n"
+
+
 def render(song, out, fmt="pdf"):
     """Convert `song` and write it to `out` in `fmt` with the chordpro CLI."""
     if shutil.which("chordpro") is None:
@@ -200,7 +255,10 @@ def render(song, out, fmt="pdf"):
     out.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         plain = Path(tmp) / song.name
-        plain.write_text(convert(song.read_text(encoding="utf-8")), encoding="utf-8")
+        text = convert(song.read_text(encoding="utf-8"))
+        if fmt == "html":
+            text = html_workarounds(text)
+        plain.write_text(text, encoding="utf-8")
         # No chord diagrams: the defaults are for 6-string guitar, not cigar box.
         subprocess.run(
             ["chordpro", "--config", str(CONFIG), "--no-chord-grids",
@@ -210,8 +268,23 @@ def render(song, out, fmt="pdf"):
     if not out.exists():
         sys.exit(f"chordpro non ha generato {out}")
     if fmt == "html":
+        finish_html(out)
         copy_styles(out.parent)
     return out
+
+
+def finish_html(page):
+    """Add what ChordPro leaves out of the page head.
+
+    Without the doctype the browser falls back to quirks mode; without the
+    viewport, mobile browsers lay the page out ~980px wide and shrink it.
+    """
+    html = page.read_text(encoding="utf-8")
+    if not html.startswith(DOCTYPE):
+        html = f"{DOCTYPE}\n{html}"
+    if VIEWPORT not in html:
+        html = html.replace(CHARSET, f"{CHARSET}\n{VIEWPORT}", 1)
+    page.write_text(html, encoding="utf-8")
 
 
 def copy_styles(folder):

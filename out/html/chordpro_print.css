@@ -1,6 +1,21 @@
 /* Punto di partenza: chordpro_print.css di ChordPro 6.101.0 (lib/ChordPro/res/styles/,
    licenza Artistic 2.0). Lo copia tools/render.py accanto alla pagina HTML. */
-/* CSS for printing. */
+/* CSS for printing: carica dopo chordpro.css e ne cambia solo i colori,
+   chiari per la carta (chordpro.css è scuro, per il palco). */
+:root {
+    color-scheme: light;
+    --bg: #fff;
+    --text: #000;
+    --muted: #555;
+    --chord: #9a4f00;
+    --accent: #00796b;
+    --cue: #c62828;
+    --badge-bg: #e8e8e8;
+    --rule: #ccc;
+}
+html {
+    font-size: 11pt;
+}
 @page {
     size: A4 portrait;
     @top-left {

@@ -51,8 +51,8 @@ python3 tools/render.py el-boogie-del-barbastrejo.demo.cho --format html
 # → out/html/el-boogie-del-barbastrejo.demo.html
 ```
 
-Usa il backend HTML di ChordPro. Lo stile della pagina è in `tools/html/chordpro.css` (schermo) e `tools/html/chordpro_print.css` (stampa), che `render.py` copia accanto alla pagina. Si parte dai CSS di ChordPro: per cambiare l'aspetto si modificano questi due file. Gli HTML generati sono nel repository, in `out/html/`, come i PDF: dopo aver modificato un brano o un CSS, rigenera l'HTML prima del commit.
-Limite noto: i richiami `{chorus}` nell'HTML non compaiono.
+Usa il backend HTML di ChordPro. Lo stile della pagina è in `tools/html/chordpro.css` (schermo) e `tools/html/chordpro_print.css` (stampa), che `render.py` copia accanto alla pagina. Lo stile è scuro (per il palco) e monospace, pensato per telefono e tablet; per cambiare l'aspetto si modificano questi due file. Gli HTML generati sono nel repository, in `out/html/`, come i PDF: dopo aver modificato un brano o un CSS, rigenera l'HTML prima del commit.
+Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (la Struttura): `render.py`, solo per l'HTML, li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `box`) che arrivano nella pagina come `div` con la loro classe. Aggiunge anche doctype e viewport.
 
 Serve il comando `chordpro` nel `PATH`. Su Linux il modo più semplice è l'AppImage ufficiale, dalle [release di ChordPro](https://github.com/ChordPro/chordpro/releases): scegli `wk4.1` sulle distro recenti (ad esempio Ubuntu 24.04) e crea un link che si chiami `chordpro`:
 
