@@ -1,0 +1,96 @@
+{title: Sequeri}
+{key: G}
+{tempo: 76}
+{time: 4/4}
+{duration: 6:19}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version live}
+
+{start_of_tab: Main riff}
+# Scritto da Devis (2026-11-21): 4 battute. Una volta in ogni strofa, x2 in Intro e Inst, x16 nell'Outro.
+# In recording/Sequeri/chords/Sequeri - tabs.txt c'è una versione precedente, con alcune note sulla corda D.
+G|5/7-5-3-0------|3-0-0-3-5----|7-5-3-0----|12-10-7-7---|
+D|0---0-0-0------|0-0---0-0----|0-0-0-0----|-0--0-0-7---|
+G|----------0----|----------0--|--------0--|--------7---|
+{end_of_tab}
+
+{start_of_grid: label="Intro" shape="4x4"}
+# Main riff x2, senza count-in della batteria (Devis, 2026-11-21).
+{x_bars: 4}
+{x_times: 2}
+{x_riff: Main riff}
+| D G . . | Bb G . . | D G . . | G F D . |
+{end_of_grid}
+
+{start_of_verse: V1}
+{x_bars: 4}
+{x_riff: Main riff}
+[D]trove[G]rò
+[Bb]la mia [G]nebbia
+[D]colo[G]rata
+[G]di [F]ere[D]sia
+{end_of_verse}
+
+{start_of_verse: V2}
+{x_bars: 4}
+{x_riff: Main riff}
+[D]cammine[G]rò
+[Bb]senza [G]sapere
+[D]quanto [G]costa
+[G]la [F]liber[D]tà
+{end_of_verse}
+
+{start_of_grid: label="Inst" shape="4x4"}
+# Come l'Intro. Riscritto perché le griglie non si possono richiamare.
+{x_bars: 4}
+{x_times: 2}
+{x_riff: Main riff}
+| D G . . | Bb G . . | D G . . | G F D . |
+{end_of_grid}
+
+{start_of_chorus: C}
+{x_bars: 1}
+{x_times: 8}
+[F]se[G]queri [F]mira[G]coei
+{end_of_chorus}
+
+{start_of_verse: V3}
+{x_bars: 4}
+{x_riff: Main riff}
+[D]soffie[G]rò
+[Bb]polvere [G]nera
+[D]dai [G]motivi
+[G]per [F]cui son [D]qui
+{end_of_verse}
+
+{start_of_verse: V4}
+{x_bars: 4}
+{x_riff: Main riff}
+[D]trove[G]rò
+[Bb]la mia [G]rabbia
+[D]colo[G]rata
+[G]di [F]liber[D]tà
+{end_of_verse}
+
+{start_of_grid: label="Inst" shape="4x4"}
+# Come l'Intro. Riscritto perché le griglie non si possono richiamare.
+{x_bars: 4}
+{x_times: 2}
+{x_riff: Main riff}
+| D G . . | Bb G . . | D G . . | G F D . |
+{end_of_grid}
+
+{chorus: C}
+{x_times: 8}
+
+{start_of_grid: label="Outro" shape="4x4"}
+# Lungo solo di synth sul Main riff, 16 volte (Devis, 2026-11-21).
+# Durata (6:19): 120 battute a 76 BPM, escluso lo sfumato finale.
+{x_bars: 4}
+{x_times: 16}
+{x_riff: Main riff}
+{x_synth: solo}
+{x_cue: finale sfumando: esce la CBG, poi il synth, resta da sola la batteria}
+| D G . . | Bb G . . | D G . . | G F D . |
+{end_of_grid}

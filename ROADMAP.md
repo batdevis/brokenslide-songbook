@@ -10,7 +10,7 @@ Ultimo aggiornamento: 2026-11-21.
 | E Allora | – | – | – | progetto Reaper `recording/EAllora`. In `chords/` c'è `PiangiSulTuoLetto.txt`: verificare se è lo stesso brano |
 | Gipsy G | – | – | – | `recording/GipsyG` |
 | L'Anguana | ✅ | – | – | vedi domande aperte. Synth dal vivo |
-| Sequeri | ✅ | – | – | vedi domande aperte. Synth dal vivo |
+| Sequeri | ✅ | ✅ | – | vedi domande aperte. Synth dal vivo |
 | Spezzato | – | – | – | `recording/Spezzato`, accordi in `chords/` |
 | Watchin | – | – | – | `recording/Watchin`, accordi in `chords/` |
 
@@ -35,6 +35,8 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 - Demo (2026-11-21): tonalità G, strofa con il Main riff (tab di Devis, 4 battute x2) e accordi di Devis sul testo, rit e outro |F G F G|, CBG con slide + CBG dist (traccia `gtr drive`), basso, batteria a campioni.
 - Testo: "sequeri miracoei" come nel doc Drive (Reaper e tab scrivono "miracoi"). Titolo: "Sequeri" (Devis, 2026-11-21).
 - Outro: le tab in `chords/` dicono F G G#, Devis ha confermato |F G F G| come il rit.
+- Live (2026-11-21, Devis): 76 BPM (tap tempo sulla registrazione), niente count-in, Main riff x2 nell'Intro e nell'Inst dopo V2 e V4, strofa di 4 battute (un verso per battuta del riff), Outro con solo di synth sul Main riff x16 che finisce sfumando. Durata 6:19 calcolata da battute e BPM, sfumato escluso.
+- Demo da ricontrollare: in Reaper (90 BPM) un verso dura 2 battute e la strofa 8, con il riff x2. Nella live un verso è una battuta del riff. Forse le battute della demo vanno contate in un altro modo, o il riff nella demo è suonato più lento.
 
 ## Prossimi passi
 1. Versione demo degli altri brani (procedura in `CLAUDE.md`).
