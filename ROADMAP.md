@@ -28,7 +28,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 ## Prossimi passi
 1. Versione demo degli altri brani (procedura in `CLAUDE.md`).
 2. Versioni live, partendo dalle demo. Fonti: Devis, la scaletta su Drive.
-3. Creare `_template.cho` quando il formato si sarà stabilizzato su 2-3 brani.
+3. Creare `songs/_template.cho` quando il formato si sarà stabilizzato su 2-3 brani.
 
 ## Idee rimandate
 - **Pagina**: in Inst e Pad il `{comment: ...}` divide in due la riga degli strumenti.

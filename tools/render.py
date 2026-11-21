@@ -14,9 +14,11 @@ fallback), so it follows tools/html/chordpro_print.css.
 The song form (Struttura) is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
 
-Usage: python3 tools/render.py <song.cho> [--format pdf|html] [--out-dir <dir>]
+Usage: python3 tools/render.py <song.cho|folder>... [--format pdf|html] [--out-dir <dir>]
+A folder means every .cho file inside it, subfolders included (e.g. songs/);
+files starting with "_" (templates) are skipped.
 Output: <dir>/html/<song>.html, plus <dir>/pdf/<song>.pdf unless --format html.
-Default <dir>: out/ in the repository.
+Default <dir>: out/ in the repository, the same for every song.
 """
 import argparse
 import re
@@ -357,14 +359,28 @@ def copy_styles(folder):
         shutil.copy(css, folder / css.name)
 
 
+def song_files(paths):
+    """The .cho files named in `paths`: files as they are, folders searched."""
+    songs = []
+    for path in paths:
+        if path.is_dir():
+            songs += sorted(p for p in path.rglob("*.cho") if not p.name.startswith("_"))
+        else:
+            songs.append(path)
+    if not songs:
+        sys.exit(f"nessun file .cho in {', '.join(map(str, paths))}")
+    return songs
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("song", type=Path)
+    parser.add_argument("songs", type=Path, nargs="+", metavar="song.cho|folder")
     parser.add_argument("-f", "--format", choices=FORMATS, default="pdf",
                         help="html: only the page, without printing the PDF")
     parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
     args = parser.parse_args(argv)
-    print(render(args.song, args.out_dir, args.format))
+    for song in song_files(args.songs):
+        print(render(song, args.out_dir, args.format))
 
 
 if __name__ == "__main__":

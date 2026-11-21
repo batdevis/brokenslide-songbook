@@ -285,8 +285,25 @@ class RenderTest(ExternalCallGuard):
     def test_main_defaults(self):
         with mock.patch.object(render, "render") as fake_render, \
                 contextlib.redirect_stdout(io.StringIO()):
-            render.main(["song.cho"])
-        self.assertEqual(fake_render.call_args.args, (Path("song.cho"), render.OUT_DIR, "pdf"))
+            render.main([str(self.song)])
+        self.assertEqual(fake_render.call_args.args, (self.song, render.OUT_DIR, "pdf"))
+
+    def test_folder_renders_every_song_but_templates(self):
+        songs = self.tmp / "songs"
+        for name in ("b/b.live.cho", "a/a.demo.cho", "a/notes.txt", "_template.cho"):
+            (songs / name).parent.mkdir(parents=True, exist_ok=True)
+            (songs / name).write_text(SONG, encoding="utf-8")
+        with mock.patch.object(render, "render") as fake_render, \
+                contextlib.redirect_stdout(io.StringIO()):
+            render.main([str(songs), "--format", "html"])
+        rendered = [c.args[0] for c in fake_render.call_args_list]
+        self.assertEqual(rendered, [songs / "a/a.demo.cho", songs / "b/b.live.cho"])
+
+    def test_folder_without_songs_stops_with_message(self):
+        empty = self.tmp / "empty"
+        empty.mkdir()
+        with self.assertRaises(SystemExit):
+            render.song_files([empty])
 
 
 if __name__ == "__main__":

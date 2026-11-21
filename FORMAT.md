@@ -24,7 +24,8 @@ Le direttive `x_` sono il meccanismo di estensione previsto da ChordPro: i progr
 ## 1. File
 
 - Un brano per file, estensione `.cho`, codifica UTF-8.
-- Nome del file in kebab-case, senza accenti, con la versione prima dell'estensione: `el-boogie-del-barbastrejo.demo.cho`, `l-anguana.live.cho`.
+- Ogni brano ha la sua cartella `songs/<brano>/`, con lo stesso nome dei file.
+- Nome del file in kebab-case, senza accenti, con la versione prima dell'estensione: `el-boogie-del-barbastrejo.demo.cho`, `l-anguana.live.cho`. Il nome completo resta anche dentro la cartella: il file si riconosce anche da solo, e l'HTML e il PDF in `out/` prendono il suo nome.
 
 ## 2. Intestazione
 

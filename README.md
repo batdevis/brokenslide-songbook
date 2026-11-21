@@ -14,7 +14,7 @@ Sito: https://brokenslideband.web.app/
 I brani sono scritti in [ChordPro](https://www.chordpro.org), un formato aperto, con alcune estensioni `x_` per quello che lo standard non copre: struttura sintetica, battute, cue, parti dei singoli strumenti.
 La specifica completa è in [FORMAT.md](FORMAT.md), i termini da usare in [GLOSSARY.md](GLOSSARY.md).
 
-Ogni brano può avere tre versioni:
+Ogni brano ha una cartella `songs/<brano>/`, che può contenere tre versioni (e in futuro altri file piccoli del brano, ad esempio note o immagini; audio e video restano fuori dal repository):
 
 | File | Contenuto |
 |---|---|
@@ -26,15 +26,16 @@ Ogni brano può avere tre versioni:
 
 | Brano | Demo | Live | Disco |
 |---|---|---|---|
-| El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.demo.cho) | [sì](el-boogie-del-barbastrejo.live.cho) | – |
+| El Boogie Del Barbastrejo | [sì](songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.demo.cho) | [sì](songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.live.cho) | – |
 
 ## Pagina HTML e PDF di un brano
 
 ```sh
-python3 tools/render.py el-boogie-del-barbastrejo.demo.cho
+python3 tools/render.py songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.demo.cho
 # → out/html/el-boogie-del-barbastrejo.demo.html  (pagina per telefono e tablet)
 # → out/pdf/el-boogie-del-barbastrejo.demo.pdf    (la stessa pagina stampata)
-python3 tools/render.py el-boogie-del-barbastrejo.demo.cho --format html   # solo la pagina
+python3 tools/render.py songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.demo.cho --format html   # solo la pagina
+python3 tools/render.py songs/   # tutti i brani (i file che iniziano con _ , come i template, si saltano)
 ```
 
 ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così compaiono:
@@ -50,7 +51,7 @@ Lo stile è tutto nei CSS di `tools/html/`, che `render.py` copia accanto alla p
 
 Per provare una modifica allo stile basta cambiare il CSS copiato in `out/html/` e ricaricare la pagina nel browser; alla fine si riporta la modifica in `tools/html/` (`render.py` sovrascrive le copie in `out/html/`).
 
-I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. HTML e PDF generati sono nel repository, in `out/`: dopo aver modificato un brano o un CSS, rigenerali prima del commit.
+I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. HTML e PDF generati sono nel repository, in `out/`: dopo aver modificato un brano o un CSS, rigenerali prima del commit (dopo un CSS: `python3 tools/render.py songs/`).
 
 Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (la Struttura): `render.py` li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `form`, `box`) che arrivano nella pagina come `div` con la loro classe. Ignora anche `{artist}`, che `render.py` ripete come `{subtitle}` sotto il titolo. Aggiunge anche doctype e viewport, e toglie lo stile `@page` di ChordPro (intestazione e piè di pagina vengono da `chordpro_print.css`).
 
