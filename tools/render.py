@@ -1,19 +1,22 @@
-"""Render a BrokenSlide .cho file to PDF or HTML, keeping the x_ extensions visible.
+"""Render a BrokenSlide .cho file to HTML and PDF, keeping the x_ extensions visible.
 
-ChordPro ignores x_ directives when printing, so the song is first converted
-into plain ChordPro (x_ directives become comments), then passed to the
-`chordpro` command line tool. Fonts and spacing come from tools/chordpro.json.
-The HTML page loads its style sheets from tools/html/, copied next to it,
-and gets a doctype and a viewport meta tag so phones and tablets show it at
-their own width. ChordPro's HTML backend drops chord grids, chorus recalls and
-boxed comments outside sections, so for HTML those become custom sections
-(see html_workarounds).
+ChordPro ignores x_ directives, so the song is first converted into plain
+ChordPro (x_ directives become comments), then passed to the `chordpro`
+command line tool, which writes an HTML page. ChordPro's HTML backend drops
+chord grids, chorus recalls and boxed comments outside sections, so those
+become custom sections first (see html_workarounds). The page loads its style
+sheets from tools/html/, copied next to it, and gets a doctype and a viewport
+meta tag so phones and tablets show it at their own width.
+
+The PDF is the page printed by a headless browser (Chromium, or Chrome as a
+fallback), so it follows tools/html/chordpro_print.css.
 
 The song form (Struttura) is built from the sections themselves: every labeled
 section and every chorus recall, in order, with its x_times repetitions.
 
-Usage: python3 tools/render.py <song.cho> [--format pdf|html] [-o <out>]
-Default output: out/pdf/<song>.pdf or out/html/<song>.html in the repository.
+Usage: python3 tools/render.py <song.cho> [--format pdf|html] [--out-dir <dir>]
+Output: <dir>/html/<song>.html, plus <dir>/pdf/<song>.pdf unless --format html.
+Default <dir>: out/ in the repository.
 """
 import argparse
 import re
@@ -24,8 +27,9 @@ import tempfile
 from pathlib import Path
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-CONFIG = REPO_ROOT / "tools" / "chordpro.json"  # font e spazi del PDF
-FORMATS = {"pdf": "PDF", "html": "HTML"}  # --format → ChordPro backend
+OUT_DIR = REPO_ROOT / "out"
+FORMATS = ("pdf", "html")
+BROWSERS = ("chromium", "chromium-browser", "google-chrome")  # in order of preference
 HTML_STYLES = REPO_ROOT / "tools" / "html"  # CSS caricati dalla pagina HTML
 DIRECTIVE = re.compile(r"^\{\s*([\w-]+)\s*(?::\s*(.*?))?\s*\}\s*$")
 LABEL_ATTR = re.compile(r'label="([^"]*)"')
@@ -33,6 +37,8 @@ FORM_TITLE = "Struttura:"
 NBSP = "\u00a0"
 DOCTYPE = "<!DOCTYPE html>"
 CHARSET = '<meta charset="utf-8">'
+FOOTER_ID = "page-footer"
+CHORDPRO_PAGE_STYLE = re.compile(r"<style>\s*@page\b.*?</style>\n?", re.DOTALL)
 VIEWPORT = '<meta name="viewport" content="width=device-width, initial-scale=1">'
 
 PART_LABELS = {
@@ -210,6 +216,7 @@ def convert(text):
 def html_workarounds(text):
     """Rewrite plain ChordPro so the HTML backend keeps what it would drop.
 
+    The artist, which the backend ignores, is repeated as a subtitle.
     Custom sections become `<div class="name">` in the page:
     - grids → `chordgrid` (label only), whose bar lines are printed as text;
     - chorus recalls → an empty `chorus_recall` with the chorus label;
@@ -221,6 +228,9 @@ def html_workarounds(text):
     depth = 0
     for line in text.splitlines():
         name, value = parse_directive(line)
+        if name == "artist" and value:
+            out += [line, f"{{subtitle: {value}}}"]
+            continue
         if name == "start_of_grid":
             # Custom sections take only a label: `shape` would void it.
             label = section_label(value)
@@ -248,42 +258,96 @@ def html_workarounds(text):
     return "\n".join(out) + "\n"
 
 
-def render(song, out, fmt="pdf"):
-    """Convert `song` and write it to `out` in `fmt` with the chordpro CLI."""
+def render(song, out_dir=OUT_DIR, fmt="pdf"):
+    """Write the HTML page of `song` and, for "pdf", print it; return the last file."""
+    page = render_html(song, out_dir / "html" / f"{song.stem}.html")
+    if fmt == "html":
+        return page
+    return print_pdf(page, out_dir / "pdf" / f"{song.stem}.pdf")
+
+
+def render_html(song, page):
+    """Convert `song` and write its HTML page with the chordpro CLI."""
     if shutil.which("chordpro") is None:
         sys.exit("chordpro non trovato nel PATH")
-    out.parent.mkdir(parents=True, exist_ok=True)
+    page.parent.mkdir(parents=True, exist_ok=True)
     with tempfile.TemporaryDirectory() as tmp:
         plain = Path(tmp) / song.name
-        text = convert(song.read_text(encoding="utf-8"))
-        if fmt == "html":
-            text = html_workarounds(text)
+        text = html_workarounds(convert(song.read_text(encoding="utf-8")))
         plain.write_text(text, encoding="utf-8")
         # No chord diagrams: the defaults are for 6-string guitar, not cigar box.
         subprocess.run(
-            ["chordpro", "--config", str(CONFIG), "--no-chord-grids",
-             f"--generate={FORMATS[fmt]}", str(plain), "-o", str(out)],
+            ["chordpro", "--no-chord-grids", "--generate=HTML", str(plain), "-o", str(page)],
             check=True,
         )
-    if not out.exists():
-        sys.exit(f"chordpro non ha generato {out}")
-    if fmt == "html":
-        finish_html(out)
-        copy_styles(out.parent)
-    return out
+    if not page.exists():
+        sys.exit(f"chordpro non ha generato {page}")
+    finish_html(page, footer_text(song.read_text(encoding="utf-8")))
+    copy_styles(page.parent)
+    return page
 
 
-def finish_html(page):
+def find_browser():
+    for name in BROWSERS:
+        path = shutil.which(name)
+        if path:
+            return path
+    sys.exit(f"nessun browser per la stampa del PDF: installa uno tra {', '.join(BROWSERS)}")
+
+
+def print_pdf(page, pdf):
+    """Print `page` to `pdf` with a headless browser and a throwaway profile.
+
+    The Chromium snap cannot read /tmp or hidden folders of the home, so the
+    page and the PDF must stay in ordinary folders (like out/).
+    """
+    pdf.parent.mkdir(parents=True, exist_ok=True)
+    pdf.unlink(missing_ok=True)
+    with tempfile.TemporaryDirectory() as profile:
+        result = subprocess.run(
+            [find_browser(), "--headless", "--disable-gpu", f"--user-data-dir={profile}",
+             "--no-pdf-header-footer", f"--print-to-pdf={pdf}", page.resolve().as_uri()],
+            capture_output=True, text=True,
+        )
+    if result.returncode != 0 or not pdf.exists():
+        sys.exit(f"stampa del PDF non riuscita:\n{result.stderr}")
+    return pdf
+
+
+def footer_text(text):
+    """`Artist · Title` of a song, for the footer of every printed page."""
+    found = {}
+    for line in text.splitlines():
+        name, value = parse_directive(line)
+        if name in ("title", "artist") and value:
+            found.setdefault(name, value)
+    return " · ".join(found[key] for key in ("artist", "title") if key in found)
+
+
+def footer_style(footer):
+    """@page rule with the footer text; its look is in chordpro_print.css."""
+    text = footer.replace("\\", "\\\\").replace('"', '\\"')
+    return f'<style id="{FOOTER_ID}">@page {{ @bottom-left {{ content: "{text}"; }} }}</style>'
+
+
+def finish_html(page, footer=""):
     """Add what ChordPro leaves out of the page head.
 
     Without the doctype the browser falls back to quirks mode; without the
     viewport, mobile browsers lay the page out ~980px wide and shrink it.
+    ChordPro's own @page style (a numbered title on top of every page) is
+    dropped: the header and footer of printed pages come from
+    chordpro_print.css, plus the `footer` text (artist and title) added here,
+    since browsers cannot take it from the page itself.
     """
     html = page.read_text(encoding="utf-8")
+    html = CHORDPRO_PAGE_STYLE.sub("", html)
     if not html.startswith(DOCTYPE):
         html = f"{DOCTYPE}\n{html}"
     if VIEWPORT not in html:
         html = html.replace(CHARSET, f"{CHARSET}\n{VIEWPORT}", 1)
+    if footer and FOOTER_ID not in html:
+        html = html.replace("</head>", f"{footer_style(footer)}\n</head>", 1)
     page.write_text(html, encoding="utf-8")
 
 
@@ -296,11 +360,11 @@ def copy_styles(folder):
 def main(argv=None):
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("song", type=Path)
-    parser.add_argument("-f", "--format", choices=FORMATS, default="pdf")
-    parser.add_argument("-o", "--output", type=Path)
+    parser.add_argument("-f", "--format", choices=FORMATS, default="pdf",
+                        help="html: only the page, without printing the PDF")
+    parser.add_argument("--out-dir", type=Path, default=OUT_DIR)
     args = parser.parse_args(argv)
-    out = args.output or REPO_ROOT / "out" / args.format / f"{args.song.stem}.{args.format}"
-    print(render(args.song, out, args.format))
+    print(render(args.song, args.out_dir, args.format))
 
 
 if __name__ == "__main__":

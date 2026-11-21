@@ -14,12 +14,11 @@ ROADMAP.md                 # stato dei brani, domande aperte, prossimi passi
 <brano>.live.cho           # versione live (come il trio lo suona dal vivo)
 <brano>.disco.cho          # versione disco, registrata in studio (futura)
 tools/rpp_arrangement.py   # .RPP → tempo, sezioni (marker) e tracce attive per sezione
-tools/render.py            # .cho → out/pdf/<brano>.pdf via chordpro, con le x_ rese visibili (--format html: out/html/<brano>.html)
-tools/html/*.css           # stile della pagina HTML, copiato da render.py accanto alla pagina
-tools/chordpro.json        # config di ChordPro per il PDF: font, margini, interlinea
+tools/render.py            # .cho → out/html/<brano>.html via chordpro, poi out/pdf/<brano>.pdf stampando la pagina con Chromium headless
+tools/html/*.css           # stile della pagina (chordpro.css) e della stampa/PDF (chordpro_print.css), copiati da render.py accanto alla pagina
 tests/                     # python3 -m unittest discover tests
 out/pdf/                   # PDF generati, versionati
-out/html/                  # HTML generati (in prova), con i CSS copiati, versionati
+out/html/                  # HTML generati, con i CSS copiati, versionati
 ```
 
 ## Decisioni prese
@@ -32,7 +31,8 @@ out/html/                  # HTML generati (in prova), con i CSS copiati, versio
 - **Termini**: strumenti, voci e sezioni si scrivono con i termini inglesi di `GLOSSARY.md`, il resto in italiano. Un nome nuovo trovato nelle fonti va aggiunto al glossario.
 - **Testo**: in dialetto veneto, va riportato **così com'è**. Non correggere l'ortografia senza chiedere.
 - **Accordi fuori tonalità**: possono essere voluti (ad esempio il pre-chorus di El Boogie). Segnalarli con un commento, non correggerli.
-- **PDF**: diagrammi degli accordi disattivati (quelli di ChordPro sono per chitarra a 6 corde). Le parti degli strumenti stanno in una riga compatta per sezione, i cue in un riquadro.
+- **HTML e PDF**: la pagina HTML la scrive ChordPro, il PDF è quella pagina stampata da Chromium headless (Chrome come ripiego). Lo stile sta solo nei CSS di `tools/html/`: scuro per lo schermo (palco, telefono e tablet), chiaro per la stampa. Diagrammi degli accordi disattivati (quelli di ChordPro sono per chitarra a 6 corde). Le parti degli strumenti stanno in una riga compatta per sezione, i cue in un riquadro.
+- **Deploy futuro**: il progetto potrebbe finire su un server, magari con un editor. Scegliere strumenti che girano anche headless su Linux (ad esempio il pacchetto Debian `chromium`).
 
 ## Procedura: versione demo di un brano
 1. **Sezioni e arrangiamento**: `python3 -I tools/rpp_arrangement.py ../recording/<Brano>/<Brano>.RPP`. Battute per sezione e tracce attive con la percentuale di copertura. Ignorare le coperture minime (code di item), indicare quelle parziali ("hi-hat (3 battute)").
@@ -47,7 +47,7 @@ out/html/                  # HTML generati (in prova), con i CSS copiati, versio
 4. **Accordi e tab**: `../recording/<Brano>/chords/*.txt`, se esistono.
 5. **Domande a Devis** per quello che il progetto non dice: tonalità, accordatura e slide, chi fa il solo, significato dei nomi delle tracce non ovvi.
 6. **Scrittura**: `<brano>.demo.cho`, seguendo `FORMAT.md` e usando `el-boogie-del-barbastrejo.demo.cho` come esempio.
-7. **Chiusura**: `python3 tools/render.py <brano>.demo.cho`, controllo del PDF (con `pdftoppm -r 70 -png` si può guardare la pagina), tabella dei brani in `README.md`, aggiornamento di `ROADMAP.md`.
+7. **Chiusura**: `python3 tools/render.py <brano>.demo.cho`, controllo della pagina e del PDF (con `pdftoppm -r 70 -png` si può guardare il PDF), tabella dei brani in `README.md`, aggiornamento di `ROADMAP.md`.
 
 ## Git
 - Remote `git@github.com:batdevis/brokenslide-songbook.git`, branch `main`.

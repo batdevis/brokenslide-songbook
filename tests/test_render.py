@@ -126,6 +126,10 @@ class HtmlWorkaroundsTest(ExternalCallGuard):
     def lines(self, text):
         return render.html_workarounds(text).splitlines()
 
+    def test_artist_repeated_as_subtitle(self):
+        self.assertEqual(self.lines("{artist: Broken Slide}"),
+                         ["{artist: Broken Slide}", "{subtitle: Broken Slide}"])
+
     def test_grid_becomes_chordgrid(self):
         self.assertEqual(
             self.lines('{start_of_grid: label="Intro" shape="4x4"}\n| G . . . |\n{end_of_grid}\n'
@@ -153,77 +157,136 @@ class HtmlWorkaroundsTest(ExternalCallGuard):
              "{start_of_verse}", "{comment_box: B}", "{end_of_verse}"])
 
 
+CHORDPRO_PAGE = """\
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+<div class="song">
+<style>
+@page {
+  @top-center {
+      content: counter(song) ". Test";
+  }
+}
+</style>
+<div class="title">Test</div>
+</div>
+</body>
+</html>
+"""
+
+
 class RenderTest(ExternalCallGuard):
     def setUp(self):
         super().setUp()
         tmp = tempfile.TemporaryDirectory()
         self.addCleanup(tmp.cleanup)
         self.tmp = Path(tmp.name)
+        self.song = self.tmp / "song.cho"
+        self.song.write_text(SONG, encoding="utf-8")
+        self.out_dir = self.tmp / "out"
+        self.page = self.out_dir / "html" / "song.html"
+        self.pdf = self.out_dir / "pdf" / "song.pdf"
+        self.installed = {"chordpro", "chromium", "google-chrome"}
+        self.commands = []
 
-    def run_render(self, *fmt):
-        """Render SONG with chordpro stubbed; return (output path, command)."""
-        song = self.tmp / "song.cho"
-        song.write_text(SONG, encoding="utf-8")
-        out = self.tmp / "out" / "song.out"
+    def fake_which(self, name):
+        return f"/bin/{name}" if name in self.installed else None
 
-        def fake_run(cmd, check):
+    def fake_run(self, cmd, **kwargs):
+        """Stand-in for chordpro (writes the page) and the browser (writes the PDF)."""
+        self.commands.append(cmd)
+        if cmd[0] == "chordpro":
             self.chordpro_input = Path(cmd[-3]).read_text(encoding="utf-8")
-            out.write_text('<html>\n<head>\n<meta charset="utf-8">\n</head>\n</html>\n',
-                           encoding="utf-8")
-            return subprocess.CompletedProcess(cmd, 0)
+            Path(cmd[-1]).write_text(CHORDPRO_PAGE, encoding="utf-8")
+        else:
+            option = next(arg for arg in cmd if arg.startswith("--print-to-pdf="))
+            Path(option.partition("=")[2]).write_bytes(b"%PDF")
+        return subprocess.CompletedProcess(cmd, 0, "", "")
 
-        with mock.patch.object(render.shutil, "which", return_value="/bin/chordpro"), \
-                mock.patch.object(render.subprocess, "run", side_effect=fake_run) as run:
-            self.assertEqual(render.render(song, out, *fmt), out)
-        return out, run.call_args.args[0]
+    def run_render(self, fmt="pdf"):
+        """Render the test song with chordpro and the browser stubbed."""
+        with mock.patch.object(render.shutil, "which", side_effect=self.fake_which), \
+                mock.patch.object(render.subprocess, "run", side_effect=self.fake_run):
+            return render.render(self.song, self.out_dir, fmt)
 
-    def test_calls_chordpro_without_chord_grids(self):
-        out, cmd = self.run_render()
+    def test_html_format_only_runs_chordpro(self):
+        self.assertEqual(self.run_render("html"), self.page)
+        self.assertEqual(len(self.commands), 1)
+        cmd = self.commands[0]
         self.assertEqual(cmd[0], "chordpro")
         self.assertIn("--no-chord-grids", cmd)
-        self.assertIn("--generate=PDF", cmd)
-        self.assertEqual(cmd[cmd.index("--config") + 1], str(render.CONFIG))
-        self.assertEqual(cmd[-2:], ["-o", str(out)])
-
-    def test_html_format(self):
-        _, cmd = self.run_render("html")
         self.assertIn("--generate=HTML", cmd)
+        self.assertEqual(cmd[-2:], ["-o", str(self.page)])
 
-    def test_html_styles_copied_next_to_page(self):
-        out, _ = self.run_render("html")
+    def test_pdf_is_the_printed_page(self):
+        self.assertEqual(self.run_render(), self.pdf)
+        browser = self.commands[-1]
+        self.assertEqual(browser[0], "/bin/chromium")
+        self.assertIn("--headless", browser)
+        self.assertIn("--no-pdf-header-footer", browser)
+        self.assertIn(f"--print-to-pdf={self.pdf}", browser)
+        self.assertEqual(browser[-1], self.page.resolve().as_uri())
+        self.assertTrue(self.pdf.is_file())
+
+    def test_chrome_when_chromium_missing(self):
+        self.installed.discard("chromium")
+        self.run_render()
+        self.assertEqual(self.commands[-1][0], "/bin/google-chrome")
+
+    def test_no_browser_stops_with_message(self):
+        self.installed -= {"chromium", "google-chrome"}
+        with self.assertRaises(SystemExit):
+            self.run_render()
+
+    def test_failed_print_stops_with_message(self):
+        def browser_fails(cmd, **kwargs):
+            if cmd[0] == "chordpro":
+                return self.fake_run(cmd)
+            return subprocess.CompletedProcess(cmd, 1, "", "boom")
+        with mock.patch.object(render.shutil, "which", side_effect=self.fake_which), \
+                mock.patch.object(render.subprocess, "run", side_effect=browser_fails), \
+                self.assertRaises(SystemExit):
+            render.render(self.song, self.out_dir)
+
+    def test_styles_copied_next_to_page(self):
+        self.run_render("html")
         styles = sorted(p.name for p in render.HTML_STYLES.glob("*.css"))
         self.assertEqual(styles, ["chordpro.css", "chordpro_print.css"])
         for name in styles:
-            self.assertTrue((out.parent / name).is_file(), name)
+            self.assertTrue((self.page.parent / name).is_file(), name)
 
-    def test_html_gets_doctype_and_viewport_once(self):
-        out, _ = self.run_render("html")
-        render.finish_html(out)  # a second pass must not duplicate them
-        html = out.read_text(encoding="utf-8")
+    def test_page_head_fixed_once(self):
+        self.run_render("html")
+        render.finish_html(self.page)  # a second pass must not duplicate anything
+        html = self.page.read_text(encoding="utf-8")
         self.assertTrue(html.startswith(render.DOCTYPE + "\n<html>"))
         self.assertEqual(html.count(render.DOCTYPE), 1)
         self.assertEqual(html.count(render.VIEWPORT), 1)
+        self.assertNotIn("counter(song)", html)
+        self.assertIn('<div class="title">Test</div>', html)
+        self.assertEqual(html.count(render.FOOTER_ID), 1)
 
-    def test_html_input_gets_workarounds(self):
+    def test_footer_text_is_artist_and_title(self):
+        self.assertEqual(render.footer_text("{title: El Boogie}\n{artist: Broken Slide}"),
+                         "Broken Slide · El Boogie")
+        self.assertEqual(render.footer_text("{title: El Boogie}"), "El Boogie")
+        self.assertEqual(render.footer_text("[G]la la"), "")
+
+    def test_footer_style_escapes_quotes(self):
+        self.assertIn(r'content: "Il \"Boogie\"";', render.footer_style('Il "Boogie"'))
+
+    def test_chordpro_input_gets_html_workarounds(self):
         self.run_render("html")
         self.assertIn("{start_of_chorus_recall:", self.chordpro_input)
 
-    def test_pdf_input_keeps_chorus_recall(self):
-        self.run_render()
-        self.assertNotIn("chorus_recall", self.chordpro_input)
-        self.assertIn("{chorus", self.chordpro_input)
-
-    def test_pdf_gets_no_styles(self):
-        out, _ = self.run_render()
-        self.assertFalse(list(out.parent.glob("*.css")))
-
-    def test_default_output_follows_format(self):
+    def test_main_defaults(self):
         with mock.patch.object(render, "render") as fake_render, \
                 contextlib.redirect_stdout(io.StringIO()):
-            render.main(["song.cho", "--format", "html"])
-        out, fmt = fake_render.call_args.args[1:]
-        self.assertEqual(fmt, "html")
-        self.assertEqual(out, render.REPO_ROOT / "out" / "html" / "song.html")
+            render.main(["song.cho"])
+        self.assertEqual(fake_render.call_args.args, (Path("song.cho"), render.OUT_DIR, "pdf"))
 
 
 if __name__ == "__main__":

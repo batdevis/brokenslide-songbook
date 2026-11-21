@@ -28,31 +28,31 @@ Ogni brano può avere tre versioni:
 |---|---|---|---|
 | El Boogie Del Barbastrejo | [sì](el-boogie-del-barbastrejo.demo.cho) | [sì](el-boogie-del-barbastrejo.live.cho) | – |
 
-## Stampare un brano in PDF
+## Pagina HTML e PDF di un brano
 
 ```sh
 python3 tools/render.py el-boogie-del-barbastrejo.demo.cho
-# → out/pdf/el-boogie-del-barbastrejo.demo.pdf  (oppure: -o <file.pdf>)
+# → out/html/el-boogie-del-barbastrejo.demo.html  (pagina per telefono e tablet)
+# → out/pdf/el-boogie-del-barbastrejo.demo.pdf    (la stessa pagina stampata)
+python3 tools/render.py el-boogie-del-barbastrejo.demo.cho --format html   # solo la pagina
 ```
 
-ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così nel PDF compaiono:
+ChordPro da solo ignora le direttive `x_`. `tools/render.py` le converte prima in commenti ChordPro, così compaiono:
 - una riga compatta per sezione con battute e parti degli strumenti
 - i cue in un riquadro
 - in testa al brano tonalità, tempo, accordatura e struttura
 
-Font, margini e interlinea si cambiano in `tools/chordpro.json`, la config di ChordPro usata da `render.py` ([documentazione](https://chordpro.org/chordpro/chordpro-configuration-pdf/)). I valori di partenza sono quelli di default di ChordPro.
+La pagina la scrive il backend HTML di ChordPro. Il PDF è la stessa pagina stampata da un browser headless: **Chromium** (open source; su Ubuntu `sudo snap install chromium`, su Debian il pacchetto `chromium`), oppure Google Chrome se Chromium non c'è. Il browser parte con un profilo temporaneo, senza toccare quelli personali.
 
-I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. I PDF generati sono nel repository, in `out/pdf/`: dopo aver modificato un brano, rigenera il suo PDF prima del commit.
+Lo stile è tutto nei CSS di `tools/html/`, che `render.py` copia accanto alla pagina:
+- `chordpro.css`: schermo. Scuro (per il palco) e monospace, pensato per telefono e tablet.
+- `chordpro_print.css`: stampa e PDF. Colori chiari, formato A4, sezioni che non si spezzano tra due pagine; in fondo a ogni pagina artista · titolo a sinistra (il testo lo aggiunge `render.py`, prendendolo da `{artist}` e `{title}`) e numero di pagina a destra.
 
-### HTML (in prova)
+Per provare una modifica allo stile basta cambiare il CSS copiato in `out/html/` e ricaricare la pagina nel browser; alla fine si riporta la modifica in `tools/html/` (`render.py` sovrascrive le copie in `out/html/`).
 
-```sh
-python3 tools/render.py el-boogie-del-barbastrejo.demo.cho --format html
-# → out/html/el-boogie-del-barbastrejo.demo.html
-```
+I diagrammi degli accordi sono disattivati, perché quelli di ChordPro sono per la chitarra a 6 corde. HTML e PDF generati sono nel repository, in `out/`: dopo aver modificato un brano o un CSS, rigenerali prima del commit.
 
-Usa il backend HTML di ChordPro. Lo stile della pagina è in `tools/html/chordpro.css` (schermo) e `tools/html/chordpro_print.css` (stampa), che `render.py` copia accanto alla pagina. Lo stile è scuro (per il palco) e monospace, pensato per telefono e tablet; per cambiare l'aspetto si modificano questi due file. Gli HTML generati sono nel repository, in `out/html/`, come i PDF: dopo aver modificato un brano o un CSS, rigenera l'HTML prima del commit.
-Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (la Struttura): `render.py`, solo per l'HTML, li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `box`) che arrivano nella pagina come `div` con la loro classe. Aggiunge anche doctype e viewport.
+Il backend HTML di ChordPro scarta le righe delle griglie, i richiami `{chorus}` e i `comment_box` fuori dalle sezioni (la Struttura): `render.py` li trasforma in sezioni personalizzate (`chordgrid`, `chorus_recall`, `form`, `box`) che arrivano nella pagina come `div` con la loro classe. Ignora anche `{artist}`, che `render.py` ripete come `{subtitle}` sotto il titolo. Aggiunge anche doctype e viewport, e toglie lo stile `@page` di ChordPro (intestazione e piè di pagina vengono da `chordpro_print.css`).
 
 Serve il comando `chordpro` nel `PATH`. Su Linux il modo più semplice è l'AppImage ufficiale, dalle [release di ChordPro](https://github.com/ChordPro/chordpro/releases): scegli `wk4.1` sulle distro recenti (ad esempio Ubuntu 24.04) e crea un link che si chiami `chordpro`:
 

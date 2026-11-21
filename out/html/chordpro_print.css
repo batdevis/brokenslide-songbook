@@ -1,7 +1,26 @@
-/* Punto di partenza: chordpro_print.css di ChordPro 6.101.0 (lib/ChordPro/res/styles/,
-   licenza Artistic 2.0). Lo copia tools/render.py accanto alla pagina HTML. */
-/* CSS for printing: carica dopo chordpro.css e ne cambia solo i colori,
-   chiari per la carta (chordpro.css è scuro, per il palco). */
+/* Stampa e PDF: carica dopo chordpro.css (con media="print") e cambia solo
+   quello che serve alla carta. tools/render.py fa il PDF stampando la pagina
+   con un browser headless, quindi questo file è lo stile del PDF.
+   Nato da chordpro_print.css di ChordPro 6.101.0 (licenza Artistic 2.0). */
+
+@page {
+    size: A4 portrait;
+    margin: 15mm 15mm 18mm;
+    /* Il testo (artista · titolo) lo aggiunge render.py nella pagina */
+    @bottom-left {
+        font-family: ui-monospace, "DejaVu Sans Mono", "Liberation Mono", monospace;
+        font-size: 8pt;
+        color: #555;
+    }
+    @bottom-right {
+        content: "Pagina " counter(page) " di " counter(pages);
+        font-family: ui-monospace, "DejaVu Sans Mono", "Liberation Mono", monospace;
+        font-size: 8pt;
+        color: #555;
+    }
+}
+
+/* Colori chiari per la carta (chordpro.css è scuro, per il palco) */
 :root {
     color-scheme: light;
     --bg: #fff;
@@ -16,30 +35,18 @@
 html {
     font-size: 11pt;
 }
-@page {
-    size: A4 portrait;
-    @top-left {
-	/* Content specified by source style element. */
-	/* Until we have running headers and footers. */
-	/* content: element(title, first); */
-	font-size: 18pt;
-	font-weight: bold;
-    }
-    @top-center {
-	font-size: 18pt;
-	font-weight: bold;
-    }
-    @bottom-left {
-	font-size: 8pt;
-	content: "Produced by ChordProPlus";
-    }
-    @bottom-right {
-	font-size: 8pt;
-	content: "Page " counter(page) " of " counter(pages);
-    }
+body {
+    padding: 0;
+}
+div.song {
+    max-width: none;
 }
 
-/* Until we have running headers and footers. */
-div.title {
-    display: none;
+/* Una sezione non si spezza tra due pagine, e l'etichetta resta col suo contenuto */
+div.verse, div.chorus, div.bridge, div.chordgrid, div.chorus_recall, div.tab,
+div.form, table.songline {
+    break-inside: avoid;
+}
+div.label {
+    break-after: avoid;
 }

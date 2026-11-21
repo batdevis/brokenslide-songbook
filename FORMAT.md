@@ -124,7 +124,7 @@ L'etichetta dà il nome alla sezione ed è il nome che compare nella struttura (
 Altre etichette sono ammesse se sono brevi e senza spazi.
 L'etichetta non contiene le ripetizioni: quante volte si suona la sezione lo dice `{x_times: N}` (vedi §4).
 
-Il ritornello si scrive una volta, alla sua prima comparsa, e nei punti in cui torna si richiama con `{chorus: <etichetta>}`, seguito dal suo `x_times` se si ripete. Così il file e il PDF seguono l'ordine del brano:
+Il ritornello si scrive una volta, alla sua prima comparsa, e nei punti in cui torna si richiama con `{chorus: <etichetta>}`, seguito dal suo `x_times` se si ripete. Così il file, la pagina e il PDF seguono l'ordine del brano:
 
 ```
 {chorus: C}
@@ -132,18 +132,18 @@ Il ritornello si scrive una volta, alla sua prima comparsa, e nei punti in cui t
 # Reaper: rit 02
 ```
 
-Attenzione: `{chorus}` non cerca il ritornello per nome, richiama sempre l'**ultimo** blocco `start_of_chorus` … `end_of_chorus` che lo precede nel file. L'etichetta serve solo per la stampa: con le impostazioni di default (`pdf.chorus.recall`) nel PDF compare una riga con l'etichetta, non il ritornello intero.
+Attenzione: `{chorus}` non cerca il ritornello per nome, richiama sempre l'**ultimo** blocco `start_of_chorus` … `end_of_chorus` che lo precede nel file. L'etichetta serve solo per la stampa: nella pagina e nel PDF compare l'etichetta (ad esempio `C x4`), non il ritornello intero.
 Quindi un brano con due ritornelli diversi non può richiamare il primo dopo aver definito il secondo.
 
 Le altre sezioni non si possono richiamare: se tornano, si riscrivono nel punto in cui si suonano.
 
 ## 4. Struttura del brano e `x_times`
 
-La struttura (in inglese *song form*) è la sequenza delle sezioni in ordine di esecuzione. Non si scrive a mano: `tools/render.py` la ricava dal file e la stampa in testa al PDF.
+La struttura (in inglese *song form*) è la sequenza delle sezioni in ordine di esecuzione. Non si scrive a mano: `tools/render.py` la ricava dal file e la stampa in testa alla pagina, come una riga di griglia: `| Intro x2 | V1 | C x4 |`.
 
 - Entrano nella struttura, nell'ordine del file, tutte le sezioni **con etichetta** e tutti i richiami `{chorus}`. Ne restano fuori i blocchi `tab` e le griglie senza `label` che accompagnano una sezione con testo.
 - `{x_times: N}` dice quante volte di fila si suona la sezione (se manca, una volta). Si mette dentro la sezione, subito sotto `x_bars`; per un richiamo, sulla riga dopo `{chorus}`.
-- Nel PDF le ripetizioni si aggiungono all'etichetta: `C` con `{x_times: 2}` diventa `C x2`, sia nella struttura sia accanto alla sezione.
+- Nella pagina le ripetizioni si aggiungono all'etichetta: `C` con `{x_times: 2}` diventa `C x2`, sia nella struttura sia accanto alla sezione.
 
 ```
 {start_of_chorus: C}
