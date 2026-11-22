@@ -28,7 +28,7 @@ Ogni brano ha una cartella `songs/<brano>/`, che può contenere tre versioni (e 
 
 | Brano | Demo | Live | Disco |
 |---|---|---|---|
-| E Allora | [sì](songs/e-allora/e-allora.demo.cho) | [bozza](songs/e-allora/e-allora.live.cho) | – |
+| E Allora | [sì](songs/e-allora/e-allora.demo.cho) | [sì](songs/e-allora/e-allora.live.cho) | – |
 | El Boogie Del Barbastrejo | [sì](songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.demo.cho) | [sì](songs/el-boogie-del-barbastrejo/el-boogie-del-barbastrejo.live.cho) | – |
 | L'Anguana | [sì](songs/l-anguana/l-anguana.demo.cho) | [sì](songs/l-anguana/l-anguana.live.cho) | – |
 | Sequeri | [sì](songs/sequeri/sequeri.demo.cho) | [sì](songs/sequeri/sequeri.live.cho) | – |

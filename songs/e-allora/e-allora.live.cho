@@ -1,10 +1,10 @@
-# Bozza della versione live, partita dalla demo (2026-11-22). Assoli e finale: Devis (2026-11-22).
-# TODO: tempo e durata dal vivo (oggi sono quelli della demo).
+# Versione live, partita dalla demo (2026-11-22). Assoli, finale, tempo e durata: Devis (2026-11-22).
 
 {title: E Allora}
 {key: G}
-{tempo: 120}
+{tempo: 144}
 {time: 4/4}
+{duration: 2:16}
 {meta: tuning GDG}
 {meta: slide yes}
 {meta: version live}

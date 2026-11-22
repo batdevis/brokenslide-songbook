@@ -7,7 +7,7 @@ Ultimo aggiornamento: 2026-11-22.
 | Brano | Demo | Live | Disco | Note |
 |---|---|---|---|---|
 | El Boogie Del Barbastrejo | ✅ | ✅ | – | vedi domande aperte |
-| E Allora | ✅ | 🚧 | – | vedi domande aperte. Live: bozza, mancano tempo e durata |
+| E Allora | ✅ | ✅ | – | vedi domande aperte |
 | Gipsy G | – | – | – | `recording/GipsyG` |
 | L'Anguana | ✅ | ✅ | – | vedi domande aperte. Synth dal vivo |
 | Sequeri | ✅ | ✅ | – | vedi domande aperte. Synth dal vivo |
@@ -27,7 +27,7 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 - Testo: dove Reaper e Drive non coincidono vale Drive (Devis, 2026-11-21), tranne "son io" nel rit 01 e 03 (Devis, 2026-11-22); le varianti di Reaper sono nei commenti del `.cho`.
 - Ritornelli con la seconda metà diversa: etichette C1 (rit 01 e 03), C2, C3, senza `{chorus}`. Con `{x_recall}` (idee rimandate) il rit 03 si potrebbe richiamare.
 - Tab del basso in `chords/`: non servono nel songbook, bastano quelle della CBG (Devis, 2026-11-22).
-- Live (2026-11-22): bozza partita dalla demo, senza parti degli strumenti; assoli (Solo, Pad, Solo2) e cue finale di Devis. Mancano tempo e durata dal vivo (oggi quelli della demo).
+- Live (2026-11-22, Devis): 144 BPM, durata 2:16, partita dalla demo senza parti degli strumenti; assoli (Solo, Pad, Solo2) e cue finale sull'ultimo accordo.
 
 ### El Boogie Del Barbastrejo
 - Accordi scritti da Devis (2026-11-20) e verificati su Reaper (2026-11-21).
