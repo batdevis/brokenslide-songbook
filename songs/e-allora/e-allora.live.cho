@@ -1,0 +1,156 @@
+# Bozza della versione live, partita dalla demo (2026-11-22). Assoli e finale: Devis (2026-11-22).
+# TODO: tempo e durata dal vivo (oggi sono quelli della demo).
+
+{title: E Allora}
+{key: G}
+{tempo: 120}
+{time: 4/4}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version live}
+
+{start_of_tab: C riff}
+# 2 battute: x4 in ogni ritornello.
+G|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+D|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+G|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+{end_of_tab}
+
+{start_of_tab: V riff}
+# 2 battute: x4 in V1 e V2, x2 in V3.
+G|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+D|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+G|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+{end_of_tab}
+
+{start_of_tab: Brk riff}
+# 2 battute: x2 nel Brk dopo C1.
+G|-------------------------|-------------------------|
+D|-------------------------|-------------------------|
+G|--00-30-00-30-00-30-0-5--|--00-30-00-30-00-30-5-0--|
+{end_of_tab}
+
+{start_of_verse: Intro}
+{x_bars: 1}
+{end_of_verse}
+
+{start_of_chorus: C1}
+{x_bars: 8}
+{x_riff: C riff}
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+è [C]l’uni[Bb]co mo[G]mento
+[Bb]do[G]ve [Bb]sen[G]to [C]son [G]io
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+non [C]serve u[Bb]na ra[G]gione
+in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}
+
+{start_of_verse: Brk}
+{x_bars: 2}
+{x_times: 2}
+{x_riff: Brk riff}
+{end_of_verse}
+
+{start_of_verse: V1}
+{x_bars: 8}
+{x_riff: V riff}
+[C]adesso che non [G]posso
+[Bb]fare quel che dico [C]io
+[C]sto bruciando [G]dentro
+[Bb]la mia acqua è l’[C]ad[G]dio
+[C]non penso farmi [G]male
+[Bb]serva quanto vorrei [C]io
+[C] [G]
+[Bb] [C] [G]
+{end_of_verse}
+
+{start_of_chorus: C2}
+{x_bars: 8}
+{x_riff: C riff}
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+il [C]buio [Bb]non mi [G]basta
+[Bb]ac[G]ca[Bb]rez[G]zo l’o[C]bli[G]o
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+il [C]pensiero [Bb]va al ro[G]vescio
+[Bb]non lo [G]sen[Bb][G]to [C]più [G]mio
+{end_of_chorus}
+
+{start_of_grid: label="Solo" shape="4x4"}
+{x_bars: 8}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V2}
+{x_bars: 8}
+{x_riff: V riff}
+an[C]cora non co[G]nosco un
+[Bb]modo per bruciare [C]qui
+mi [C]sento come un [G]ospite
+[Bb]gradito a [C]me[G]tà
+[C]convincimi a [G]scappare
+[Bb]ad andare [C]via
+[C]non farla [G]diventare
+[Bb]un’intenzione [C]mia
+{end_of_verse}
+
+{start_of_grid: label="Pad" shape="4x4"}
+{x_bars: 8}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_verse: V3}
+{x_bars: 4}
+{x_riff: V riff}
+[C]chiudimi la [G]porta
+[Bb]togli l’aria vai [C]via
+[C]racconto ad un [G]cuscino
+[Bb]quanto stanco [C]io [G]sia
+{end_of_verse}
+
+{start_of_chorus: C1}
+# Come C1, riscritto perché nel file C2 sta in mezzo.
+{x_bars: 8}
+{x_riff: C riff}
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+è [C]l’uni[Bb]co mo[G]mento
+[Bb]do[G]ve [Bb]sen[G]to [C]son [G]io
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+non [C]serve u[Bb]na ra[G]gione
+[Bb]in un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}
+
+{start_of_grid: label="Solo2" shape="4x4"}
+{x_bars: 8}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
+
+{start_of_chorus: C3}
+{x_bars: 8}
+{x_riff: C riff}
+{x_cue: fine del brano sull'ultimo accordo (G)}
+e allora
+[C]sogna [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]so[G]gno nel [C]mio
+[C]spezza [Bb]questo [G]filo
+[Bb]sof[G]fia [Bb]quel[G]la [C]luce [G]via
+e allora
+[C]spera [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]spe[G]ro nel [C]mio
+non [C]farmi [Bb]più tor[G]nare
+[Bb]in un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}

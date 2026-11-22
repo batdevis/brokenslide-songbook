@@ -21,7 +21,7 @@
 # I ritornelli hanno la seconda metà diversa, quindi non si richiamano con {chorus}:
 #   C1 (rit 01 e rit 03, stesso testo), C2 (rit 02), C3 (rit 04). Il rit 03 è riscritto per intero.
 # Accordi su testo: Devis (2026-11-22). Nei ritornelli è partito in parte da una proposta di Claude sul suo schema.
-# Sezioni strumentali (Inst, Solo): sempre G (Devis, 2026-11-22).
+# Sezioni strumentali (Brk, Inst, Solo): sempre G (Devis, 2026-11-22).
 
 {title: E Allora}
 {artist: Broken Slide}
@@ -49,7 +49,7 @@ G|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
 
 {start_of_tab: Brk riff}
 # Scritto da Devis (2026-11-22), parte "stacco" di chords/PiangiSulTuoLetto.txt riscritta. Dura 2 battute.
-# Nella demo non c'è un marker "stacco": è l'Inst dopo C1 (Reaper: solo 01, Devis).
+# Nella demo non c'è un marker "stacco": è il Brk dopo C1 (Reaper: solo 01, Devis).
 G|-------------------------|-------------------------|
 D|-------------------------|-------------------------|
 G|--00-30-00-30-00-30-0-5--|--00-30-00-30-00-30-5-0--|
@@ -85,16 +85,16 @@ non [C]serve u[Bb]na ra[G]gione
 in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
 {end_of_chorus}
 
-{start_of_grid: label="Inst" shape="4x4"}
-# Reaper: solo 01. Nella traccia lyrics: "gtr". Brk riff = "stacco" delle tab (Devis).
-{x_bars: 4}
+{start_of_verse: Brk}
+# Reaper: solo 01 (4 battute). Nella traccia lyrics: "gtr". Brk riff = "stacco" delle tab (Devis).
+{x_bars: 2}
+{x_times: 2}
 {x_riff: Brk riff}
 {comment: senza voce}
-{x_cbg: Brk riff x2 (CBG), la CBG dist tace}
+{x_cbg: Brk riff (CBG), la CBG dist tace}
 {x_bass: bass}
 {x_drums: kick, hi-hat (niente snare)}
-| G . . . | G . . . | G . . . | G . . . |
-{end_of_grid}
+{end_of_verse}
 
 {start_of_verse: V1}
 # Reaper: str 01
