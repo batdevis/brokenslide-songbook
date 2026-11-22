@@ -20,13 +20,13 @@ Su Drive ci sono anche "sorpreso e deluso", delle cover ("I fought the law") e l
 
 ### E Allora
 - Demo (2026-11-21): progetto Reaper in `recording/EAllora/EAllora/EAllora.RPP`, 120 BPM, un verso per battuta. Tonalità G, GDG, slide (Devis). `chords/PiangiSulTuoLetto.txt` (= doc Drive "E Allora - accordi") è lo stesso brano. Tab della CBG riscritte da Devis (2026-11-22) nei blocchi `C riff`, `V riff`, `Brk riff`.
-- Accordi sul testo: Devis (2026-11-22). Mancano gli accordi delle sezioni strumentali (Inst, Solo).
+- Accordi: Devis (2026-11-22). Inst e Solo sempre G.
 - Le tab durano 2 battute (Devis, 2026-11-22): C riff x4 nei ritornelli, V riff x4 in V1 e V2 e x2 in V3, Brk riff x2.
 - Il `Brk riff` ("stacco" nelle tab) è l'Inst dopo C1 (Reaper: solo 01, Devis). La struttura in `chords/` (rit x2, stacco x2, str x2…) è diversa dalla demo: forse è già quella live.
-- V1, battute 7-8: "~~~" nel doc Drive, "---" in Reaper, ma la voce c'è. Cosa si canta?
+- V1, battute 7-8: senza voce (il "~~~" del doc Drive, Devis 2026-11-22).
 - Testo: dove Reaper e Drive non coincidono vale Drive (Devis, 2026-11-21), tranne "son io" nel rit 01 e 03 (Devis, 2026-11-22); le varianti di Reaper sono nei commenti del `.cho`.
 - Ritornelli con la seconda metà diversa: etichette C1 (rit 01 e 03), C2, C3, senza `{chorus}`. Con `{x_recall}` (idee rimandate) il rit 03 si potrebbe richiamare.
-- Tab del basso in `chords/`: non riportate (FORMAT §6 prevede le tab della CBG).
+- Tab del basso in `chords/`: non servono nel songbook, bastano quelle della CBG (Devis, 2026-11-22).
 
 ### El Boogie Del Barbastrejo
 - Accordi scritti da Devis (2026-11-20) e verificati su Reaper (2026-11-21).

@@ -21,7 +21,7 @@
 # I ritornelli hanno la seconda metà diversa, quindi non si richiamano con {chorus}:
 #   C1 (rit 01 e rit 03, stesso testo), C2 (rit 02), C3 (rit 04). Il rit 03 è riscritto per intero.
 # Accordi su testo: Devis (2026-11-22). Nei ritornelli è partito in parte da una proposta di Claude sul suo schema.
-# TODO: accordi delle sezioni strumentali (Inst, Solo).
+# Sezioni strumentali (Inst, Solo): sempre G (Devis, 2026-11-22).
 
 {title: E Allora}
 {artist: Broken Slide}
@@ -85,7 +85,7 @@ non [C]serve u[Bb]na ra[G]gione
 in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
 {end_of_chorus}
 
-{start_of_verse: Inst}
+{start_of_grid: label="Inst" shape="4x4"}
 # Reaper: solo 01. Nella traccia lyrics: "gtr". Brk riff = "stacco" delle tab (Devis).
 {x_bars: 4}
 {x_riff: Brk riff}
@@ -93,12 +93,12 @@ in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
 {x_cbg: Brk riff x2 (CBG), la CBG dist tace}
 {x_bass: bass}
 {x_drums: kick, hi-hat (niente snare)}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V1}
 # Reaper: str 01
-# Battute 7-8: "~~~ ~~~ ~~~ ~~~" nel doc Drive "E Allora", "--- --- ---" nella traccia lyrics; la voce c'è.
-# TODO: chiedere a Devis cosa si canta nelle battute 7-8.
+# Battute 7-8: senza voce (Devis, 2026-11-22). Nel doc Drive "~~~ ~~~ ~~~ ~~~", nella traccia lyrics "--- --- ---".
 {x_bars: 8}
 {x_riff: V riff}
 {x_vox: lead vocal + lead vocal graffiata}
@@ -111,8 +111,8 @@ in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
 [Bb]la mia acqua è l’[C]ad[G]dio
 [C]non penso farmi [G]male
 [Bb]serva quanto vorrei [C]io
-[C]~~~ ~~~ [G]~~~
-[Bb]~~~ ~~~[C]~~~[G]~~~
+[C] [G]
+[Bb] [C] [G]
 e allora
 {end_of_verse}
 
@@ -135,14 +135,16 @@ il [C]pensiero [Bb]va al ro[G]vescio
 [Bb]non lo [G]sen[Bb][G]to [C]più [G]mio
 {end_of_chorus}
 
-{start_of_verse: Solo}
+{start_of_grid: label="Solo" shape="4x4"}
 # Reaper: solo 02. Nella traccia lyrics: "gtr solo"; nel doc Drive "E Allora": "[gtr solo assolo]".
 {x_bars: 8}
 {comment: senza voce}
 {x_cbg: solo (CBG + CBG dist)}
 {x_bass: bass}
 {x_drums: kick, snare, hi-hat (2 battute)}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V2}
 # Reaper: str 02
@@ -163,14 +165,16 @@ mi [C]sento come un [G]ospite
 [Bb]un’intenzione [C]mia
 {end_of_verse}
 
-{start_of_verse: Solo}
+{start_of_grid: label="Solo" shape="4x4"}
 # Reaper: solo 03. Nella traccia lyrics: "gtr"; nel doc Drive "E Allora": "[gtr solo boogie]".
 {x_bars: 8}
 {comment: senza voce}
 {x_cbg: solo (CBG + CBG dist per 6 battute)}
 {x_bass: bass}
 {x_drums: kick, snare, hi-hat (1 battuta)}
-{end_of_verse}
+| G . . . | G . . . | G . . . | G . . . |
+| G . . . | G . . . | G . . . | G . . . |
+{end_of_grid}
 
 {start_of_verse: V3}
 # Reaper: str 03
@@ -215,7 +219,7 @@ non [C]serve u[Bb]na ra[G]gione
 {x_cbg: CBG + CBG dist}
 {x_bass: bass}
 {x_drums: kick, hi-hat (niente snare)}
-aaahhhhh!
+[G]aaahhhhh!
 e allora
 {end_of_verse}
 
