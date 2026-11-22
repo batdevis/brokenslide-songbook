@@ -1,0 +1,240 @@
+# Versione demo (registrata in casa da Devis).
+# Fonti:
+# - struttura, tempo, testo, arrangiamento: progetto Reaper recording/EAllora/EAllora/EAllora.RPP
+#   (marker, traccia "lyrics", item delle tracce). 120 BPM: una battuta = 2 secondi, un verso = una battuta.
+# - testo verificato su Drive band: Broken Slide - work/songs/"E Allora_Tab" (2026-10-03).
+#   Dove Reaper e Drive non coincidono vale Drive (Devis, 2026-11-21); la versione Reaper è nei commenti.
+# - riff in tablatura: scritti da Devis (2026-11-22) partendo da recording/EAllora/chords/PiangiSulTuoLetto.txt
+#   (titolo provvisorio "Piangi sul tuo letto", uguale al doc Drive "E Allora - accordi").
+#   Lì ci sono anche gli accordi sotto le tab, le tab del basso e una struttura diversa dalla demo.
+# - tonalità, accordatura, slide e nomi delle tracce: Devis (2026-11-21).
+# Durata dell'export (recording/EAllora/Export/EAllora.wav): 2:45, compresa la coda della CBG.
+# I commenti "Reaper:" riportano il nome del marker corrispondente.
+# Termini come in GLOSSARY.md. Tracce Reaper → termini usati qui:
+#   gtr = CBG, gtr dist P47 = CBG dist,
+#   voice last try = lead vocal, voce str graff = lead vocal graffiata, voce str suss = lead vocal sussurrata,
+#   voce rit urla 1 / 2 = lead vocal urlata (tutte di Devis, sovrapposte alla lead vocal),
+#   kick / Snare - Blackout / hh medium + hi-hat / open-hat-snake = kick, snare, hi-hat, open hi-hat (campioni).
+#   Tracce mute, non considerate: voce str norm, voce rit clean.
+# "e allora" è un'anacrusi: si canta sui tempi 3-4 della battuta prima del verso "piangi/sogna/spera sul tuo letto".
+#   Qui sta nella sezione in cui cade (come nella traccia lyrics), su una riga sua.
+# I ritornelli hanno la seconda metà diversa, quindi non si richiamano con {chorus}:
+#   C1 (rit 01 e rit 03, stesso testo), C2 (rit 02), C3 (rit 04). Il rit 03 è riscritto per intero.
+# Accordi su testo: Devis (2026-11-22). Nei ritornelli è partito in parte da una proposta di Claude sul suo schema.
+# TODO: accordi delle sezioni strumentali (Inst, Solo).
+
+{title: E Allora}
+{artist: Broken Slide}
+{key: G}
+{tempo: 120}
+{time: 4/4}
+{duration: 2:45}
+{meta: tuning GDG}
+{meta: slide yes}
+{meta: version demo}
+
+{start_of_tab: C riff}
+# Scritto da Devis (2026-11-22), parte "rit" di chords/PiangiSulTuoLetto.txt riscritta. Dura 2 battute.
+G|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+D|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+G|--3/55--33--00--30-30--05--|--3/55--33--00--30--30--50--|
+{end_of_tab}
+
+{start_of_tab: V riff}
+# Scritto da Devis (2026-11-22), parte "str" di chords/PiangiSulTuoLetto.txt riscritta. Dura 2 battute.
+G|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+D|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+G|--55-33-00-30-30-305--|--55-33-00-30-30-50--|
+{end_of_tab}
+
+{start_of_tab: Brk riff}
+# Scritto da Devis (2026-11-22), parte "stacco" di chords/PiangiSulTuoLetto.txt riscritta. Dura 2 battute.
+# Nella demo non c'è un marker "stacco": è l'Inst dopo C1 (Reaper: solo 01, Devis).
+G|-------------------------|-------------------------|
+D|-------------------------|-------------------------|
+G|--00-30-00-30-00-30-0-5--|--00-30-00-30-00-30-5-0--|
+{end_of_tab}
+
+{start_of_verse: Intro}
+# Nessun marker: è la battuta prima di "rit 01" (0-2 secondi).
+{x_bars: 1}
+{x_vox: lead vocal dal tempo 3}
+{x_cbg: CBG + CBG dist dal tempo 3}
+{x_bass: bass}
+{x_drums: hi-hat sul tempo 1 e sul 4}
+e allora
+{end_of_verse}
+
+{start_of_chorus: C1}
+# Reaper: rit 01
+# Verso 4: "son io" come nella traccia lyrics (Devis, 2026-11-22). Nel doc Drive: "sono io".
+{x_bars: 8}
+{x_riff: C riff}
+{x_vox: lead vocal + lead vocal urlata}
+{x_cbg: C riff x4 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+è [C]l’uni[Bb]co mo[G]mento
+[Bb]do[G]ve [Bb]sen[G]to [C]son [G]io
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+non [C]serve u[Bb]na ra[G]gione
+in [Bb]un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}
+
+{start_of_verse: Inst}
+# Reaper: solo 01. Nella traccia lyrics: "gtr". Brk riff = "stacco" delle tab (Devis).
+{x_bars: 4}
+{x_riff: Brk riff}
+{comment: senza voce}
+{x_cbg: Brk riff x2 (CBG), la CBG dist tace}
+{x_bass: bass}
+{x_drums: kick, hi-hat (niente snare)}
+{end_of_verse}
+
+{start_of_verse: V1}
+# Reaper: str 01
+# Battute 7-8: "~~~ ~~~ ~~~ ~~~" nel doc Drive "E Allora", "--- --- ---" nella traccia lyrics; la voce c'è.
+# TODO: chiedere a Devis cosa si canta nelle battute 7-8.
+{x_bars: 8}
+{x_riff: V riff}
+{x_vox: lead vocal + lead vocal graffiata}
+{x_cbg: V riff x4 (CBG) (+ CBG dist per 1 battuta)}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]adesso che non [G]posso
+[Bb]fare quel che dico [C]io
+[C]sto bruciando [G]dentro
+[Bb]la mia acqua è l’[C]ad[G]dio
+[C]non penso farmi [G]male
+[Bb]serva quanto vorrei [C]io
+[C]~~~ ~~~ [G]~~~
+[Bb]~~~ ~~~[C]~~~[G]~~~
+e allora
+{end_of_verse}
+
+{start_of_chorus: C2}
+# Reaper: rit 02
+{x_bars: 8}
+{x_riff: C riff}
+{x_vox: lead vocal + lead vocal urlata (due tracce)}
+{x_cbg: C riff x4 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+il [C]buio [Bb]non mi [G]basta
+[Bb]ac[G]ca[Bb]rez[G]zo l’o[C]bli[G]o
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+il [C]pensiero [Bb]va al ro[G]vescio
+[Bb]non lo [G]sen[Bb][G]to [C]più [G]mio
+{end_of_chorus}
+
+{start_of_verse: Solo}
+# Reaper: solo 02. Nella traccia lyrics: "gtr solo"; nel doc Drive "E Allora": "[gtr solo assolo]".
+{x_bars: 8}
+{comment: senza voce}
+{x_cbg: solo (CBG + CBG dist)}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat (2 battute)}
+{end_of_verse}
+
+{start_of_verse: V2}
+# Reaper: str 02
+# Verso 6: "gradito a metà" come nel doc Drive (Devis, 2026-11-21). Nella traccia lyrics: "non gradito da te".
+{x_bars: 8}
+{x_riff: V riff}
+{x_vox: lead vocal + lead vocal graffiata + lead vocal sussurrata (4 battute)}
+{x_cbg: V riff x4 (CBG)}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+an[C]cora non co[G]nosco un
+[Bb]modo per bruciare [C]qui
+mi [C]sento come un [G]ospite
+[Bb]gradito a [C]me[G]tà
+[C]convincimi a [G]scappare
+[Bb]ad andare [C]via
+[C]non farla [G]diventare
+[Bb]un’intenzione [C]mia
+{end_of_verse}
+
+{start_of_verse: Solo}
+# Reaper: solo 03. Nella traccia lyrics: "gtr"; nel doc Drive "E Allora": "[gtr solo boogie]".
+{x_bars: 8}
+{comment: senza voce}
+{x_cbg: solo (CBG + CBG dist per 6 battute)}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat (1 battuta)}
+{end_of_verse}
+
+{start_of_verse: V3}
+# Reaper: str 03
+{x_bars: 4}
+{x_riff: V riff}
+{x_vox: lead vocal + lead vocal sussurrata}
+{x_cbg: V riff x2 (CBG)}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]chiudimi la [G]porta
+[Bb]togli l’aria vai [C]via
+[C]racconto ad un [G]cuscino
+[Bb]quanto stanco [C]io [G]sia
+e allora
+{end_of_verse}
+
+{start_of_chorus: C1}
+# Reaper: rit 03. Stesso testo di C1 (rit 01), riscritto perché nel file C2 sta in mezzo.
+# Verso 4: "son io" come nel rit 01 e nella traccia lyrics (Devis, 2026-11-22). Nel doc Drive: "sono io".
+{x_bars: 8}
+{x_riff: C riff}
+{x_vox: lead vocal + lead vocal urlata (due tracce)}
+{x_cbg: C riff x4 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+è [C]l’uni[Bb]co mo[G]mento
+[Bb]do[G]ve [Bb]sen[G]to [C]son [G]io
+e allora
+[C]piangi [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]pian[G]go nel [C]mio
+non [C]serve u[Bb]na ra[G]gione
+[Bb]in un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}
+
+{start_of_verse: Inst}
+# Reaper: solo 04. Nella traccia lyrics: "aaaaahhhhhh!!!!!"; nel doc Drive: "[aaahhhhh!]".
+# Nella traccia lyrics qui manca "e allora" prima di C3; nel doc Drive c'è.
+{x_bars: 4}
+{x_vox: urlo "aaahhhhh!" (2 battute, lead vocal + lead vocal urlata)}
+{x_cbg: CBG + CBG dist}
+{x_bass: bass}
+{x_drums: kick, hi-hat (niente snare)}
+aaahhhhh!
+e allora
+{end_of_verse}
+
+{start_of_chorus: C3}
+# Reaper: rit 04. Dopo l'ultima battuta la batteria si ferma, la CBG suona ancora per circa 5 battute (coda dell'export).
+# Ultimo verso: "in un futuro non mio" come nel doc Drive (Devis, 2026-11-21). Nella traccia lyrics: "in questo buio non mio".
+{x_bars: 8}
+{x_riff: C riff}
+{x_vox: lead vocal + lead vocal urlata}
+{x_cbg: C riff x4 (CBG) + CBG dist}
+{x_bass: bass}
+{x_drums: kick, snare, hi-hat, open hi-hat}
+[C]sogna [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]so[G]gno nel [C]mio
+[C]spezza [Bb]questo [G]filo
+[Bb]sof[G]fia [Bb]quel[G]la [C]luce [G]via
+e allora
+[C]spera [Bb]sul tuo [G]letto
+[Bb]che [G]io [Bb]spe[G]ro nel [C]mio
+non [C]farmi [Bb]più tor[G]nare
+[Bb]in un [G]fu[Bb]tu[G]ro [C]non [G]mio
+{end_of_chorus}

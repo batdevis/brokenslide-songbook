@@ -40,7 +40,7 @@ Se nelle fonti compare un nome nuovo, aggiungerlo qui come sinonimo o come termi
 
 | Termine | Sinonimi | Note |
 |---|---|---|
-| lead vocal | voce, voice, voice str | |
+| lead vocal | voce, voice, voice str, voice last try | in E Allora anche le varianti "voce str graff" (graffiata), "voce str suss" (sussurrata), "voce rit urla" (urlata), sovrapposte alla lead vocal |
 | double | doppia voce, double track | la stessa voce registrata due volte |
 | backing vocals | cori, bv, voice backing | |
 | spoken | parlato, voice spoken | |
